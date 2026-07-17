@@ -1,7 +1,7 @@
 # Strict quality suite and agent-safe CV editing
 
 **Created:** 2026-07-17  
-**Status:** Complete locally; awaiting GitHub Actions evidence
+**Status:** Complete; local and GitHub Actions gates green
 
 ## User request
 
@@ -52,3 +52,14 @@ inspection.
 - The official `quick_validate.py` accepted `.agents/skills/cv-editor`.
 - Strict accessibility runs found seven portfolio contrast defects and one isolated-CV contrast
   defect; colors were corrected and repeated WCAG A/AA scans passed in English and Portuguese.
+
+## Remote evidence
+
+- GitHub Actions run `29579667859` passed both required jobs on 2026-07-17.
+- `Lint, contracts, and dependency audit` passed locked install, zero-vulnerability audit, zero-
+  warning lint, and all contract tests.
+- `Chromium behavior, accessibility, and A4` installed the pinned browser and passed all fourteen
+  scenarios.
+- Workflow actions are pinned by full commit SHA. Checkout and Node setup use their Node 24-based
+  V5 releases, leaving the final run without the Node 20 deprecation annotation found in the first
+  trial.
