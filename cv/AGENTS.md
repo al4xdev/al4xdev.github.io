@@ -25,7 +25,7 @@ It is hidden in mobile/screen CV rendering and appears only in the A4 print comp
 1. Edit `content.js` only.
 2. Run `npm run test:unit` from the repository root.
 3. Export each changed language with `npm run cv:export -- --lang en` and/or `--lang pt-BR`.
-4. Inspect the reported PDF and `/tmp/*-preview.png`; confirm one A4 page with no clipping.
+4. Inspect the reported PDF and `/tmp/*-preview-*.png`; confirm one or two A4 pages with no clipping and no entry split across the page break.
 5. Run `npm test` before handing off a publishable change.
 
 The export command rejects destinations outside `/tmp` by design.

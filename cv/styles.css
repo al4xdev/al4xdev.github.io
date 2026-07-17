@@ -104,32 +104,88 @@ a {
   line-height: 1.6;
 }
 
-.cv-entry {
+.cv-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-role {
+  position: relative;
+  padding-left: 1.6rem;
+  border-left: 1px solid var(--mineral);
+}
+
+.cv-role + .cv-role {
+  margin-top: 1.4rem;
+}
+
+.cv-role:last-child {
+  border-left-color: transparent;
+}
+
+.cv-role::before {
+  content: "";
+  position: absolute;
+  left: -0.42rem;
+  top: 0.15rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 2px solid var(--copper);
+  border-radius: 50%;
+  background: white;
+}
+
+.cv-role-head {
+  margin-bottom: 0.5rem;
+}
+
+.cv-role-period {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.cv-role-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.15rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.cv-role-tag {
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--copper);
+  border-radius: 999px;
+  color: var(--copper);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cv-role-projects {
   display: grid;
-  grid-template-columns: minmax(11rem, 0.85fr) minmax(0, 1.15fr);
-  gap: 1.4rem;
-  padding: 1.2rem 0;
+  gap: 0.2rem;
+}
+
+.cv-entry {
+  padding: 0.55rem 0;
+}
+
+.cv-entry + .cv-entry {
   border-top: 1px solid var(--mineral);
 }
 
-.cv-entry:last-child {
-  border-bottom: 1px solid var(--mineral);
-}
-
-.cv-entry h3 {
-  margin: 0;
-  font-size: 0.9rem;
+.cv-entry h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
   line-height: 1.25;
-}
-
-.cv-entry span {
-  display: block;
-  margin-top: 0.35rem;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  line-height: 1.4;
-  text-transform: uppercase;
 }
 
 .cv-entry p {
@@ -180,6 +236,35 @@ a {
 .language-list {
   display: grid;
   gap: 0.25rem;
+}
+
+.edu-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.edu-list li {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--mineral);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.edu-list li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.cv-mentors .cv-mentor-note {
+  margin: 2.5mm 0 0;
+  color: var(--muted);
+  font-size: 4.5pt;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: right;
 }
 
 .cv-mentors {
@@ -346,8 +431,17 @@ a {
 
 
   .cv-entry {
-    grid-template-columns: minmax(38mm, 0.85fr) minmax(0, 1.15fr);
-    gap: 5mm;
-    padding: 2.5mm 0;
+    padding: 1.5mm 0;
+  }
+
+  .cv-role + .cv-role {
+    margin-top: 4mm;
+  }
+
+  /* Two-page layout: never split a project, a role header, or a listed system. */
+  .cv-entry,
+  .cv-role-head,
+  .system-list li {
+    break-inside: avoid;
   }
 }

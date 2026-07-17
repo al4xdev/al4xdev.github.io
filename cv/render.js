@@ -13,14 +13,21 @@
     `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`
   )).join('');
 
-  const renderExperience = (entries) => entries.map((entry) => `
+  const renderProjects = (projects) => projects.map((project) => `
     <article class="cv-entry">
-      <div>
-        <h3>${escapeHtml(entry.title)}</h3>
-        <span>${escapeHtml(entry.meta)}</span>
-      </div>
-      <p>${escapeHtml(entry.body)}</p>
+      <h4>${escapeHtml(project.title)}</h4>
+      <p>${escapeHtml(project.body)}</p>
     </article>
+  `).join('');
+
+  const renderExperience = (roles) => roles.map((role) => `
+    <li class="cv-role">
+      <div class="cv-role-head">
+        <span class="cv-role-period">${escapeHtml(role.period)}</span>
+        <h3 class="cv-role-title">${escapeHtml(role.role)}${role.tag ? ` <span class="cv-role-tag">${escapeHtml(role.tag)}</span>` : ''}</h3>
+      </div>
+      <div class="cv-role-projects">${renderProjects(role.projects)}</div>
+    </li>
   `).join('');
 
   const renderSystems = (systems) => systems.map((system) => `
@@ -29,6 +36,10 @@
 
   const renderTags = (tags) => tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join('');
   const renderLines = (lines) => lines.map((line) => `<span>${escapeHtml(line)}</span>`).join('');
+  const renderEducation = (education) => education
+    .split(' · ')
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join('');
   const renderMentors = () => (window.MENTOR_CONTENT || []).map((mentor) => {
     const copy = mentor[language];
     const portrait = mentor.photo
@@ -72,7 +83,7 @@
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.experienceLabel)}</h2>
-              ${renderExperience(cv.experience)}
+              <ol class="cv-timeline">${renderExperience(cv.experience)}</ol>
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.selectedWorkLabel)}</h2>
@@ -92,10 +103,11 @@
             <section class="cv-block cv-mentors">
               <h2>${language === 'pt-BR' ? 'Mentorado por' : 'Mentored by'}</h2>
               <div class="cv-mentor-list">${renderMentors()}</div>
+              <p class="cv-mentor-note">${escapeHtml(cv.mentorsNote)}</p>
             </section>
             <section class="cv-block placeholder-block">
               <h2>${escapeHtml(cv.educationLabel)}</h2>
-              <p>${escapeHtml(cv.education)}</p>
+              <ul class="edu-list">${renderEducation(cv.education)}</ul>
             </section>
             <p class="mock-footnote">${escapeHtml(cv.footnote)}</p>
           </aside>

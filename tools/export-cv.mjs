@@ -10,24 +10,30 @@ function readArgument(name) {
   return index === -1 ? null : process.argv[index + 1];
 }
 
-function runPreview(pdfPath, previewBase) {
+function runPreview(pdfPath, previewBase, pageCount) {
   return new Promise((resolvePreview, reject) => {
     const processHandle = spawn('pdftoppm', [
-      '-png', '-f', '1', '-singlefile', '-r', '120', pdfPath, previewBase,
+      '-png', '-f', '1', '-l', String(pageCount), '-r', '120', pdfPath, previewBase,
     ], { stdio: 'ignore' });
     processHandle.once('error', (error) => {
       if (error.code === 'ENOENT') {
-        resolvePreview(null);
+        resolvePreview([]);
         return;
       }
       reject(error);
     });
     processHandle.once('exit', (code) => {
-      if (code === 0) resolvePreview(`${previewBase}.png`);
-      else reject(new Error(`pdftoppm exited with code ${code}.`));
+      if (code === 0) {
+        resolvePreview(
+          Array.from({ length: pageCount }, (_, index) => `${previewBase}-${index + 1}.png`),
+        );
+      } else reject(new Error(`pdftoppm exited with code ${code}.`));
     });
   });
 }
+
+// A4 CV supports a compact one-page layout and a two-page evidence-rich layout.
+const MAX_PAGES = 2;
 
 const requestedLanguage = readArgument('lang') || 'en';
 const language = requestedLanguage === 'pt' ? 'pt-BR' : requestedLanguage;
@@ -53,10 +59,12 @@ try {
   const pages = document.getPageCount();
   const { width, height } = document.getPage(0).getSize();
   const previewBase = resolve(dirname(output), `${basename(output, '.pdf')}-preview`);
-  const preview = await runPreview(output, previewBase);
-  console.log(JSON.stringify({ language, pdf: output, preview, pages, format: 'A4' }, null, 2));
+  const previews = await runPreview(output, previewBase, pages);
+  console.log(JSON.stringify({ language, pdf: output, previews, pages, format: 'A4' }, null, 2));
 
-  if (pages !== 1) throw new Error('CV export must contain exactly one page.');
+  if (pages < 1 || pages > MAX_PAGES) {
+    throw new Error(`CV export must contain 1–${MAX_PAGES} A4 pages; got ${pages}.`);
+  }
   if (Math.abs(width - 595.28) > 2 || Math.abs(height - 841.89) > 2) {
     throw new Error(`Unexpected page size: ${width} × ${height} pt.`);
   }

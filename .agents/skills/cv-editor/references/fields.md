@@ -12,7 +12,7 @@ Both objects must have the same keys and value types.
 | `links` | array of `{label,url}` | Public HTTPS links only. |
 | `profile` | `{label,body}` | Short factual summary. |
 | `experienceLabel` | string | Localized section label. |
-| `experience` | array of `{title,meta,body}` | Preserve entry order across locales; placeholders stay explicit. |
+| `experience` | array of `{role,tag,period,projects[]}` | Role-periods, newest first. `tag` is the lone `project role` qualifier (empty string when the role carries none); never add a defensive disclaimer beside it. `projects` is an array of `{title,body}`. Same shape and order across locales. |
 | `selectedWorkLabel` | string | Localized section label. |
 | `selectedWork` | array of `{name,body}` | Same projects and order across locales. |
 | `focusLabel` | string | Localized section label. |
@@ -20,7 +20,8 @@ Both objects must have the same keys and value types.
 | `languagesLabel` | string | Localized section label. |
 | `languages` | string array | Do not infer proficiency. |
 | `educationLabel` | string | Localized section label. |
-| `education` | string | Verified facts or an explicit placeholder. |
+| `education` | string | Verified facts or an explicit placeholder. Rendered as a list, split on ` · `. |
+| `mentorsNote` | string | Short attribution line under the mentors, in Alexsandro's own words. |
 | `footnote` | string | Verification status and limitations. |
 
 Do not add display markup to values. `cv/render.js` escapes every field and owns the HTML.

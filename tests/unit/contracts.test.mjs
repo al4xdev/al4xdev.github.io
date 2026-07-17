@@ -64,8 +64,19 @@ test('CV locales preserve identical field shapes and safe public links', async (
 
   assert.deepEqual(deepShape(content.en), deepShape(content['pt-BR']));
   for (const locale of ['en', 'pt-BR']) {
-    assert.ok(content[locale].experience.length >= 3);
+    const roles = content[locale].experience;
+    assert.ok(roles.length >= 1);
+    let projectCount = 0;
+    for (const role of roles) {
+      assert.equal(typeof role.role, 'string');
+      assert.equal(typeof role.tag, 'string');
+      assert.equal(typeof role.period, 'string');
+      assert.ok(Array.isArray(role.projects) && role.projects.length >= 1);
+      projectCount += role.projects.length;
+    }
+    assert.ok(projectCount >= 3);
     assert.ok(content[locale].selectedWork.length >= 4);
+    assert.equal(typeof content[locale].mentorsNote, 'string');
     for (const link of content[locale].links) assert.match(link.url, /^https:\/\//);
   }
 });

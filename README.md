@@ -47,7 +47,7 @@ npx playwright install chromium
 npm test
 ```
 
-Export an inspectable one-page CV and PNG preview to `/tmp` with:
+Export an inspectable CV (up to two A4 pages) and per-page PNG previews to `/tmp` with:
 
 ```fish
 npm run cv:export -- --lang en

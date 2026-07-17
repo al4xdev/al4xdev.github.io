@@ -162,7 +162,7 @@ test('CV language and print request cross only the sandbox message bridge', asyn
 });
 
 for (const language of ['en', 'pt-BR']) {
-  test(`standalone ${language} CV exports as one A4 page`, async ({ page }) => {
+  test(`standalone ${language} CV exports as up to two A4 pages`, async ({ page }) => {
     await page.goto(`/cv/index.html?lang=${language}`);
     await expect(page.locator('.mock-badge')).toHaveCount(0);
     await expect(page.locator('.cv-mentors')).toBeVisible();
@@ -177,7 +177,9 @@ for (const language of ['en', 'pt-BR']) {
     await expect(page.locator('.cv-mentors')).toBeVisible();
     const bytes = await page.pdf({ format: 'A4', printBackground: true });
     const document = await PDFDocument.load(bytes);
-    expect(document.getPageCount()).toBe(1);
+    const pageCount = document.getPageCount();
+    expect(pageCount).toBeGreaterThanOrEqual(1);
+    expect(pageCount).toBeLessThanOrEqual(2);
     const { width, height } = document.getPage(0).getSize();
     expect(Math.abs(width - 595.28)).toBeLessThan(2);
     expect(Math.abs(height - 841.89)).toBeLessThan(2);

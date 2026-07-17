@@ -15,24 +15,39 @@ window.CV_CONTENT = Object.freeze({
     ],
     profile: {
       label: 'Profile',
-      body: 'AI & Platform Engineer building reusable GenAI systems across typed LLM workflows, agent control planes, runtime platforms, and developer tooling.',
+      body: 'AI & Platform Engineer who turns ambiguous GenAI architectures into deployable, observable, reusable systems — typed LLM workflows, agent control planes, vLLM runtimes, and developer tooling — with measured impact on cost, performance, and delivery speed.',
     },
     experienceLabel: 'Experience',
     experience: [
       {
-        title: 'Agentic document-transformation platform',
-        meta: 'Accenture · Dec 2024–Present',
-        body: 'Drove substantial implementation and evolution of an agentic document-transformation platform. Built a typed multi-stage LLM framework with retries, timeouts, partial failures, and telemetry.',
+        role: 'Principal AI Platform Engineer',
+        tag: 'project role',
+        period: '2025 — Present',
+        projects: [
+          {
+            title: 'Enterprise data & AI platform',
+            body: 'Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform — modernizing legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Client, domain, stack, and metrics are withheld under confidentiality.',
+          },
+        ],
       },
       {
-        title: 'vLLM-based inference platform',
-        meta: 'Accenture · Overlapping project work',
-        body: 'Implemented runtime, deployment, observability, accounting integration, and operational automation for a vLLM-based inference platform; initial design constraints were shared.',
-      },
-      {
-        title: 'Confidential enterprise AI/platform initiative',
-        meta: 'Accenture · Current · Project role: Principal AI Platform Engineer',
-        body: 'Scope intentionally withheld under confidentiality obligations. Functional project role, not a formal HR title.',
+        role: 'AI Platform Engineer',
+        tag: '',
+        period: 'Dec 2024 — 2025',
+        projects: [
+          {
+            title: 'Agentic document-transformation platform',
+            body: 'Drove substantial implementation and evolution of an agentic document-transformation platform, including a reusable typed multi-stage LLM framework with retries, timeouts, partial failures, and telemetry. A state-machine orchestration framework (FastAPI/Pydantic) sped developer onboarding ~60%; lazy-loading cut LLM token spend ~30% and runtime memory ~80%; YAML-driven CI/CD reduced deployment time ~80%.',
+          },
+          {
+            title: 'GenAI data pipelines & platform',
+            body: 'Built high-throughput ETL pipelines (Polars/Python) that improved throughput ~50%, and cut BigQuery cost ~90% with a metadata-driven ORM. Delivered GenAI validation tooling and RAG services on containerized GCP infrastructure (Cloud Functions, Pub/Sub).',
+          },
+          {
+            title: 'vLLM-based inference platform',
+            body: 'Implemented runtime, deployment, observability, accounting integration, and operational automation for a vLLM-based inference platform; initial design constraints were shared.',
+          },
+        ],
       },
     ],
     selectedWorkLabel: 'Independent engineering projects',
@@ -53,6 +68,10 @@ window.CV_CONTENT = Object.freeze({
         name: 'SceneQueue',
         body: 'Local-first ComfyUI storyboard with persistent sequence editing, hybrid job synchronization, and PWA/mobile UX.',
       },
+      {
+        name: 'ReImagineX',
+        body: 'Local-first image-lineage product on ComfyUI with atomic persistence, resilient job tracking, and mobile/PWA UX.',
+      },
     ],
     focusLabel: 'Technical focus',
     focus: [
@@ -68,8 +87,9 @@ window.CV_CONTENT = Object.freeze({
     languagesLabel: 'Languages',
     languages: ['Portuguese', 'English · C2 · goFLUENT ECEFR SET, Apr 2025'],
     educationLabel: 'Education & certifications',
-    education: 'B.Eng. Materials Engineering, UFCA (2023)',
-    footnote: 'Public CV. Confidential client and project details are intentionally withheld.',
+    education: 'B.Eng. Materials Engineering, UFCA (2023) · Materials Engineering studies, UFSC (2016–2019) · Machine Learning Specialization, Stanford Online & DeepLearning.AI (2024) · People Leadership Credential L1, Accenture (2025) · Consumer Electronics Industry Foundations, Primerli (2025)',
+    mentorsNote: 'People whose experience, technical judgment, and intellectual generosity are a permanent part of my formation.',
+    footnote: 'Public CV. Confidential client and project details are withheld. Impact figures reflect each project’s original scope and baseline.',
   },
   'pt-BR': {
     documentTitle: 'Alexsandro Pessoa — Currículo de engenharia de plataformas de IA',
@@ -81,24 +101,39 @@ window.CV_CONTENT = Object.freeze({
     ],
     profile: {
       label: 'Perfil',
-      body: 'Engenheiro de IA e plataformas construindo sistemas GenAI reutilizáveis entre fluxos tipados com LLMs, planos de controle para agentes, plataformas de runtime e ferramentas para desenvolvedores.',
+      body: 'Engenheiro de IA e plataformas que transforma arquiteturas GenAI ambíguas em sistemas implantáveis, observáveis e reutilizáveis — fluxos tipados com LLMs, planos de controle para agentes, runtimes vLLM e ferramentas para desenvolvedores — com impacto medido em custo, desempenho e velocidade de entrega.',
     },
     experienceLabel: 'Experiência',
     experience: [
       {
-        title: 'Plataforma agêntica de transformação de documentos',
-        meta: 'Accenture · dez. 2024–atual',
-        body: 'Conduziu parte substancial da implementação e evolução de uma plataforma agêntica de transformação de documentos. Criou um framework tipado de LLMs em múltiplas etapas, com retries, timeouts, falhas parciais e telemetria.',
+        role: 'Principal AI Platform Engineer',
+        tag: 'função no projeto',
+        period: '2025 — atual',
+        projects: [
+          {
+            title: 'Plataforma corporativa de dados & IA',
+            body: 'Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados/IA — modernizando fluxos legados de dados com pipelines determinísticos para que desenvolvedores implementem e validem novas regras com segurança e autonomia. Cliente, domínio, stack e métricas são omitidos por confidencialidade.',
+          },
+        ],
       },
       {
-        title: 'Plataforma de inferência baseada em vLLM',
-        meta: 'Accenture · Trabalho de projeto sobreposto',
-        body: 'Implementou runtime, deployment, observabilidade, integração de contabilização e automação operacional para uma plataforma baseada em vLLM; as restrições iniciais de design foram compartilhadas.',
-      },
-      {
-        title: 'Iniciativa confidencial empresarial de IA/plataforma',
-        meta: 'Accenture · Atual · Função no projeto: Principal AI Platform Engineer',
-        body: 'Escopo intencionalmente omitido por obrigações de confidencialidade. Função de projeto, não cargo formal de RH.',
+        role: 'AI Platform Engineer',
+        tag: '',
+        period: 'dez. 2024 — 2025',
+        projects: [
+          {
+            title: 'Plataforma agêntica de transformação de documentos',
+            body: 'Conduziu parte substancial da implementação e evolução de uma plataforma agêntica de transformação de documentos, incluindo um framework tipado de LLMs em múltiplas etapas com retries, timeouts, falhas parciais e telemetria. Um framework de orquestração baseado em máquina de estados (FastAPI/Pydantic) acelerou o onboarding de desenvolvedores em ~60%; lazy-loading reduziu o gasto de tokens em ~30% e a memória de runtime em ~80%; CI/CD baseado em YAML reduziu o tempo de deploy em ~80%.',
+          },
+          {
+            title: 'Pipelines e plataforma de dados com GenAI',
+            body: 'Construiu pipelines de ETL de alta vazão (Polars/Python) que melhoraram a vazão em ~50% e reduziu o custo de BigQuery em ~90% com um ORM orientado a metadados. Entregou ferramentas de validação com GenAI e serviços de RAG em infraestrutura GCP conteinerizada (Cloud Functions, Pub/Sub).',
+          },
+          {
+            title: 'Plataforma de inferência baseada em vLLM',
+            body: 'Implementou runtime, deployment, observabilidade, integração de contabilização e automação operacional para uma plataforma baseada em vLLM; as restrições iniciais de design foram compartilhadas.',
+          },
+        ],
       },
     ],
     selectedWorkLabel: 'Projetos independentes de engenharia',
@@ -119,6 +154,10 @@ window.CV_CONTENT = Object.freeze({
         name: 'SceneQueue',
         body: 'Storyboard local-first sobre ComfyUI, com edição persistente, sincronização híbrida de jobs e UX PWA/mobile.',
       },
+      {
+        name: 'ReImagineX',
+        body: 'Produto local-first de linhagem de imagens sobre ComfyUI, com persistência atômica, rastreamento resiliente de jobs e UX PWA/mobile.',
+      },
     ],
     focusLabel: 'Foco técnico',
     focus: [
@@ -134,7 +173,8 @@ window.CV_CONTENT = Object.freeze({
     languagesLabel: 'Idiomas',
     languages: ['Português', 'Inglês · C2 · goFLUENT ECEFR SET, abr. 2025'],
     educationLabel: 'Formação e certificações',
-    education: 'Bacharelado em Engenharia de Materiais, UFCA (2023)',
-    footnote: 'Currículo público. Detalhes confidenciais de clientes e projetos são intencionalmente omitidos.',
+    education: 'Bacharelado em Engenharia de Materiais, UFCA (2023) · Estudos em Engenharia de Materiais, UFSC (2016–2019) · Machine Learning Specialization, Stanford Online & DeepLearning.AI (2024) · Credencial People Leadership Nível 1, Accenture (2025) · Consumer Electronics Industry Foundations, Primerli (2025)',
+    mentorsNote: 'Pessoas cuja experiência, julgamento técnico e generosidade intelectual fazem parte permanente da minha formação.',
+    footnote: 'Currículo público. Detalhes confidenciais de clientes e projetos são omitidos. Os números de impacto refletem o escopo e a baseline originais de cada projeto.',
   },
 });

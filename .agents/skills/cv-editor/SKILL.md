@@ -23,8 +23,8 @@ Work from the repository root and obey `cv/AGENTS.md`.
    npm run cv:export -- --lang pt-BR
    ```
 
-7. Inspect the JSON result and open the reported `/tmp/*-preview.png`. Confirm that the generated
-   PDF is one A4 page, readable, and unclipped.
+7. Inspect the JSON result and open each reported `/tmp/*-preview-*.png`. Confirm that the generated
+   PDF is one or two A4 pages, readable, unclipped, and with no entry split across the page break.
 8. Run `npm test` before declaring a publishable edit complete.
 
 ## Boundaries
