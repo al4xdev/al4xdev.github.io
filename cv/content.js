@@ -45,7 +45,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				role: "AI Platform Engineer",
 				tag: "",
-				period: "Dec 2024 — 2025",
+				period: "Oct 2024 — 2025",
 				projects: [
 					{
 						title: "Agentic document-transformation platform",
@@ -158,7 +158,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				role: "AI Platform Engineer",
 				tag: "",
-				period: "dez. 2024 — 2025",
+				period: "out. 2024 — 2025",
 				projects: [
 					{
 						title:
