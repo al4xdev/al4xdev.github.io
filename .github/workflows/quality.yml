@@ -36,6 +36,9 @@ jobs:
       - name: Audit production and development dependencies
         run: npm audit --audit-level=moderate
 
+      - name: Verify published test inventory
+        run: npm run meta:check
+
       - name: Lint with zero warnings
         run: npm run lint
 

@@ -29,6 +29,18 @@
 
   const renderTags = (tags) => tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join('');
   const renderLines = (lines) => lines.map((line) => `<span>${escapeHtml(line)}</span>`).join('');
+  const renderMentors = () => (window.MENTOR_CONTENT || []).map((mentor) => {
+    const copy = mentor[language];
+    const portrait = mentor.photo
+      ? `<img src="${escapeHtml(mentor.photo)}" alt="">`
+      : escapeHtml(mentor.initials);
+    return `
+      <a class="cv-mentor" href="${escapeHtml(mentor.linkedin)}" target="_blank" rel="noopener noreferrer">
+        <span class="cv-mentor-portrait" aria-hidden="true">${portrait}</span>
+        <span><strong>${escapeHtml(copy.name)}</strong><small>${escapeHtml(copy.note)}</small></span>
+      </a>
+    `;
+  }).join('');
 
   function notifyHeight() {
     window.parent.postMessage({
@@ -76,6 +88,10 @@
             <section class="cv-block">
               <h2>${escapeHtml(cv.languagesLabel)}</h2>
               <p class="language-list">${renderLines(cv.languages)}</p>
+            </section>
+            <section class="cv-block cv-mentors">
+              <h2>${language === 'pt-BR' ? 'Mentorado por' : 'Mentored by'}</h2>
+              <div class="cv-mentor-list">${renderMentors()}</div>
             </section>
             <section class="cv-block placeholder-block">
               <h2>${escapeHtml(cv.educationLabel)}</h2>

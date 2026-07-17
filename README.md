@@ -32,6 +32,13 @@ Open <http://127.0.0.1:8080>.
 GitHub Pages publishes `main` directly at <https://al4xdev.github.io/> without a build step. The
 strict quality workflow runs independently on every pull request and push to `main`.
 
+The footer's integrity counter is generated from the tests discovered by Node and Playwright.
+After adding or removing tests, refresh the committed static metadata with:
+
+```fish
+npm run meta:generate
+```
+
 ## Quality gate
 
 ```fish

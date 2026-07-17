@@ -21,6 +21,8 @@ inspection.
 4. GitHub Actions runs the whole suite on pull requests and pushes to `main`, with read-only token
    permissions, locked dependencies, concurrency cancellation, explicit timeouts, and failure
    artifacts.
+5. `tools/site-meta.mjs` discovers the actual Node and Playwright tests and generates
+   `site-meta.json`; CI rejects stale published counts before running the remaining gates.
 
 ## CV agent boundary
 
@@ -43,9 +45,10 @@ inspection.
 ## Local evidence
 
 - ESLint, Stylelint, and html-validate pass with zero warnings.
-- Nine contract tests cover interface/project/CV/article parity, local resources, sandbox and
-  print contracts, export destination safety, and repository skill metadata.
-- Fourteen Chromium scenarios pass across desktop, four mobile/landscape viewports, both CV
+- Ten contract tests cover interface/project/CV/article parity, local resources, sandbox and
+  print contracts, export destination safety, repository skill metadata, mentor data, and the
+  public integrity proof.
+- Fifteen Chromium scenarios pass across desktop, four mobile/landscape viewports, both CV
   languages, local article routing, accessibility, reduced motion, no JavaScript, and print.
 - English and Portuguese export commands each produced one validated A4 PDF and a PNG preview in
   `/tmp`.

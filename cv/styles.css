@@ -182,6 +182,59 @@ a {
   gap: 0.25rem;
 }
 
+.cv-mentors {
+  display: none;
+}
+
+.cv-mentor-list {
+  display: grid;
+  gap: 2.5mm;
+}
+
+.cv-mentor {
+  display: grid;
+  grid-template-columns: 8mm minmax(0, 1fr);
+  gap: 2.5mm;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cv-mentor-portrait {
+  display: grid;
+  width: 8mm;
+  height: 8mm;
+  place-items: center;
+  overflow: hidden;
+  border: 0.25mm dashed var(--mineral);
+  border-radius: 50%;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 5pt;
+}
+
+.cv-mentor-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-mentor strong,
+.cv-mentor small {
+  display: block;
+}
+
+.cv-mentor strong {
+  font-size: 6.5pt;
+}
+
+.cv-mentor small {
+  margin-top: 0.5mm;
+  color: var(--muted);
+  font-size: 5pt;
+  line-height: 1.25;
+}
+
 .placeholder-block {
   padding: 1rem;
   background: var(--mist);
@@ -284,6 +337,10 @@ a {
 
   .cv-block + .cv-block {
     margin-top: 5mm;
+  }
+
+  .cv-mentors {
+    display: block;
   }
 
   .cv-entry {

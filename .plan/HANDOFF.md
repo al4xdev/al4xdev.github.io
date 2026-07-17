@@ -74,6 +74,12 @@ Read these files in order before changing the project:
 - `npm run cv:export -- --lang <en|pt-BR>` creates a validated PDF and preview only in `/tmp`.
 - On mobile, the CV action is a compact bottom dock while the CV section is visible. It expands on
   request or automatically when the reader reaches the section end.
+- The header starts with Alexsandro's full name and a small `Mentored by / 02` coordinate. The two
+  intentionally mock mentor profiles live only in `mentors/content.js`, link to LinkedIn, render
+  in the hero, and appear in the CV only under A4 print media.
+- The final footer contains a quiet integrity proof. `site-meta.json` is generated from discovered
+  Node and Playwright tests, and the deploy link resolves the newest successful Pages run through
+  GitHub's public API with the repository Actions page as fallback.
 
 ## Before publishing
 

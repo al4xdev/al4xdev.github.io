@@ -5,6 +5,10 @@ This directory is an isolated bilingual CV renderer. For ordinary résumé updat
 portfolio, or the iframe message protocol unless the user explicitly requests a structural or
 design change.
 
+Mentor identity is intentionally shared with the portfolio and lives in `../mentors/content.js`.
+It is hidden in mobile/screen CV rendering and appears only in the A4 print composition. Follow
+`../mentors/AGENTS.md` when the user explicitly asks to replace those two mocks.
+
 ## Content rules
 
 - Use verified facts supplied by the user or already present in the repository.

@@ -8,6 +8,7 @@ const STRINGS = {
     heroTitle: 'I build systems where AI judgment meets <em>deterministic control.</em>',
     heroLead: 'Complex ideas become usable when every decision has an owner, every boundary can be inspected, and the interface makes the system legible.',
     explore: 'Explore the systems',
+    mentoredBy: 'Mentored by',
     currentWork: 'Current work',
     currentWorkValue: 'GenAI, MLOps, cloud & automation',
     operatingMode: 'Operating mode',
@@ -54,6 +55,9 @@ const STRINGS = {
     cvStandalone: 'Open standalone CV renderer',
     footerThesis: 'Curious builder turning unusual ideas into working systems.',
     footerNote: 'This portfolio is itself a small system: bilingual, inspectable, and deliberately unfinished.',
+    qualityPrefix: 'Under the paper:',
+    qualitySuffix: 'automated tests guard this portfolio.',
+    qualityDeploy: 'Inspect the latest deployment',
     changeLanguage: 'Change language',
     github: 'Repository',
     article: 'Case study',
@@ -68,6 +72,7 @@ const STRINGS = {
     heroTitle: 'Eu construo sistemas onde julgamento de IA encontra <em>controle determinístico.</em>',
     heroLead: 'Ideias complexas se tornam utilizáveis quando cada decisão tem um dono, cada fronteira pode ser inspecionada e a interface torna o sistema legível.',
     explore: 'Explorar os sistemas',
+    mentoredBy: 'Mentorado por',
     currentWork: 'Trabalho atual',
     currentWorkValue: 'GenAI, MLOps, cloud e automação',
     operatingMode: 'Modo de operação',
@@ -114,6 +119,9 @@ const STRINGS = {
     cvStandalone: 'Abrir o renderizador isolado do currículo',
     footerThesis: 'Um construtor curioso transformando ideias incomuns em sistemas reais.',
     footerNote: 'Este portfólio também é um pequeno sistema: bilíngue, inspecionável e deliberadamente inacabado.',
+    qualityPrefix: 'Por baixo do papel:',
+    qualitySuffix: 'testes automatizados protegem este portfólio.',
+    qualityDeploy: 'Inspecionar o último deploy',
     changeLanguage: 'Trocar idioma',
     github: 'Repositório',
     article: 'Estudo de caso',
@@ -286,6 +294,28 @@ function translateInterface() {
   document.querySelector('portfolio-cv')?.setAttribute('language', language);
 }
 
+function renderMentors() {
+  const mentors = window.MENTOR_CONTENT || [];
+  document.querySelectorAll('[data-mentor-index]').forEach((record) => {
+    const mentor = mentors[Number.parseInt(record.dataset.mentorIndex, 10)];
+    if (!mentor) return;
+    const copy = mentor[language];
+    record.href = mentor.linkedin;
+    record.querySelector('[data-mentor-name]').textContent = copy.name;
+    record.querySelector('[data-mentor-note]').textContent = copy.note;
+    const portrait = record.querySelector('[data-mentor-portrait]');
+    portrait.replaceChildren();
+    if (mentor.photo) {
+      const image = document.createElement('img');
+      image.src = mentor.photo;
+      image.alt = '';
+      portrait.append(image);
+    } else {
+      portrait.textContent = mentor.initials;
+    }
+  });
+}
+
 function renderProject(projectId, animate = true) {
   activeProject = projectId;
   const project = PROJECTS[projectId];
@@ -344,6 +374,7 @@ function setLanguage(nextLanguage, persist = true) {
   language = nextLanguage === 'pt-BR' ? 'pt-BR' : 'en';
   if (persist) safeStorageSet('ap-portfolio-language', language);
   translateInterface();
+  renderMentors();
   renderProject(activeProject, false);
 }
 
@@ -459,6 +490,54 @@ if (savedLanguage || requestedLanguage) {
 
 const paperDocuments = [...document.querySelectorAll('.paper-document')];
 document.documentElement.classList.add('paper-motion-ready');
+
+const qualityProof = document.querySelector('[data-quality-proof]');
+let qualityProofHydrated = false;
+
+async function hydrateQualityProof() {
+  if (qualityProofHydrated) return;
+  qualityProofHydrated = true;
+
+  const testCount = qualityProof?.querySelector('[data-test-count]');
+  const deployLink = qualityProof?.querySelector('[data-latest-deploy]');
+
+  try {
+    const metadataResponse = await fetch('site-meta.json');
+    if (metadataResponse.ok) {
+      const metadata = await metadataResponse.json();
+      if (Number.isInteger(metadata.totalTests) && metadata.totalTests > 0 && testCount) {
+        testCount.textContent = String(metadata.totalTests);
+      }
+    }
+  } catch {
+    // The visible fallback remains meaningful when static metadata is unavailable.
+  }
+
+  try {
+    const runsResponse = await fetch(
+      'https://api.github.com/repos/al4xdev/al4xdev.github.io/actions/runs?branch=main&status=success&per_page=30',
+    );
+    if (!runsResponse.ok) return;
+    const runs = await runsResponse.json();
+    const latestDeploy = runs.workflow_runs?.find((run) => (
+      /pages.*deploy/i.test(`${run.name || ''} ${run.path || ''}`)
+    ));
+    if (latestDeploy?.html_url && deployLink) deployLink.href = latestDeploy.html_url;
+  } catch {
+    // The generic Actions URL remains available if GitHub's public API is unavailable.
+  }
+}
+
+if ('IntersectionObserver' in window && qualityProof) {
+  const qualityObserver = new IntersectionObserver((entries, observer) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    hydrateQualityProof();
+    observer.disconnect();
+  }, { rootMargin: '160px' });
+  qualityObserver.observe(qualityProof);
+} else {
+  hydrateQualityProof();
+}
 
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
   paperDocuments.forEach((documentElement) => documentElement.classList.add('paper-open'));

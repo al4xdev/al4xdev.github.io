@@ -27,6 +27,11 @@ The CV and paper-document increment is complete in `.plan/06-cv-paper-documents.
 document runs in a sandboxed iframe, has a mobile reading layout, prints as one desktop A4 page in
 both languages, and keeps career content isolated in `cv/content.js`.
 
+The publication footer now closes with a live integrity proof: its test total is generated from
+Node and Playwright discovery, while its link resolves the newest successful GitHub Pages deploy.
+Two deliberately unfinished mentor records share one content source between the hero and the
+print-only A4 CV; mobile CV rendering omits them.
+
 ## Increment 2: real project media
 
 The first `.plan/05-localized-article-reader.md` increment is complete: four bilingual curated

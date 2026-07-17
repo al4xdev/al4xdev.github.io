@@ -8,7 +8,6 @@
 window.CV_CONTENT = Object.freeze({
   en: {
     documentTitle: 'Alexsandro Pessoa — AI Platform Engineer CV draft',
-    mockBadge: 'PUBLIC DRAFT / MOCK FIELDS PENDING',
     name: 'Alexsandro Pessoa',
     role: 'Senior AI Platform Engineer · Agentic Systems · Data Platforms · Developer Enablement',
     links: [
@@ -75,7 +74,6 @@ window.CV_CONTENT = Object.freeze({
   },
   'pt-BR': {
     documentTitle: 'Alexsandro Pessoa — Rascunho do currículo de engenharia de plataformas de IA',
-    mockBadge: 'RASCUNHO PÚBLICO / CAMPOS MOCK PENDENTES',
     name: 'Alexsandro Pessoa',
     role: 'Engenheiro Sênior de Plataformas de IA · Sistemas Agênticos · Plataformas de Dados · Aceleração de Desenvolvedores',
     links: [

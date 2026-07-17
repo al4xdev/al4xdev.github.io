@@ -35,6 +35,7 @@
     </style>
   </noscript>
   <script src="cv/embed.js" defer></script>
+  <script src="mentors/content.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body data-state="gate">
@@ -67,11 +68,18 @@
 
   <div class="site-shell" id="site-shell" aria-hidden="true">
     <header class="site-header">
-      <a class="identity-mark" href="#top" aria-label="Alexsandro Pessoa, home">
-        <span class="identity-initials">AP</span>
-        <span class="identity-slash">/</span>
-        <span class="identity-mode">SYSTEMS</span>
-      </a>
+      <div class="identity-cluster">
+        <a class="identity-mark" href="#top" aria-label="Alexsandro Pessoa, home">
+          <span class="identity-initials">AP</span>
+          <span class="identity-name">Alexsandro Pessoa</span>
+          <span class="identity-slash">/</span>
+          <span class="identity-mode">SYSTEMS</span>
+        </a>
+        <a class="mentor-index-link" href="#mentors">
+          <span data-i18n="mentoredBy">Mentored by</span>
+          <strong>02</strong>
+        </a>
+      </div>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#systems" data-i18n="navSystems">Systems</a>
         <a href="#principles" data-i18n="navPrinciples">Principles</a>
@@ -99,6 +107,27 @@
             <span data-i18n="explore">Explore the systems</span>
             <span aria-hidden="true">↓</span>
           </a>
+          <aside class="mentor-ledger" id="mentors" aria-labelledby="mentor-ledger-title">
+            <p class="mentor-ledger-label" id="mentor-ledger-title" data-i18n="mentoredBy">Mentored by</p>
+            <div class="mentor-records">
+              <a class="mentor-record" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" data-mentor-index="0">
+                <span class="mentor-portrait" aria-hidden="true" data-mentor-portrait>M1</span>
+                <span class="mentor-copy">
+                  <strong data-mentor-name>Mentor name 01</strong>
+                  <small data-mentor-note>Short context about this mentorship.</small>
+                </span>
+                <span class="mentor-external" aria-hidden="true">↗</span>
+              </a>
+              <a class="mentor-record" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" data-mentor-index="1">
+                <span class="mentor-portrait" aria-hidden="true" data-mentor-portrait>M2</span>
+                <span class="mentor-copy">
+                  <strong data-mentor-name>Mentor name 02</strong>
+                  <small data-mentor-note>Short context about this mentorship.</small>
+                </span>
+                <span class="mentor-external" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </aside>
           <dl class="hero-coordinates">
             <div>
               <dt data-i18n="currentWork">Current work</dt>
@@ -321,6 +350,14 @@
         <a href="https://github.com/al4xdev" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         <button type="button" data-open-language data-i18n="changeLanguage">Change language</button>
       </div>
+      <p class="footer-integrity" data-quality-proof>
+        <span data-i18n="qualityPrefix">Under the paper:</span>
+        <strong data-test-count aria-live="polite">—</strong>
+        <span data-i18n="qualitySuffix">automated tests guard this portfolio.</span>
+        <a href="https://github.com/al4xdev/al4xdev.github.io/actions" target="_blank" rel="noopener noreferrer" data-latest-deploy>
+          <span data-i18n="qualityDeploy">Inspect the latest deployment</span> ↗
+        </a>
+      </p>
     </footer>
   </div>
 

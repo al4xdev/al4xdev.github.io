@@ -1,6 +1,9 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { PDFDocument } from 'pdf-lib';
+import { readFile } from 'node:fs/promises';
+
+const siteMetadata = JSON.parse(await readFile(new URL('../../site-meta.json', import.meta.url), 'utf8'));
 
 const projects = ['PromptNest', 'Alex Tavern', 'Tavern Plugins', 'Crime Alley CV', 'SceneQueue', 'ReImagineX'];
 
@@ -28,6 +31,31 @@ test('constellation selection and language switching preserve state', async ({ p
   await expect(page.locator('[data-project="crime-alley"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#project-name')).toHaveText('Crime Alley CV');
   await expect(page.locator('#project-problem')).toContainText('Agentes');
+});
+
+test('identity, mentor mocks, and live quality proof close the portfolio', async ({ page }) => {
+  await page.route('https://api.github.com/repos/al4xdev/al4xdev.github.io/actions/runs?*', async (route) => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        workflow_runs: [{
+          name: 'pages-build-deployment',
+          path: 'dynamic/pages/pages-build-deployment',
+          html_url: 'https://github.com/al4xdev/al4xdev.github.io/actions/runs/123456',
+        }],
+      }),
+    });
+  });
+  await page.goto('/?lang=en');
+  await expect(page.locator('.identity-name')).toHaveText('Alexsandro Pessoa');
+  await expect(page.locator('.mentor-record')).toHaveCount(2);
+  await expect(page.locator('.mentor-record').first()).toHaveAttribute('href', /^https:\/\/www\.linkedin\.com\//);
+  await page.locator('[data-quality-proof]').scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-test-count]')).toHaveText(String(siteMetadata.totalTests));
+  await expect(page.locator('[data-latest-deploy]')).toHaveAttribute(
+    'href',
+    'https://github.com/al4xdev/al4xdev.github.io/actions/runs/123456',
+  );
 });
 
 test('field-note cards open the local bilingual reader and keep GitHub as provenance', async ({ page }) => {
@@ -137,11 +165,13 @@ for (const language of ['en', 'pt-BR']) {
   test(`standalone ${language} CV exports as one A4 page`, async ({ page }) => {
     await page.goto(`/cv/index.html?lang=${language}`);
     await expect(page.locator('.mock-badge')).toHaveCount(0);
+    await expect(page.locator('.cv-mentors')).toBeHidden();
     const accessibility = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
     expect(accessibility.violations).toEqual([]);
     await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('.cv-mentors')).toBeVisible();
     const bytes = await page.pdf({ format: 'A4', printBackground: true });
     const document = await PDFDocument.load(bytes);
     expect(document.getPageCount()).toBe(1);

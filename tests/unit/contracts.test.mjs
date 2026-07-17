@@ -64,7 +64,6 @@ test('CV locales preserve identical field shapes and safe public links', async (
 
   assert.deepEqual(deepShape(content.en), deepShape(content['pt-BR']));
   for (const locale of ['en', 'pt-BR']) {
-    assert.match(content[locale].mockBadge, /MOCK/);
     assert.ok(content[locale].experience.length >= 3);
     assert.ok(content[locale].selectedWork.length >= 4);
     for (const link of content[locale].links) assert.match(link.url, /^https:\/\//);
@@ -147,4 +146,27 @@ test('repository CV skill has valid trigger metadata and no unfinished placehold
   assert.doesNotMatch(skill, /TODO|\[TODO/);
   assert.match(metadata, /\$cv-editor/);
   assert.match(skill, /npm run cv:export/);
+});
+
+test('mentors and footer integrity proof preserve their public contracts', async () => {
+  const [mentorSource, html, metadataSource] = await Promise.all([
+    read('mentors/content.js'),
+    read('index.html'),
+    read('site-meta.json'),
+  ]);
+  const sandbox = { window: {} };
+  vm.runInNewContext(mentorSource, sandbox);
+  const mentors = sandbox.window.MENTOR_CONTENT;
+  const metadata = JSON.parse(metadataSource);
+
+  assert.equal(mentors.length, 2);
+  for (const mentor of mentors) {
+    assert.deepEqual(Object.keys(mentor.en).sort(), Object.keys(mentor['pt-BR']).sort());
+    assert.match(mentor.linkedin, /^https:\/\/www\.linkedin\.com\//);
+    assert.equal(typeof mentor.photo, 'string');
+  }
+  assert.match(html, /data-quality-proof/);
+  assert.match(html, /data-latest-deploy/);
+  assert.ok(metadata.totalTests > 0);
+  assert.equal(metadata.totalTests, metadata.unitTests + metadata.browserTests);
 });
