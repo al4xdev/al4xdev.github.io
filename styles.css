@@ -1495,6 +1495,9 @@ body[data-state="site"] .site-shell {
 .footer-integrity a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   margin-left: 0.3rem;
   color: #b7c2be;
   font-size: 0.78rem;
