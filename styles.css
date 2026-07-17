@@ -1478,12 +1478,9 @@ body[data-state="site"] .site-shell {
 
 .footer-integrity {
   display: flex;
-  flex-basis: 100%;
   align-items: baseline;
-  gap: 0.45rem;
-  margin: 2.5rem 0 0;
-  padding-top: 1rem;
-  border-top: 1px solid rgb(255 255 255 / 18%);
+  gap: 0.35rem;
+  margin: 0.5rem 0 0;
   color: #b7c2be;
   font-family: var(--mono);
   font-size: 0.64rem;
@@ -1498,10 +1495,15 @@ body[data-state="site"] .site-shell {
 .footer-integrity a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  margin-left: auto;
+  margin-left: 0.3rem;
+  color: #b7c2be;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-integrity a:hover {
   color: white;
-  text-underline-offset: 0.25rem;
 }
 
 .footer-thesis {
@@ -1994,13 +1996,7 @@ body[data-state="site"] .site-shell {
   }
 
   .footer-integrity {
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-  }
-
-  .footer-integrity a {
-    grid-column: 1 / -1;
-    margin: 0.4rem 0 0;
+    flex-wrap: wrap;
   }
 
   .hero {

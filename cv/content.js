@@ -2,17 +2,16 @@
  * CV CONTENT SANDBOX
  *
  * Future AI edits should normally touch this file only. Keep both language variants aligned and
- * preserve the object shape consumed by render.js. Keep explicit draft markers for fields that
- * still require verification.
+ * preserve the object shape consumed by render.js. Keep confidentiality boundaries explicit.
  */
 window.CV_CONTENT = Object.freeze({
   en: {
-    documentTitle: 'Alexsandro Pessoa — AI Platform Engineer CV draft',
+    documentTitle: 'Alexsandro Pessoa — AI Platform Engineer CV',
     name: 'Alexsandro Pessoa',
     role: 'Senior AI Platform Engineer · Agentic Systems · Data Platforms · Developer Enablement',
     links: [
-      { label: 'al4xdev.github.io', url: 'https://al4xdev.github.io/' },
       { label: 'github.com/al4xdev', url: 'https://github.com/al4xdev' },
+      { label: 'linkedin.com/in/al4xdev', url: 'https://www.linkedin.com/in/al4xdev' },
     ],
     profile: {
       label: 'Profile',
@@ -33,7 +32,7 @@ window.CV_CONTENT = Object.freeze({
       {
         title: 'Confidential enterprise AI/platform initiative',
         meta: 'Accenture · Current · Project role: Principal AI Platform Engineer',
-        body: 'Scope withheld pending disclosure approval. Functional project role, not a formal HR title.',
+        body: 'Scope intentionally withheld under confidentiality obligations. Functional project role, not a formal HR title.',
       },
     ],
     selectedWorkLabel: 'Independent engineering projects',
@@ -67,18 +66,18 @@ window.CV_CONTENT = Object.freeze({
       'Data platforms',
     ],
     languagesLabel: 'Languages',
-    languages: ['Portuguese · Proficiency verification pending', 'English · Proficiency verification pending'],
+    languages: ['Portuguese', 'English · C2 · goFLUENT ECEFR SET, Apr 2025'],
     educationLabel: 'Education & certifications',
-    education: 'Verification pending; legacy data was not reused.',
-    footnote: 'Public draft. Contact, education, certifications, language proficiency, and confidential scope remain pending.',
+    education: 'B.Eng. Materials Engineering, UFCA (2023)',
+    footnote: 'Public CV. Confidential client and project details are intentionally withheld.',
   },
   'pt-BR': {
-    documentTitle: 'Alexsandro Pessoa — Rascunho do currículo de engenharia de plataformas de IA',
+    documentTitle: 'Alexsandro Pessoa — Currículo de engenharia de plataformas de IA',
     name: 'Alexsandro Pessoa',
     role: 'Engenheiro Sênior de Plataformas de IA · Sistemas Agênticos · Plataformas de Dados · Aceleração de Desenvolvedores',
     links: [
-      { label: 'al4xdev.github.io', url: 'https://al4xdev.github.io/' },
       { label: 'github.com/al4xdev', url: 'https://github.com/al4xdev' },
+      { label: 'linkedin.com/in/al4xdev', url: 'https://www.linkedin.com/in/al4xdev' },
     ],
     profile: {
       label: 'Perfil',
@@ -99,7 +98,7 @@ window.CV_CONTENT = Object.freeze({
       {
         title: 'Iniciativa confidencial empresarial de IA/plataforma',
         meta: 'Accenture · Atual · Função no projeto: Principal AI Platform Engineer',
-        body: 'Escopo retido até aprovação de divulgação. Função de projeto, não cargo formal de RH.',
+        body: 'Escopo intencionalmente omitido por obrigações de confidencialidade. Função de projeto, não cargo formal de RH.',
       },
     ],
     selectedWorkLabel: 'Projetos independentes de engenharia',
@@ -133,9 +132,9 @@ window.CV_CONTENT = Object.freeze({
       'Plataformas de dados',
     ],
     languagesLabel: 'Idiomas',
-    languages: ['Português · Proficiência pendente de verificação', 'Inglês · Proficiência pendente de verificação'],
+    languages: ['Português', 'Inglês · C2 · goFLUENT ECEFR SET, abr. 2025'],
     educationLabel: 'Formação e certificações',
-    education: 'Verificação pendente; dados legados não foram reutilizados.',
-    footnote: 'Rascunho público. Contatos, formação, certificações, proficiência de idiomas e escopo confidencial permanecem pendentes.',
+    education: 'Bacharelado em Engenharia de Materiais, UFCA (2023)',
+    footnote: 'Currículo público. Detalhes confidenciais de clientes e projetos são intencionalmente omitidos.',
   },
 });
