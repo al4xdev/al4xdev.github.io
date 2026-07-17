@@ -1,30 +1,30 @@
 window.MENTOR_CONTENT = [
   {
     id: 'mentor-01',
-    initials: 'M1',
+    initials: 'MS',
     photo: '',
-    linkedin: 'https://www.linkedin.com/',
+    linkedin: 'https://www.linkedin.com/in/marcelosabadini/',
     en: {
-      name: 'Mentor name 01',
-      note: 'Short context about this mentorship.',
+      name: 'Marcelo Sabadini',
+      note: 'Senior AI Solutions Consultant — GenAI architecture, LLM strategy, and executive-level AI transformation.',
     },
     'pt-BR': {
-      name: 'Nome do mentor 01',
-      note: 'Contexto breve sobre esta mentoria.',
+      name: 'Marcelo Sabadini',
+      note: 'Consultor Sênior de Soluções em IA — arquitetura GenAI, estratégia LLM e transformação digital executiva.',
     },
   },
   {
     id: 'mentor-02',
-    initials: 'M2',
+    initials: 'TR',
     photo: '',
-    linkedin: 'https://www.linkedin.com/',
+    linkedin: 'https://www.linkedin.com/in/tiagopereiraramos/',
     en: {
-      name: 'Mentor name 02',
-      note: 'Short context about this mentorship.',
+      name: 'Tiago Pereira Ramos',
+      note: 'Senior Solutions Architect — agentic systems, hyperautomation, and enterprise AI governance.',
     },
     'pt-BR': {
-      name: 'Nome do mentor 02',
-      note: 'Contexto breve sobre esta mentoria.',
+      name: 'Tiago Pereira Ramos',
+      note: 'Arquiteto de Soluções Sênior — sistemas agênticos, hiperautomação e governança de IA corporativa.',
     },
   },
 ];
