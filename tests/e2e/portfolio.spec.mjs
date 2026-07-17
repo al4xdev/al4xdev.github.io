@@ -165,7 +165,10 @@ for (const language of ['en', 'pt-BR']) {
   test(`standalone ${language} CV exports as one A4 page`, async ({ page }) => {
     await page.goto(`/cv/index.html?lang=${language}`);
     await expect(page.locator('.mock-badge')).toHaveCount(0);
+    await expect(page.locator('.cv-mentors')).toBeVisible();
+    await page.setViewportSize({ width: 390, height: 844 });
     await expect(page.locator('.cv-mentors')).toBeHidden();
+    await page.setViewportSize({ width: 1280, height: 720 });
     const accessibility = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();

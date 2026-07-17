@@ -183,18 +183,18 @@ a {
 }
 
 .cv-mentors {
-  display: none;
+  display: block;
 }
 
 .cv-mentor-list {
   display: grid;
-  gap: 2.5mm;
+  gap: 1.5mm;
 }
 
 .cv-mentor {
   display: grid;
-  grid-template-columns: 8mm minmax(0, 1fr);
-  gap: 2.5mm;
+  grid-template-columns: 7mm minmax(0, 1fr);
+  gap: 1.5mm;
   align-items: center;
   color: inherit;
   text-decoration: none;
@@ -202,8 +202,8 @@ a {
 
 .cv-mentor-portrait {
   display: grid;
-  width: 8mm;
-  height: 8mm;
+  width: 7mm;
+  height: 7mm;
   place-items: center;
   overflow: hidden;
   border: 0.25mm dashed var(--mineral);
@@ -241,7 +241,7 @@ a {
 }
 
 .mock-footnote {
-  margin: 2.5rem 0 0;
+  margin: 1.5rem 0 0;
   padding-top: 1rem;
   border-top: 1px solid var(--carbon);
   color: var(--copper);
@@ -291,6 +291,10 @@ a {
   .system-list li {
     grid-template-columns: minmax(7rem, 0.8fr) minmax(0, 1.2fr);
   }
+
+  .cv-mentors {
+    display: none;
+  }
 }
 
 @page {
@@ -336,12 +340,10 @@ a {
   }
 
   .cv-block + .cv-block {
-    margin-top: 5mm;
+    margin-top: 3mm;
   }
 
-  .cv-mentors {
-    display: block;
-  }
+
 
   .cv-entry {
     grid-template-columns: minmax(38mm, 0.85fr) minmax(0, 1.15fr);
