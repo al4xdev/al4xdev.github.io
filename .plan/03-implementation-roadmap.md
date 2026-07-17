@@ -29,9 +29,9 @@ both languages, and keeps career content isolated in `cv/content.js`.
 
 ## Increment 2: real project media
 
-Before this increment, complete `.plan/05-localized-article-reader.md`: import the four featured
-articles, provide reviewed English and Portuguese versions, render them inside the portfolio, and
-retain explicit links to their original GitHub sources.
+The first `.plan/05-localized-article-reader.md` increment is complete: four bilingual curated
+reading routes stay inside the portfolio and expose GitHub as source provenance. A verbatim import
+of every long-form table, code block, and citation remains optional.
 
 - Select one representative asset per visual project with explicit source paths.
 - Optimize to AVIF/WebP with width/height metadata and useful alt text.

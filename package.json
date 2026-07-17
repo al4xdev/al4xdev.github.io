@@ -1,0 +1,28 @@
+{
+  "name": "al4xdev-systems-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:js": "eslint . --max-warnings=0",
+    "lint:css": "stylelint \"**/*.css\" --max-warnings=0",
+    "lint:html": "html-validate index.html cv/index.html articles/index.html",
+    "test": "npm run lint && npm run test:unit && npm run test:e2e",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "playwright test",
+    "cv:export": "node tools/export-cv.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1",
+    "eslint": "10.7.0",
+    "html-validate": "11.5.6",
+    "pdf-lib": "1.17.1",
+    "stylelint": "17.14.0",
+    "stylelint-config-standard": "40.0.0"
+  }
+}

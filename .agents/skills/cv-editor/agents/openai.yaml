@@ -1,0 +1,4 @@
+interface:
+  display_name: "Edit portfolio CV"
+  short_description: "Safely update and export the isolated bilingual CV"
+  default_prompt: "Use $cv-editor to update the portfolio CV with verified facts and export an A4 PDF to /tmp."

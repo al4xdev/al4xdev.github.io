@@ -1,0 +1,16 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "attr-quotes": "error",
+    "close-order": "error",
+    "doctype-style": "error",
+    "element-required-attributes": "error",
+    "hidden-focusable": "off",
+    "no-dup-attr": "error",
+    "no-dup-id": "error",
+    "no-inline-style": "off",
+    "prefer-native-element": "off",
+    "require-sri": "off",
+    "void-style": ["error", { "style": "omit" }]
+  }
+}

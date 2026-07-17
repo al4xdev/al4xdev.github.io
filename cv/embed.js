@@ -40,6 +40,7 @@
       const height = Number(event.data.height);
       if (!Number.isFinite(height) || height < 1) return;
       this.style.setProperty('--cv-frame-height', `${Math.ceil(height)}px`);
+      this.classList.add('cv-ready');
     }
 
     sendLanguage() {

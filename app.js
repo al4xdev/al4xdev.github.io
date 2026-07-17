@@ -48,6 +48,7 @@ const STRINGS = {
     cvIntro: 'The document is last because the work is its context. This first edition is a full structural mock, ready to receive verified career history.',
     cvRendererLabel: 'CV RENDERER / A4 OUTPUT',
     cvRendererNote: "Uses your browser's print dialog to save a PDF.",
+    cvToggle: 'CV / PDF',
     cvDownload: 'Print / Save as PDF',
     cvDocumentLabel: 'Curriculum vitae mock',
     cvStandalone: 'Open standalone CV renderer',
@@ -107,6 +108,7 @@ const STRINGS = {
     cvIntro: 'O documento fica por último porque o trabalho é o seu contexto. Esta primeira edição é um mock estrutural completo, pronto para receber o histórico profissional verificado.',
     cvRendererLabel: 'RENDERIZADOR DE CV / SAÍDA A4',
     cvRendererNote: 'Usa a impressão do navegador para salvar um PDF.',
+    cvToggle: 'CV / PDF',
     cvDownload: 'Imprimir / Salvar como PDF',
     cvDocumentLabel: 'Mock do currículo',
     cvStandalone: 'Abrir o renderizador isolado do currículo',
@@ -278,6 +280,9 @@ function translateInterface() {
     button.classList.toggle('active', selected);
     button.setAttribute('aria-pressed', String(selected));
   });
+  document.querySelectorAll('[data-article-id]').forEach((link) => {
+    link.href = `articles/?article=${encodeURIComponent(link.dataset.articleId)}&lang=${encodeURIComponent(language)}`;
+  });
   document.querySelector('portfolio-cv')?.setAttribute('language', language);
 }
 
@@ -375,6 +380,49 @@ document.querySelectorAll('[data-open-language]').forEach((button) => {
 document.querySelector('[data-print-cv]')?.addEventListener('click', () => {
   document.querySelector('portfolio-cv')?.print();
 });
+
+const cvControls = document.querySelector('[data-cv-controls]');
+const cvToggle = document.querySelector('[data-cv-toggle]');
+const cvSection = document.querySelector('#cv');
+const cvEndSentinel = document.querySelector('[data-cv-end]');
+const cvDocument = document.querySelector('#cv-document');
+
+function setCvControlsExpanded(expanded) {
+  if (!cvControls || !cvToggle) return;
+  cvControls.dataset.expanded = String(expanded);
+  cvToggle.setAttribute('aria-expanded', String(expanded));
+}
+
+cvToggle?.addEventListener('click', () => {
+  setCvControlsExpanded(cvControls.dataset.expanded !== 'true');
+});
+
+function updateCvControlsDock() {
+  if (!cvSection || !cvControls) return;
+  const isMobile = window.matchMedia('(max-width: 800px)').matches;
+  const sectionBounds = cvSection.getBoundingClientRect();
+  const sectionIsVisible = sectionBounds.top < window.innerHeight && sectionBounds.bottom > 0;
+  cvControls.classList.toggle('is-active', isMobile && sectionIsVisible);
+  if (!isMobile) setCvControlsExpanded(false);
+}
+
+window.addEventListener('scroll', updateCvControlsDock, { passive: true });
+window.addEventListener('resize', updateCvControlsDock);
+updateCvControlsDock();
+
+if ('IntersectionObserver' in window && cvEndSentinel) {
+  const cvEndObserver = new IntersectionObserver((entries) => {
+    const endIsVisible = entries.some((entry) => entry.isIntersecting);
+    if (
+      endIsVisible
+      && cvDocument?.classList.contains('cv-ready')
+      && window.matchMedia('(max-width: 800px)').matches
+    ) {
+      setCvControlsExpanded(true);
+    }
+  }, { threshold: 1 });
+  cvEndObserver.observe(cvEndSentinel);
+}
 
 document.querySelectorAll('[data-project]').forEach((node) => {
   node.addEventListener('click', () => renderProject(node.dataset.project));

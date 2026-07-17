@@ -52,7 +52,8 @@ Future content edits must not require changes to `index.html`, `app.js`, or the 
 - Mock experience structure.
 - Technical focus.
 - Languages and public links.
-- A visible `FULL MOCK` marker inside both screen and print output.
+- Verification status remains in the document footnote; the earlier prominent mock banner was
+  removed by explicit user request before V1.
 
 ## Design direction
 
@@ -68,7 +69,7 @@ single controlled unfold. The fieldboard remains quiet around it.
 - A 360 px visitor can read the CV without page-level horizontal scrolling.
 - Article cards still behave as links and expose keyboard focus.
 - Paper motion runs once, does not block content, and disappears under reduced motion.
-- The mock label is impossible to miss.
+- Pending verification remains stated in the footnote without dominating the document hierarchy.
 
 ## Implementation and evidence
 

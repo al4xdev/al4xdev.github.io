@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -12,6 +12,28 @@
     }
   </script>
   <link rel="stylesheet" href="styles.css">
+  <noscript>
+    <style>
+      .language-gate,
+      .systems-workspace {
+        display: none !important;
+      }
+
+      .site-shell {
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+
+      body {
+        height: auto !important;
+        overflow: auto !important;
+      }
+    </style>
+  </noscript>
   <script src="cv/embed.js" defer></script>
   <script src="app.js" defer></script>
 </head>
@@ -28,7 +50,7 @@
       <h1 id="gate-title">Choose how this system speaks.</h1>
       <p id="gate-copy">The same work, read from your side of the screen.</p>
     </div>
-    <div class="language-choices" aria-label="Choose language / Escolha o idioma">
+    <div class="language-choices" role="group" aria-label="Choose language / Escolha o idioma">
       <button class="language-choice" type="button" data-choose-language="pt-BR">
         <span class="choice-index">01</span>
         <span class="choice-name">Português</span>
@@ -56,7 +78,7 @@
         <a href="#notes" data-i18n="navNotes">Field notes</a>
       </nav>
       <div class="header-actions">
-        <div class="language-switch" aria-label="Language">
+        <div class="language-switch" role="group" aria-label="Language">
           <button type="button" data-set-language="pt-BR">PT</button>
           <span aria-hidden="true">·</span>
           <button type="button" data-set-language="en">EN</button>
@@ -80,7 +102,7 @@
           <dl class="hero-coordinates">
             <div>
               <dt data-i18n="currentWork">Current work</dt>
-              <dd data-i18n="currentWorkValue">GenAI, MLOps, cloud & automation</dd>
+              <dd data-i18n="currentWorkValue">GenAI, MLOps, cloud &amp; automation</dd>
             </div>
             <div>
               <dt data-i18n="operatingMode">Operating mode</dt>
@@ -223,25 +245,25 @@
           <p data-i18n="noteBody">Architecture claims are published with their measurements, negative controls, failure cases, and limits. These are engineering field notes, not peer-reviewed papers unless explicitly labeled as such.</p>
 
           <div class="publication-list">
-            <a class="publication featured-publication paper-document" style="--paper-index: 0" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/token-economics-agentic-architecture-2026-07-16.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication featured-publication paper-document" style="--paper-index: 0" href="articles/?article=token-economics&amp;lang=en" data-article-id="token-economics">
               <span class="publication-meta">CASE STUDY / 2026</span>
               <h3 data-i18n="publicationOneTitle">Token economics as an architectural enabler</h3>
               <p data-i18n="publicationOneBody">A cache-aware cost study with explicit attribution limits and normalized provider counterfactuals.</p>
               <span class="publication-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="publication paper-document" style="--paper-index: 1" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/speech-audience-model-2026-07-15.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication paper-document" style="--paper-index: 1" href="articles/?article=speech-audience&amp;lang=en" data-article-id="speech-audience">
               <span class="publication-meta">VALIDATION REPORT / 2026</span>
               <h3 data-i18n="publicationTwoTitle">A structural audience model for speech</h3>
               <p data-i18n="publicationTwoBody">Witnessed actions, whispers, two-level recall assertions, and blind continuity review.</p>
               <span class="publication-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="publication paper-document" style="--paper-index: 2" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/character-output-guard-2026-07-15.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication paper-document" style="--paper-index: 2" href="articles/?article=secret-guard&amp;lang=en" data-article-id="secret-guard">
               <span class="publication-meta">CASE STUDY / 2026</span>
               <h3 data-i18n="publicationThreeTitle">Making secret handling structural</h3>
               <p data-i18n="publicationThreeBody">A deterministic retry-then-redact guard tested against informational-payload leaks.</p>
               <span class="publication-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="publication paper-document" style="--paper-index: 3" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/multi-character-memory-retention-2026-07-14.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication paper-document" style="--paper-index: 3" href="articles/?article=memory-retention&amp;lang=en" data-article-id="memory-retention">
               <span class="publication-meta">CONTROLLED EXPERIMENT / 2026</span>
               <h3 data-i18n="publicationFourTitle">Multi-character memory under shifting focus</h3>
               <p data-i18n="publicationFourBody">A reproduction attempt that rejected the reported failure and exposed a different architectural gap.</p>
@@ -265,20 +287,27 @@
         </div>
 
         <div class="cv-renderer">
-          <div class="cv-controls">
-            <div>
-              <span class="cv-control-label" data-i18n="cvRendererLabel">CV RENDERER / A4 OUTPUT</span>
-              <span class="cv-control-note" data-i18n="cvRendererNote">Uses your browser's print dialog to save a PDF.</span>
-            </div>
-            <button class="cv-download" type="button" data-print-cv>
-              <span data-i18n="cvDownload">Print / Save as PDF</span>
-              <span aria-hidden="true">↓</span>
+          <div class="cv-controls" data-cv-controls data-expanded="false">
+            <button class="cv-control-toggle" type="button" data-cv-toggle aria-expanded="false">
+              <span data-i18n="cvToggle">CV / PDF</span>
+              <span aria-hidden="true">↑</span>
             </button>
+            <div class="cv-control-panel">
+              <div>
+                <span class="cv-control-label" data-i18n="cvRendererLabel">CV RENDERER / A4 OUTPUT</span>
+                <span class="cv-control-note" data-i18n="cvRendererNote">Uses your browser's print dialog to save a PDF.</span>
+              </div>
+              <button class="cv-download" type="button" data-print-cv>
+                <span data-i18n="cvDownload">Print / Save as PDF</span>
+                <span aria-hidden="true">↓</span>
+              </button>
+            </div>
           </div>
 
-          <portfolio-cv class="cv-paper-shell paper-document" id="cv-document" style="--paper-index: 4" language="en" aria-label="Curriculum vitae mock" data-i18n-aria="cvDocumentLabel">
+          <portfolio-cv class="cv-paper-shell paper-document" id="cv-document" style="--paper-index: 4" language="en" role="document" aria-label="Curriculum vitae mock" data-i18n-aria="cvDocumentLabel">
             <a class="cv-standalone-fallback" href="cv/index.html" data-i18n="cvStandalone">Open standalone CV renderer</a>
           </portfolio-cv>
+          <span class="cv-end-sentinel" data-cv-end aria-hidden="true"></span>
         </div>
       </section>
     </main>
@@ -296,26 +325,6 @@
   </div>
 
   <noscript>
-    <style>
-      .language-gate,
-      .systems-workspace {
-        display: none !important;
-      }
-
-      .site-shell {
-        display: block !important;
-        height: auto !important;
-        min-height: 0 !important;
-        overflow: visible !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-      }
-
-      body {
-        height: auto !important;
-        overflow: auto !important;
-      }
-    </style>
     <section class="noscript-content">
       <h1>Alexsandro Pessoa</h1>
       <p>I build systems where AI judgment meets deterministic control.</p>

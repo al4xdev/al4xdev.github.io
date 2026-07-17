@@ -46,7 +46,6 @@
       <main class="cv-page">
         <header class="cv-header">
           <div>
-            <span class="mock-badge">${escapeHtml(cv.mockBadge)}</span>
             <h1>${escapeHtml(cv.name)}</h1>
             <p>${escapeHtml(cv.role)}</p>
           </div>

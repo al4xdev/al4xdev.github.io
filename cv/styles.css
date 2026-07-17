@@ -1,9 +1,9 @@
 :root {
   --carbon: #17201e;
-  --copper: #c65f3a;
+  --copper: #9d4428;
   --mineral: #a8b5b0;
   --mist: #dce3df;
-  --muted: #5f6c68;
+  --muted: #52605c;
   --display: "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", "Aptos Narrow", sans-serif;
   --body: "Segoe UI Variable", "Aptos", "Helvetica Neue", Arial, sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -43,18 +43,6 @@ a {
   gap: 2rem;
   padding-bottom: 2rem;
   border-bottom: 3px solid var(--carbon);
-}
-
-.mock-badge {
-  display: inline-flex;
-  margin-bottom: 1.4rem;
-  padding: 0.35rem 0.5rem;
-  background: var(--copper);
-  color: white;
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
 }
 
 .cv-header h1 {
@@ -275,10 +263,6 @@ a {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 8mm;
     padding-bottom: 5mm;
-  }
-
-  .mock-badge {
-    margin-bottom: 3mm;
   }
 
   .cv-header h1 {

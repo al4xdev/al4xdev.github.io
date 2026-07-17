@@ -19,12 +19,30 @@ Open <http://127.0.0.1:8080>.
 - `app.js`: bilingual content, project data, language persistence, and constellation interaction.
 - `cv/`: isolated bilingual CV mini-application with responsive screen rendering and fixed A4
   printing. Ordinary career-content edits belong in `cv/content.js`.
+- `articles/`: bilingual curated field-note reader; original GitHub documents remain linked as
+  provenance.
+- `tests/`: strict contract and Chromium suite used locally and by GitHub Actions.
+- `.agents/skills/cv-editor/`: repository skill for verified content-only CV updates and exports.
 - `.plan/`: product brief, verified content inventory, design direction, roadmap, and continuation
   handoff. Future agents must read this first.
 - `.nojekyll`: serve the static tree unchanged through GitHub Pages.
 
 ## Publication
 
-The site can be published from a repository Pages branch without a build step. Before publishing,
-complete the unresolved items in `.plan/HANDOFF.md`, especially the preferred contact method,
-canonical URL, project media, and final Alex Tavern status language.
+GitHub Pages publishes `main` directly at <https://al4xdev.github.io/> without a build step. The
+strict quality workflow runs independently on every pull request and push to `main`.
+
+## Quality gate
+
+```fish
+npm ci --ignore-scripts
+npx playwright install chromium
+npm test
+```
+
+Export an inspectable one-page CV and PNG preview to `/tmp` with:
+
+```fish
+npm run cv:export -- --lang en
+npm run cv:export -- --lang pt-BR
+```

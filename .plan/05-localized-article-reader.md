@@ -1,7 +1,7 @@
 # Localized article reader
 
 **Created:** 2026-07-17  
-**Status:** Next task after the mobile experience audit
+**Status:** Local curated reader complete; full source-faithful editions remain optional
 
 ## User request
 
@@ -43,3 +43,20 @@ remains the provenance boundary.
 - Every imported article identifies and links its original GitHub source.
 - Code blocks and wide tables have contained horizontal scrolling, never page-level overflow.
 - Direct article URLs work on GitHub Pages and remain useful without JavaScript where practical.
+
+## Implemented increment
+
+- All four field-note cards now open `articles/?article=<id>&lang=<locale>` inside the portfolio
+  instead of navigating directly to GitHub.
+- Each route has aligned English and Portuguese curated editions covering question/failure,
+  architecture or method, evidence, and limitations.
+- The reader preserves the Systems Fieldboard language and visual identity, is responsive at
+  390 px, passes WCAG A/AA automation, and links back to the selected-language field-note section.
+- GitHub is now the secondary provenance action, labeled `Inspect original source` / `Inspecionar
+  fonte original`.
+- The pages explicitly say `CURATED PORTFOLIO EDITION`; they do not pretend to be verbatim copies
+  of the substantially longer source documents.
+- Unit and browser tests reject publication-card regressions back to external URLs.
+
+The original proposal to import every table, code block, diagram, and citation verbatim is not
+part of this compact reader increment. It can be added later without changing public URLs.

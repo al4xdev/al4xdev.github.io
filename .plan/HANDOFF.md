@@ -63,6 +63,18 @@ Read these files in order before changing the project:
 - Four article cards and the CV share the one-shot paper-unfold motion, with reduced-motion and
   no-JavaScript fallbacks.
 
+## Local article reader and strict quality suite
+
+- The four publication cards open bilingual curated routes under `articles/`; GitHub is the
+  explicit original-source action inside each article.
+- `.plan/05-localized-article-reader.md` records the boundary between the compact curated edition
+  and an optional future verbatim import.
+- `.plan/07-strict-quality-suite.md` records the lint, unit, browser, accessibility, and PDF gate.
+- `cv/AGENTS.md` and `.agents/skills/cv-editor/` constrain future CV work to verified content.
+- `npm run cv:export -- --lang <en|pt-BR>` creates a validated PDF and preview only in `/tmp`.
+- On mobile, the CV action is a compact bottom dock while the CV section is visible. It expands on
+  request or automatically when the reader reaches the section end.
+
 ## Before publishing
 
 - Confirm the LinkedIn URL and preferred contact method with Alexsandro.
@@ -72,9 +84,8 @@ Read these files in order before changing the project:
 
 ## Next task
 
-Implement `.plan/05-localized-article-reader.md`. Featured articles should open inside the
-portfolio in English or Portuguese, preserve navigation context, and always expose the original
-GitHub source as provenance.
+Finish verification of remaining CV draft fields. Content work belongs only in `cv/content.js`;
+do not redesign the portfolio while filling it.
 
 ## Working convention
 
