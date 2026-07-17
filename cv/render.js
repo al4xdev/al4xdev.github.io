@@ -83,7 +83,7 @@
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.experienceLabel)}</h2>
-              <ol class="cv-timeline">${renderExperience(cv.experience)}</ol>
+              <ol class="cv-timeline">${renderExperience(cv.experience)}${cv.experienceCompany ? `<li class="cv-timeline-end"><span>${escapeHtml(cv.experienceCompany)}</span></li>` : ''}</ol>
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.selectedWorkLabel)}</h2>

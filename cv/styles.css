@@ -113,15 +113,36 @@ a {
 .cv-role {
   position: relative;
   padding-left: 1.6rem;
+  padding-bottom: 1.4rem;
   border-left: 1px solid var(--mineral);
 }
 
-.cv-role + .cv-role {
-  margin-top: 1.4rem;
+.cv-timeline-end {
+  position: relative;
+  padding-left: 1.6rem;
+  border-left: 1px solid var(--mineral);
 }
 
-.cv-role:last-child {
-  border-left-color: transparent;
+.cv-timeline-end::before {
+  content: "";
+  position: absolute;
+  left: -0.3rem;
+  top: 0;
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 50%;
+  background: var(--copper);
+}
+
+.cv-timeline-end span {
+  display: block;
+  position: relative;
+  top: -0.2rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.07em;
+  text-align: right;
 }
 
 .cv-role::before {
@@ -384,21 +405,21 @@ a {
 
 @page {
   size: A4;
-  margin: 0;
+  margin: 13mm 0;
 }
 
 @media print {
   html,
   body {
-    width: 210mm;
+    width: auto;
     max-width: none;
     overflow: visible;
   }
 
   .cv-page {
-    width: 210mm;
-    min-height: 297mm;
-    padding: 12mm 15mm;
+    width: auto;
+    min-height: 0;
+    padding: 0 14mm;
   }
 
   .cv-header {
