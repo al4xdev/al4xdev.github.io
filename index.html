@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Alexsandro Pessoa builds agentic systems, visual AI tools, and deterministic infrastructure for ambitious ideas.">
+  <meta name="theme-color" content="#f3f5f2">
+  <title>Alexsandro Pessoa — Systems portfolio</title>
+  <script>
+    if (new URLSearchParams(window.location.search).has('lang')) {
+      document.documentElement.dataset.preview = 'site';
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-state="gate">
+  <a class="skip-link" href="#systems" data-i18n="skip">Skip to systems</a>
+
+  <section class="language-gate" id="language-gate" aria-labelledby="gate-title" aria-describedby="gate-copy">
+    <div class="gate-mark" aria-hidden="true">
+      <span>AP</span>
+      <span>SYS</span>
+    </div>
+    <div class="gate-copy">
+      <p class="gate-kicker">INITIAL COORDINATE / COORDENADA INICIAL</p>
+      <h1 id="gate-title">Choose how this system speaks.</h1>
+      <p id="gate-copy">The same work, read from your side of the screen.</p>
+    </div>
+    <div class="language-choices" aria-label="Choose language / Escolha o idioma">
+      <button class="language-choice" type="button" data-choose-language="pt-BR">
+        <span class="choice-index">01</span>
+        <span class="choice-name">Português</span>
+        <span class="choice-note">Entrar na experiência</span>
+      </button>
+      <button class="language-choice" type="button" data-choose-language="en">
+        <span class="choice-index">02</span>
+        <span class="choice-name">English</span>
+        <span class="choice-note">Enter the experience</span>
+      </button>
+    </div>
+    <p class="gate-footnote">Language can be changed at any time / O idioma pode ser alterado a qualquer momento</p>
+  </section>
+
+  <div class="site-shell" id="site-shell" aria-hidden="true">
+    <header class="site-header">
+      <a class="identity-mark" href="#top" aria-label="Alexsandro Pessoa, home">
+        <span class="identity-initials">AP</span>
+        <span class="identity-slash">/</span>
+        <span class="identity-mode">SYSTEMS</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#systems" data-i18n="navSystems">Systems</a>
+        <a href="#principles" data-i18n="navPrinciples">Principles</a>
+        <a href="#notes" data-i18n="navNotes">Field notes</a>
+      </nav>
+      <div class="header-actions">
+        <div class="language-switch" aria-label="Language">
+          <button type="button" data-set-language="pt-BR">PT</button>
+          <span aria-hidden="true">·</span>
+          <button type="button" data-set-language="en">EN</button>
+        </div>
+        <a class="github-link" href="https://github.com/al4xdev" target="_blank" rel="noopener noreferrer">
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">AGENTIC SYSTEMS / VISUAL AI / CONTROL PLANES</p>
+          <h1 id="hero-title" data-i18n-html="heroTitle">I build systems where AI judgment meets <em>deterministic control.</em></h1>
+          <p class="hero-lead" data-i18n="heroLead">Complex ideas become usable when every decision has an owner, every boundary can be inspected, and the interface makes the system legible.</p>
+          <a class="primary-action" href="#systems">
+            <span data-i18n="explore">Explore the systems</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+          <dl class="hero-coordinates">
+            <div>
+              <dt data-i18n="currentWork">Current work</dt>
+              <dd data-i18n="currentWorkValue">GenAI, MLOps, cloud & automation</dd>
+            </div>
+            <div>
+              <dt data-i18n="operatingMode">Operating mode</dt>
+              <dd data-i18n="operatingModeValue">Evidence before confidence</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-board" aria-hidden="true">
+          <div class="board-label">AP / SYSTEM FIELDBOARD</div>
+          <div class="board-orbit orbit-one"></div>
+          <div class="board-orbit orbit-two"></div>
+          <div class="board-core">
+            <span>JUDGMENT</span>
+            <strong>×</strong>
+            <span>CONTROL</span>
+          </div>
+          <span class="board-coordinate coordinate-a">23°33′S</span>
+          <span class="board-coordinate coordinate-b">46°38′W</span>
+          <span class="board-coordinate coordinate-c">STATE: BUILDING</span>
+        </div>
+      </section>
+
+      <section class="systems-section" id="systems" aria-labelledby="systems-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="systemsEyebrow">SELECTED SYSTEMS / ONE CONNECTED PRACTICE</p>
+            <h2 id="systems-title" data-i18n="systemsTitle">Follow the architecture, not a list of logos.</h2>
+          </div>
+          <p data-i18n="systemsIntro">Select a node to inspect the problem it owns, the decision that shapes it, and the evidence behind the claim.</p>
+        </div>
+
+        <div class="systems-workspace">
+          <div class="constellation" role="group" aria-label="Interactive project map" data-i18n-aria="mapLabel">
+            <svg class="connection-map" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line data-edge="promptnest:alex-tavern" x1="17" y1="24" x2="44" y2="32"></line>
+              <line data-edge="crime-alley:alex-tavern" x1="18" y1="70" x2="44" y2="32"></line>
+              <line data-edge="alex-tavern:tavern-plugins" x1="44" y1="32" x2="76" y2="19"></line>
+              <line data-edge="alex-tavern:scenequeue" x1="44" y1="32" x2="63" y2="66"></line>
+              <line data-edge="promptnest:scenequeue" x1="17" y1="24" x2="63" y2="66"></line>
+              <line data-edge="scenequeue:reimaginex" x1="63" y1="66" x2="86" y2="77"></line>
+            </svg>
+
+            <button class="system-node" type="button" data-project="promptnest" style="--x: 17%; --y: 24%;">
+              <span class="node-kind">LIB / 01</span>
+              <strong>PromptNest</strong>
+            </button>
+            <button class="system-node active" type="button" data-project="alex-tavern" style="--x: 44%; --y: 32%;" aria-pressed="true">
+              <span class="node-kind">CORE / 02</span>
+              <strong>Alex Tavern</strong>
+            </button>
+            <button class="system-node" type="button" data-project="tavern-plugins" style="--x: 76%; --y: 19%;">
+              <span class="node-kind">SDK / 03</span>
+              <strong>Tavern Plugins</strong>
+            </button>
+            <button class="system-node" type="button" data-project="crime-alley" style="--x: 18%; --y: 70%;">
+              <span class="node-kind">LAB / 04</span>
+              <strong>Crime Alley CV</strong>
+            </button>
+            <button class="system-node" type="button" data-project="scenequeue" style="--x: 63%; --y: 66%;">
+              <span class="node-kind">TOOL / 05</span>
+              <strong>SceneQueue</strong>
+            </button>
+            <button class="system-node" type="button" data-project="reimaginex" style="--x: 86%; --y: 77%;">
+              <span class="node-kind">VIS / 06</span>
+              <strong>ReImagineX</strong>
+            </button>
+
+            <div class="map-legend">
+              <span><i class="legend-dot active-dot"></i><span data-i18n="legendSelected">Selected system</span></span>
+              <span><i class="legend-line"></i><span data-i18n="legendRelation">Shared design concern</span></span>
+            </div>
+          </div>
+
+          <article class="inspection-panel" id="inspection-panel" aria-live="polite">
+            <header class="inspection-header">
+              <div>
+                <span class="inspection-index" id="project-index">CORE / 02</span>
+                <h3 id="project-name">Alex Tavern</h3>
+              </div>
+              <span class="project-state" data-i18n="projectState">OPEN SOURCE</span>
+            </header>
+            <p class="project-thesis" id="project-thesis"></p>
+            <dl class="project-facts">
+              <div>
+                <dt data-i18n="problemLabel">Problem</dt>
+                <dd id="project-problem"></dd>
+              </div>
+              <div>
+                <dt data-i18n="decisionLabel">Distinctive decision</dt>
+                <dd id="project-decision"></dd>
+              </div>
+              <div>
+                <dt data-i18n="evidenceLabel">Evidence</dt>
+                <dd id="project-evidence"></dd>
+              </div>
+            </dl>
+            <div class="project-links" id="project-links"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="principles-section" id="principles" aria-labelledby="principles-title">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow" data-i18n="principlesEyebrow">REPEATED DECISIONS / ENGINEERING POSITION</p>
+            <h2 id="principles-title" data-i18n="principlesTitle">The work keeps returning to three boundaries.</h2>
+          </div>
+        </div>
+        <div class="principles-grid">
+          <article>
+            <span class="principle-code">MODEL / CODE</span>
+            <h3 data-i18n="principleOneTitle">Judgment lives in models. Invariants live in code.</h3>
+            <p data-i18n="principleOneBody">Let models interpret and propose. Let typed contracts, state machines, and deterministic guards decide what becomes real.</p>
+          </article>
+          <article>
+            <span class="principle-code">CLAIM / TRACE</span>
+            <h3 data-i18n="principleTwoTitle">Evidence before confidence.</h3>
+            <p data-i18n="principleTwoBody">Repeated runs, negative controls, replayable logs, and explicit limitations turn an interesting result into an engineering claim.</p>
+          </article>
+          <article>
+            <span class="principle-code">COMPLEX / LEGIBLE</span>
+            <h3 data-i18n="principleThreeTitle">Complexity needs an interface.</h3>
+            <p data-i18n="principleThreeBody">A difficult workflow becomes useful when people can inspect, edit, recover, and understand the state they are changing.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="notes-section" id="notes" aria-labelledby="notes-title">
+        <div class="note-coordinate" aria-hidden="true">
+          <span>PAPERS / FIELD NOTES</span>
+          <strong>04</strong>
+        </div>
+        <div class="note-content">
+          <p class="eyebrow" data-i18n="notesEyebrow">PAPERS / CASE STUDIES / VALIDATION REPORTS</p>
+          <h2 id="notes-title" data-i18n="noteTitle">Research is part of the build.</h2>
+          <p data-i18n="noteBody">Architecture claims are published with their measurements, negative controls, failure cases, and limits. These are engineering field notes, not peer-reviewed papers unless explicitly labeled as such.</p>
+
+          <div class="publication-list">
+            <a class="publication featured-publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/token-economics-agentic-architecture-2026-07-16.md" target="_blank" rel="noopener noreferrer">
+              <span class="publication-meta">CASE STUDY / 2026</span>
+              <h3 data-i18n="publicationOneTitle">Token economics as an architectural enabler</h3>
+              <p data-i18n="publicationOneBody">A cache-aware cost study with explicit attribution limits and normalized provider counterfactuals.</p>
+              <span class="publication-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/speech-audience-model-2026-07-15.md" target="_blank" rel="noopener noreferrer">
+              <span class="publication-meta">VALIDATION REPORT / 2026</span>
+              <h3 data-i18n="publicationTwoTitle">A structural audience model for speech</h3>
+              <p data-i18n="publicationTwoBody">Witnessed actions, whispers, two-level recall assertions, and blind continuity review.</p>
+              <span class="publication-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/character-output-guard-2026-07-15.md" target="_blank" rel="noopener noreferrer">
+              <span class="publication-meta">CASE STUDY / 2026</span>
+              <h3 data-i18n="publicationThreeTitle">Making secret handling structural</h3>
+              <p data-i18n="publicationThreeBody">A deterministic retry-then-redact guard tested against informational-payload leaks.</p>
+              <span class="publication-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/multi-character-memory-retention-2026-07-14.md" target="_blank" rel="noopener noreferrer">
+              <span class="publication-meta">CONTROLLED EXPERIMENT / 2026</span>
+              <h3 data-i18n="publicationFourTitle">Multi-character memory under shifting focus</h3>
+              <p data-i18n="publicationFourBody">A reproduction attempt that rejected the reported failure and exposed a different architectural gap.</p>
+              <span class="publication-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <a class="text-link archive-link" href="https://github.com/al4xdev/alex-tavern/tree/master/docs/cases" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="openArchive">Open the engineering archive</span> <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-thesis" data-i18n="footerThesis">Curious builder turning unusual ideas into working systems.</p>
+        <p class="footer-note" data-i18n="footerNote">This portfolio is itself a small system: bilingual, inspectable, and deliberately unfinished.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/al4xdev" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <button type="button" data-open-language data-i18n="changeLanguage">Change language</button>
+      </div>
+    </footer>
+  </div>
+
+  <noscript>
+    <section class="noscript-content">
+      <h1>Alexsandro Pessoa</h1>
+      <p>I build systems where AI judgment meets deterministic control.</p>
+      <p>Eu construo sistemas onde julgamento de IA encontra controle determinístico.</p>
+      <ul>
+        <li><a href="https://github.com/al4xdev/alex-tavern">Alex Tavern</a></li>
+        <li><a href="https://github.com/al4xdev/scenequeue">SceneQueue</a></li>
+        <li><a href="https://github.com/al4xdev/promptnest">PromptNest</a></li>
+        <li><a href="https://github.com/al4xdev/crime_alley_cv">Crime Alley CV</a></li>
+        <li><a href="https://github.com/al4xdev/alex-tavern-plugins">Alex Tavern Plugins</a></li>
+        <li><a href="https://github.com/al4xdev/ReImagineX">ReImagineX</a></li>
+      </ul>
+    </section>
+  </noscript>
+</body>
+</html>
