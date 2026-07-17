@@ -20,7 +20,7 @@ window.CV_CONTENT = Object.freeze({
 		profile: {
 			label: "Profile",
 			body:
-				"AI & Platform Engineer who turns ambiguous GenAI architectures into deployable, observable, reusable systems — typed LLM workflows, agent control planes, vLLM runtimes, and developer tooling — with measured impact on cost, performance, and delivery speed.",
+				"AI & Platform Engineer who turns ambiguous GenAI architectures into deployable, observable, reusable systems: typed LLM workflows, agent control planes, vLLM runtimes, and developer tooling. Measured impact on cost, performance, and delivery speed.",
 		},
 		experienceLabel: "Experience",
 		experienceCompany: "accenture",
@@ -33,12 +33,12 @@ window.CV_CONTENT = Object.freeze({
 					{
 						title: "Enterprise data & AI platform",
 						body:
-							"Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform — modernizing legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Client, domain, stack, and metrics are withheld under confidentiality.",
+							"Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform. Modernizing legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Client, domain, stack, and metrics are withheld under confidentiality.",
 					},
 					{
 						title: "Engineering mentorship program",
 						body:
-							"Designed and ran a technical mentorship program to raise the engineering quality bar across squads — modern Python, explicit typing, design patterns, and applied ML theory for GenAI — tracking mentee progress with commit and delivery metrics.",
+							"Designed and ran a technical mentorship program to raise the engineering quality bar across squads: modern Python, explicit typing, design patterns, and applied ML theory for GenAI. Tracked mentee progress with commit and delivery metrics.",
 					},
 				],
 			},
@@ -133,7 +133,7 @@ window.CV_CONTENT = Object.freeze({
 		profile: {
 			label: "Perfil",
 			body:
-				"Engenheiro de IA e plataformas que transforma arquiteturas GenAI ambíguas em sistemas implantáveis, observáveis e reutilizáveis — fluxos tipados com LLMs, planos de controle para agentes, runtimes vLLM e ferramentas para desenvolvedores — com impacto medido em custo, desempenho e velocidade de entrega.",
+				"Engenheiro de IA e plataformas que transforma arquiteturas GenAI ambíguas em sistemas implantáveis, observáveis e reutilizáveis: fluxos tipados com LLMs, planos de controle para agentes, runtimes vLLM e ferramentas para desenvolvedores. Impacto medido em custo, desempenho e velocidade de entrega.",
 		},
 		experienceLabel: "Experiência",
 		experienceCompany: "accenture",
@@ -146,12 +146,12 @@ window.CV_CONTENT = Object.freeze({
 					{
 						title: "Plataforma corporativa de dados & IA",
 						body:
-							"Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados/IA — modernizando fluxos legados de dados com pipelines determinísticos para que desenvolvedores implementem e validem novas regras com segurança e autonomia. Cliente, domínio, stack e métricas são omitidos por confidencialidade.",
+							"Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados/IA. Moderniza fluxos legados de dados com pipelines determinísticos para que desenvolvedores implementem e validem novas regras com segurança e autonomia. Cliente, domínio, stack e métricas são omitidos por confidencialidade.",
 					},
 					{
 						title: "Programa de mentoria de engenharia",
 						body:
-							"Desenhou e conduziu um programa técnico de mentoria para elevar o padrão de qualidade de engenharia entre squads — Python moderno, tipagem explícita, design patterns e teoria de ML aplicada a GenAI — acompanhando a evolução dos mentorados com métricas de commits e entregas.",
+							"Desenhou e conduziu um programa técnico de mentoria para elevar o padrão de qualidade de engenharia entre squads: Python moderno, tipagem explícita, design patterns e teoria de ML aplicada a GenAI. Acompanhou a evolução dos mentorados com métricas de commits e entregas.",
 					},
 				],
 			},
