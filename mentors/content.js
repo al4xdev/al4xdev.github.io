@@ -17,7 +17,7 @@ window.MENTOR_CONTENT = [
     id: 'mentor-02',
     initials: 'TR',
     photo: '',
-    linkedin: 'https://www.linkedin.com/in/tiagopereiraramos/',
+    linkedin: 'https://www.linkedin.com/in/tiago-pereira-ramos/',
     en: {
       name: 'Tiago Pereira Ramos',
       note: 'Senior Solutions Architect — agentic systems, hyperautomation, and enterprise AI governance.',
