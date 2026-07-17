@@ -17,6 +17,8 @@ Open <http://127.0.0.1:8080>.
 - `index.html`: semantic page and language entrance.
 - `styles.css`: Systems Fieldboard visual system and responsive behavior.
 - `app.js`: bilingual content, project data, language persistence, and constellation interaction.
+- `cv/`: isolated bilingual CV mini-application with responsive screen rendering and fixed A4
+  printing. Ordinary career-content edits belong in `cv/content.js`.
 - `.plan/`: product brief, verified content inventory, design direction, roadmap, and continuation
   handoff. Future agents must read this first.
 - `.nojekyll`: serve the static tree unchanged through GitHub Pages.
@@ -26,4 +28,3 @@ Open <http://127.0.0.1:8080>.
 The site can be published from a repository Pages branch without a build step. Before publishing,
 complete the unresolved items in `.plan/HANDOFF.md`, especially the preferred contact method,
 canonical URL, project media, and final Alex Tavern status language.
-

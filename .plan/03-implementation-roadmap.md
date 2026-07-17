@@ -18,7 +18,20 @@ The first visual pass found and corrected two oversized-word clipping issues: th
 choice and the hero's `deterministic control` line. Firefox headless later became unstable in the
 workspace, so repeat the final screenshots in a clean browser session before publication.
 
+The complete mobile browser audit is recorded in `.plan/04-mobile-audit.md`. Chromium touch
+emulation now passes at 360, 390, and 430 px portrait plus 844 × 390 landscape with zero page-level
+overflow, zero sub-44 px visible controls, all six project interactions, reduced motion, and a
+usable no-JavaScript fallback.
+
+The CV and paper-document increment is complete in `.plan/06-cv-paper-documents.md`: the final
+document runs in a sandboxed iframe, has a mobile reading layout, prints as one desktop A4 page in
+both languages, and keeps career content isolated in `cv/content.js`.
+
 ## Increment 2: real project media
+
+Before this increment, complete `.plan/05-localized-article-reader.md`: import the four featured
+articles, provide reviewed English and Portuguese versions, render them inside the portfolio, and
+retain explicit links to their original GitHub sources.
 
 - Select one representative asset per visual project with explicit source paths.
 - Optimize to AVIF/WebP with width/height metadata and useful alt text.

@@ -12,6 +12,7 @@
     }
   </script>
   <link rel="stylesheet" href="styles.css">
+  <script src="cv/embed.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body data-state="gate">
@@ -123,34 +124,37 @@
               <line data-edge="scenequeue:reimaginex" x1="63" y1="66" x2="86" y2="77"></line>
             </svg>
 
-            <button class="system-node" type="button" data-project="promptnest" style="--x: 17%; --y: 24%;">
-              <span class="node-kind">LIB / 01</span>
-              <strong>PromptNest</strong>
-            </button>
-            <button class="system-node active" type="button" data-project="alex-tavern" style="--x: 44%; --y: 32%;" aria-pressed="true">
-              <span class="node-kind">CORE / 02</span>
-              <strong>Alex Tavern</strong>
-            </button>
-            <button class="system-node" type="button" data-project="tavern-plugins" style="--x: 76%; --y: 19%;">
-              <span class="node-kind">SDK / 03</span>
-              <strong>Tavern Plugins</strong>
-            </button>
-            <button class="system-node" type="button" data-project="crime-alley" style="--x: 18%; --y: 70%;">
-              <span class="node-kind">LAB / 04</span>
-              <strong>Crime Alley CV</strong>
-            </button>
-            <button class="system-node" type="button" data-project="scenequeue" style="--x: 63%; --y: 66%;">
-              <span class="node-kind">TOOL / 05</span>
-              <strong>SceneQueue</strong>
-            </button>
-            <button class="system-node" type="button" data-project="reimaginex" style="--x: 86%; --y: 77%;">
-              <span class="node-kind">VIS / 06</span>
-              <strong>ReImagineX</strong>
-            </button>
+            <div class="mobile-system-route">
+              <button class="system-node" type="button" data-project="promptnest" style="--x: 17%; --y: 24%;">
+                <span class="node-kind">LIB / 01</span>
+                <strong>PromptNest</strong>
+              </button>
+              <button class="system-node active" type="button" data-project="alex-tavern" style="--x: 44%; --y: 32%;" aria-pressed="true">
+                <span class="node-kind">CORE / 02</span>
+                <strong>Alex Tavern</strong>
+              </button>
+              <button class="system-node" type="button" data-project="tavern-plugins" style="--x: 76%; --y: 19%;">
+                <span class="node-kind">SDK / 03</span>
+                <strong>Tavern Plugins</strong>
+              </button>
+              <button class="system-node" type="button" data-project="crime-alley" style="--x: 18%; --y: 70%;">
+                <span class="node-kind">LAB / 04</span>
+                <strong>Crime Alley CV</strong>
+              </button>
+              <button class="system-node" type="button" data-project="scenequeue" style="--x: 63%; --y: 66%;">
+                <span class="node-kind">TOOL / 05</span>
+                <strong>SceneQueue</strong>
+              </button>
+              <button class="system-node" type="button" data-project="reimaginex" style="--x: 86%; --y: 77%;">
+                <span class="node-kind">VIS / 06</span>
+                <strong>ReImagineX</strong>
+              </button>
+            </div>
 
             <div class="map-legend">
               <span><i class="legend-dot active-dot"></i><span data-i18n="legendSelected">Selected system</span></span>
-              <span><i class="legend-line"></i><span data-i18n="legendRelation">Shared design concern</span></span>
+              <span class="desktop-map-relation"><i class="legend-line"></i><span data-i18n="legendRelation">Shared design concern</span></span>
+              <span class="mobile-map-hint" data-i18n="mobileMapHint">Swipe to inspect</span>
             </div>
           </div>
 
@@ -219,25 +223,25 @@
           <p data-i18n="noteBody">Architecture claims are published with their measurements, negative controls, failure cases, and limits. These are engineering field notes, not peer-reviewed papers unless explicitly labeled as such.</p>
 
           <div class="publication-list">
-            <a class="publication featured-publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/token-economics-agentic-architecture-2026-07-16.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication featured-publication paper-document" style="--paper-index: 0" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/token-economics-agentic-architecture-2026-07-16.md" target="_blank" rel="noopener noreferrer">
               <span class="publication-meta">CASE STUDY / 2026</span>
               <h3 data-i18n="publicationOneTitle">Token economics as an architectural enabler</h3>
               <p data-i18n="publicationOneBody">A cache-aware cost study with explicit attribution limits and normalized provider counterfactuals.</p>
               <span class="publication-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/speech-audience-model-2026-07-15.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication paper-document" style="--paper-index: 1" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/speech-audience-model-2026-07-15.md" target="_blank" rel="noopener noreferrer">
               <span class="publication-meta">VALIDATION REPORT / 2026</span>
               <h3 data-i18n="publicationTwoTitle">A structural audience model for speech</h3>
               <p data-i18n="publicationTwoBody">Witnessed actions, whispers, two-level recall assertions, and blind continuity review.</p>
               <span class="publication-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/character-output-guard-2026-07-15.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication paper-document" style="--paper-index: 2" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/character-output-guard-2026-07-15.md" target="_blank" rel="noopener noreferrer">
               <span class="publication-meta">CASE STUDY / 2026</span>
               <h3 data-i18n="publicationThreeTitle">Making secret handling structural</h3>
               <p data-i18n="publicationThreeBody">A deterministic retry-then-redact guard tested against informational-payload leaks.</p>
               <span class="publication-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="publication" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/multi-character-memory-retention-2026-07-14.md" target="_blank" rel="noopener noreferrer">
+            <a class="publication paper-document" style="--paper-index: 3" href="https://github.com/al4xdev/alex-tavern/blob/master/docs/cases/multi-character-memory-retention-2026-07-14.md" target="_blank" rel="noopener noreferrer">
               <span class="publication-meta">CONTROLLED EXPERIMENT / 2026</span>
               <h3 data-i18n="publicationFourTitle">Multi-character memory under shifting focus</h3>
               <p data-i18n="publicationFourBody">A reproduction attempt that rejected the reported failure and exposed a different architectural gap.</p>
@@ -248,6 +252,33 @@
           <a class="text-link archive-link" href="https://github.com/al4xdev/alex-tavern/tree/master/docs/cases" target="_blank" rel="noopener noreferrer">
             <span data-i18n="openArchive">Open the engineering archive</span> <span aria-hidden="true">↗</span>
           </a>
+        </div>
+      </section>
+
+      <section class="cv-section" id="cv" aria-labelledby="cv-title">
+        <div class="cv-section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="cvEyebrow">FINAL DOCUMENT / CURRICULUM VITAE</p>
+            <h2 id="cv-title" data-i18n="cvTitle">The résumé comes after the evidence.</h2>
+          </div>
+          <p data-i18n="cvIntro">The document is last because the work is its context. This first edition is a full structural mock, ready to receive verified career history.</p>
+        </div>
+
+        <div class="cv-renderer">
+          <div class="cv-controls">
+            <div>
+              <span class="cv-control-label" data-i18n="cvRendererLabel">CV RENDERER / A4 OUTPUT</span>
+              <span class="cv-control-note" data-i18n="cvRendererNote">Uses your browser's print dialog to save a PDF.</span>
+            </div>
+            <button class="cv-download" type="button" data-print-cv>
+              <span data-i18n="cvDownload">Print / Save as PDF</span>
+              <span aria-hidden="true">↓</span>
+            </button>
+          </div>
+
+          <portfolio-cv class="cv-paper-shell paper-document" id="cv-document" style="--paper-index: 4" language="en" aria-label="Curriculum vitae mock" data-i18n-aria="cvDocumentLabel">
+            <a class="cv-standalone-fallback" href="cv/index.html" data-i18n="cvStandalone">Open standalone CV renderer</a>
+          </portfolio-cv>
         </div>
       </section>
     </main>
@@ -265,6 +296,26 @@
   </div>
 
   <noscript>
+    <style>
+      .language-gate,
+      .systems-workspace {
+        display: none !important;
+      }
+
+      .site-shell {
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+
+      body {
+        height: auto !important;
+        overflow: auto !important;
+      }
+    </style>
     <section class="noscript-content">
       <h1>Alexsandro Pessoa</h1>
       <p>I build systems where AI judgment meets deterministic control.</p>

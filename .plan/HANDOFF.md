@@ -42,12 +42,39 @@ Read these files in order before changing the project:
   checks were completed. Repeat screenshots before publication because the later Firefox headless
   process became unstable in this workspace.
 
+## Mobile audit completed
+
+- `.plan/04-mobile-audit.md` contains the baseline defects, implementation decisions, exact
+  viewport matrix, and final browser evidence.
+- Mobile uses the same semantic page and content, but the constellation becomes a horizontal
+  snap-aligned system route connected directly to the inspection panel.
+- Portrait widths 360/390/430 and 844 × 390 landscape have no page overflow or undersized visible
+  controls. English and Portuguese were exercised across all six systems.
+- The language gate is one viewport tall, reduced motion is verified, and the no-JavaScript
+  fallback is reachable.
+
+## CV and paper documents completed
+
+- `.plan/06-cv-paper-documents.md` records the implemented interaction and browser evidence.
+- The final CV is an isolated mini-application under `cv/`; ordinary career edits belong only in
+  `cv/content.js`.
+- Mobile screen rendering is vertical, while printing always uses the standalone two-column A4
+  layout. Both languages were verified as one-page A4 PDFs.
+- Four article cards and the CV share the one-shot paper-unfold motion, with reduced-motion and
+  no-JavaScript fallbacks.
+
 ## Before publishing
 
 - Confirm the LinkedIn URL and preferred contact method with Alexsandro.
 - Confirm whether the root page will use `al4xdev.github.io` or a project Pages URL.
 - Push the Alex Tavern history before relying on its article link.
 - Select media assets deliberately and record their original repository paths here.
+
+## Next task
+
+Implement `.plan/05-localized-article-reader.md`. Featured articles should open inside the
+portfolio in English or Portuguese, preserve navigation context, and always expose the original
+GitHub source as provenance.
 
 ## Working convention
 

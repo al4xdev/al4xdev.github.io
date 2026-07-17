@@ -18,6 +18,7 @@ const STRINGS = {
     mapLabel: 'Interactive map of selected projects',
     legendSelected: 'Selected system',
     legendRelation: 'Shared design concern',
+    mobileMapHint: 'Swipe to inspect',
     projectState: 'OPEN SOURCE',
     problemLabel: 'Problem',
     decisionLabel: 'Distinctive decision',
@@ -42,6 +43,14 @@ const STRINGS = {
     publicationFourTitle: 'Multi-character memory under shifting focus',
     publicationFourBody: 'A reproduction attempt that rejected the reported failure and exposed a different architectural gap.',
     openArchive: 'Open the engineering archive',
+    cvEyebrow: 'FINAL DOCUMENT / CURRICULUM VITAE',
+    cvTitle: 'The résumé comes after the evidence.',
+    cvIntro: 'The document is last because the work is its context. This first edition is a full structural mock, ready to receive verified career history.',
+    cvRendererLabel: 'CV RENDERER / A4 OUTPUT',
+    cvRendererNote: "Uses your browser's print dialog to save a PDF.",
+    cvDownload: 'Print / Save as PDF',
+    cvDocumentLabel: 'Curriculum vitae mock',
+    cvStandalone: 'Open standalone CV renderer',
     footerThesis: 'Curious builder turning unusual ideas into working systems.',
     footerNote: 'This portfolio is itself a small system: bilingual, inspectable, and deliberately unfinished.',
     changeLanguage: 'Change language',
@@ -68,6 +77,7 @@ const STRINGS = {
     mapLabel: 'Mapa interativo dos projetos selecionados',
     legendSelected: 'Sistema selecionado',
     legendRelation: 'Decisão de design compartilhada',
+    mobileMapHint: 'Deslize para inspecionar',
     projectState: 'CÓDIGO ABERTO',
     problemLabel: 'Problema',
     decisionLabel: 'Decisão distintiva',
@@ -92,6 +102,14 @@ const STRINGS = {
     publicationFourTitle: 'Memória multipersonagem sob mudança de foco',
     publicationFourBody: 'Uma tentativa de reprodução que rejeitou a falha relatada e expôs outra lacuna arquitetural.',
     openArchive: 'Abrir o arquivo de engenharia',
+    cvEyebrow: 'DOCUMENTO FINAL / CURRICULUM VITAE',
+    cvTitle: 'O currículo vem depois das evidências.',
+    cvIntro: 'O documento fica por último porque o trabalho é o seu contexto. Esta primeira edição é um mock estrutural completo, pronto para receber o histórico profissional verificado.',
+    cvRendererLabel: 'RENDERIZADOR DE CV / SAÍDA A4',
+    cvRendererNote: 'Usa a impressão do navegador para salvar um PDF.',
+    cvDownload: 'Imprimir / Salvar como PDF',
+    cvDocumentLabel: 'Mock do currículo',
+    cvStandalone: 'Abrir o renderizador isolado do currículo',
     footerThesis: 'Um construtor curioso transformando ideias incomuns em sistemas reais.',
     footerNote: 'Este portfólio também é um pequeno sistema: bilíngue, inspecionável e deliberadamente inacabado.',
     changeLanguage: 'Trocar idioma',
@@ -260,6 +278,7 @@ function translateInterface() {
     button.classList.toggle('active', selected);
     button.setAttribute('aria-pressed', String(selected));
   });
+  document.querySelector('portfolio-cv')?.setAttribute('language', language);
 }
 
 function renderProject(projectId, animate = true) {
@@ -299,6 +318,14 @@ function renderProject(projectId, animate = true) {
     const selected = node.dataset.project === projectId;
     node.classList.toggle('active', selected);
     node.setAttribute('aria-pressed', String(selected));
+    if (selected && animate && window.matchMedia('(max-width: 800px)').matches) {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      node.scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
   });
 
   document.querySelectorAll('[data-edge]').forEach((edge) => {
@@ -345,6 +372,10 @@ document.querySelectorAll('[data-open-language]').forEach((button) => {
   button.addEventListener('click', reopenLanguageGate);
 });
 
+document.querySelector('[data-print-cv]')?.addEventListener('click', () => {
+  document.querySelector('portfolio-cv')?.print();
+});
+
 document.querySelectorAll('[data-project]').forEach((node) => {
   node.addEventListener('click', () => renderProject(node.dataset.project));
   node.addEventListener('keydown', (event) => {
@@ -375,5 +406,22 @@ if (savedLanguage || requestedLanguage) {
   body.dataset.state = 'gate';
   gate.setAttribute('aria-hidden', 'false');
   shell.setAttribute('aria-hidden', 'true');
-  window.setTimeout(() => gate.querySelector('[data-choose-language]')?.focus(), 80);
+  window.setTimeout(() => gate.querySelector(`[data-choose-language="${language}"]`)?.focus(), 80);
+}
+
+const paperDocuments = [...document.querySelectorAll('.paper-document')];
+document.documentElement.classList.add('paper-motion-ready');
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+  paperDocuments.forEach((documentElement) => documentElement.classList.add('paper-open'));
+} else {
+  const paperObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('paper-open');
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+  paperDocuments.forEach((documentElement) => paperObserver.observe(documentElement));
 }
