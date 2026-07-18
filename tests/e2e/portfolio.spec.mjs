@@ -21,6 +21,14 @@ test('language entrance is exactly one viewport and enters the site', async ({ p
 
 test('constellation selection and language switching preserve state', async ({ page }) => {
   await page.goto('/?lang=en');
+  await expect(page.locator('.inspection-command')).toContainText('CHOOSE A SYSTEM');
+  await expect(page.locator('#inspection-command-detail')).toHaveText('Each node opens its engineering case.');
+  await expect(page.locator('[data-project]')).toHaveCount(6);
+  for (const node of await page.locator('[data-project]').all()) {
+    await expect(node).toHaveAttribute('aria-controls', 'inspection-panel');
+  }
+  await expect(page.locator('[data-project="alex-tavern"] .node-action-active')).toBeVisible();
+  await expect(page.locator('[data-project="promptnest"] .node-action-idle')).toBeVisible();
   for (const name of projects) {
     await page.getByRole('button', { name }).click();
     await expect(page.locator('#project-name')).toHaveText(name);
@@ -105,6 +113,9 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     await page.goto('/?lang=en');
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width);
+    if (viewport.width <= 800) {
+      await expect(page.locator('.mobile-map-hint')).toHaveText('Swipe to navigate · tap to inspect');
+    }
 
     const smallTargets = await page.locator('a, button').evaluateAll((elements) => elements
       .filter((element) => {

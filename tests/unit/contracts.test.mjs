@@ -185,6 +185,9 @@ test('responsive, reduced-motion, and fixed A4 contracts remain explicit', async
   ]);
   assert.match(portfolioCss, /@media \(max-width: 800px\)/);
   assert.match(portfolioCss, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(portfolioCss, /@media \(min-width: 801px\) and \(prefers-reduced-motion: no-preference\)/);
+  assert.match(portfolioCss, /scroll-snap-type:\s*y proximity/);
+  assert.match(portfolioCss, /\.mobile-system-route\s*{[^}]*scroll-snap-type:\s*inline mandatory/s);
   assert.match(portfolioCss, /\.paper-document\.paper-open/);
   assert.match(cvCss, /@page\s*{[^}]*size:\s*A4/s);
   assert.match(cvCss, /@media print/);

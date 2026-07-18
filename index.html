@@ -165,7 +165,14 @@
         </div>
 
         <div class="systems-workspace">
-          <div class="constellation" role="group" aria-label="Interactive project map" data-i18n-aria="mapLabel">
+          <div class="inspection-command">
+            <span class="inspection-command-code">INPUT / SELECT</span>
+            <strong data-i18n="inspectionCommand">CHOOSE A SYSTEM</strong>
+            <span class="inspection-command-detail" id="inspection-command-detail" data-i18n="inspectionCommandDetail">Each node opens its engineering case.</span>
+            <span class="inspection-probe" aria-hidden="true"></span>
+          </div>
+
+          <div class="constellation" role="group" aria-label="Interactive project map" aria-describedby="inspection-command-detail" data-i18n-aria="mapLabel">
             <svg class="connection-map" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               <line data-edge="promptnest:alex-tavern" x1="17" y1="24" x2="44" y2="32"></line>
               <line data-edge="crime-alley:alex-tavern" x1="18" y1="70" x2="44" y2="32"></line>
@@ -176,36 +183,42 @@
             </svg>
 
             <div class="mobile-system-route">
-              <button class="system-node" type="button" data-project="promptnest" style="--x: 17%; --y: 24%;">
+              <button class="system-node" type="button" data-project="promptnest" style="--x: 17%; --y: 24%;" aria-pressed="false" aria-controls="inspection-panel">
                 <span class="node-kind">LIB / 01</span>
                 <strong>PromptNest</strong>
+                <span class="node-action" aria-hidden="true"><span class="node-action-idle" data-i18n="nodeInspect">INSPECT →</span><span class="node-action-active" data-i18n="nodeActive">CASE OPEN</span></span>
               </button>
-              <button class="system-node active" type="button" data-project="alex-tavern" style="--x: 44%; --y: 32%;" aria-pressed="true">
+              <button class="system-node active" type="button" data-project="alex-tavern" style="--x: 44%; --y: 32%;" aria-pressed="true" aria-controls="inspection-panel">
                 <span class="node-kind">CORE / 02</span>
                 <strong>Alex Tavern</strong>
+                <span class="node-action" aria-hidden="true"><span class="node-action-idle" data-i18n="nodeInspect">INSPECT →</span><span class="node-action-active" data-i18n="nodeActive">CASE OPEN</span></span>
               </button>
-              <button class="system-node" type="button" data-project="tavern-plugins" style="--x: 76%; --y: 19%;">
+              <button class="system-node" type="button" data-project="tavern-plugins" style="--x: 76%; --y: 19%;" aria-pressed="false" aria-controls="inspection-panel">
                 <span class="node-kind">SDK / 03</span>
                 <strong>Tavern Plugins</strong>
+                <span class="node-action" aria-hidden="true"><span class="node-action-idle" data-i18n="nodeInspect">INSPECT →</span><span class="node-action-active" data-i18n="nodeActive">CASE OPEN</span></span>
               </button>
-              <button class="system-node" type="button" data-project="crime-alley" style="--x: 18%; --y: 70%;">
+              <button class="system-node" type="button" data-project="crime-alley" style="--x: 18%; --y: 70%;" aria-pressed="false" aria-controls="inspection-panel">
                 <span class="node-kind">LAB / 04</span>
                 <strong>Crime Alley CV</strong>
+                <span class="node-action" aria-hidden="true"><span class="node-action-idle" data-i18n="nodeInspect">INSPECT →</span><span class="node-action-active" data-i18n="nodeActive">CASE OPEN</span></span>
               </button>
-              <button class="system-node" type="button" data-project="scenequeue" style="--x: 63%; --y: 66%;">
+              <button class="system-node" type="button" data-project="scenequeue" style="--x: 63%; --y: 66%;" aria-pressed="false" aria-controls="inspection-panel">
                 <span class="node-kind">TOOL / 05</span>
                 <strong>SceneQueue</strong>
+                <span class="node-action" aria-hidden="true"><span class="node-action-idle" data-i18n="nodeInspect">INSPECT →</span><span class="node-action-active" data-i18n="nodeActive">CASE OPEN</span></span>
               </button>
-              <button class="system-node" type="button" data-project="reimaginex" style="--x: 86%; --y: 77%;">
+              <button class="system-node" type="button" data-project="reimaginex" style="--x: 86%; --y: 77%;" aria-pressed="false" aria-controls="inspection-panel">
                 <span class="node-kind">VIS / 06</span>
                 <strong>ReImagineX</strong>
+                <span class="node-action" aria-hidden="true"><span class="node-action-idle" data-i18n="nodeInspect">INSPECT →</span><span class="node-action-active" data-i18n="nodeActive">CASE OPEN</span></span>
               </button>
             </div>
 
             <div class="map-legend">
               <span><i class="legend-dot active-dot"></i><span data-i18n="legendSelected">Selected system</span></span>
               <span class="desktop-map-relation"><i class="legend-line"></i><span data-i18n="legendRelation">Shared design concern</span></span>
-              <span class="mobile-map-hint" data-i18n="mobileMapHint">Swipe to inspect</span>
+              <span class="mobile-map-hint" data-i18n="mobileMapHint">Swipe to navigate · tap to inspect</span>
             </div>
           </div>
 
