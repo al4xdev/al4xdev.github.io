@@ -30,14 +30,14 @@ window.CV_CONTENT = Object.freeze({
 		experienceCompany: "accenture",
 		experience: [
 			{
-				role: "Principal AI Platform Engineer",
-				tag: "project role",
+				role: "Senior AI Platform Engineer",
+				tag: "",
 				period: "2025 — Present",
 				projects: [
 					{
 						title: "Enterprise data & AI platform",
 						body:
-							"Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform. Modernizing legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Build deterministic, auditable foundations for GenAI-assisted workflows, with explicit contracts, traceable validation, and isolated extension points that let developers implement new rules safely and independently. The selected research below publicly demonstrates the same engineering practice I apply in confidential professional contexts: investigating failure modes without established solutions, making them measurable, and turning them into explicit state, deterministic boundaries, and traceable validation for probabilistic multi-agent systems. Client, domain, stack, and metrics are withheld under confidentiality.",
+							"Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform. Modernize legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Build deterministic, auditable foundations for GenAI-assisted workflows, with explicit contracts, traceable validation, and isolated extension points that let developers implement new rules safely and independently. The selected research below publicly demonstrates the same engineering practice I apply in confidential professional contexts: investigating failure modes without established solutions, making them measurable, and turning them into explicit state, deterministic boundaries, and traceable validation for probabilistic multi-agent systems. Client, domain, stack, and metrics are withheld under confidentiality.",
 					},
 					{
 						title: "Engineering mentorship program",
@@ -172,14 +172,14 @@ window.CV_CONTENT = Object.freeze({
 		experienceCompany: "accenture",
 		experience: [
 			{
-				role: "Project role: Principal AI Platform Engineer",
+				role: "Senior AI Platform Engineer",
 				tag: "",
 				period: "2025 — atual",
 				projects: [
 					{
 						title: "Plataforma corporativa de dados & IA",
 						body:
-							"Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados e IA. Moderniza fluxos legados com pipelines determinísticos, permitindo que desenvolvedores criem e validem regras com segurança e autonomia. Cria bases determinísticas e auditáveis para fluxos com GenAI, usando contratos explícitos, validação rastreável e extensões isoladas. As pesquisas abaixo tornam público o mesmo método que aplico em contextos profissionais confidenciais: investigar falhas sem solução, medi-las e convertê-las em estado explícito, limites determinísticos e validação rastreável para sistemas multiagente probabilísticos. Cliente, domínio, stack e métricas são omitidos por confidencialidade.",
+							"Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados e IA. Moderniza fluxos legados com pipelines determinísticos, permitindo que desenvolvedores criem e validem regras com segurança e autonomia. Cria bases determinísticas e auditáveis para fluxos com GenAI, usando contratos explícitos, validação rastreável e extensões isoladas. As pesquisas abaixo tornam público o mesmo método que aplica em contextos profissionais confidenciais: investigar falhas sem solução, medi-las e convertê-las em estado explícito, limites determinísticos e validação rastreável para sistemas multiagente probabilísticos. Cliente, domínio, stack e métricas são omitidos por confidencialidade.",
 					},
 					{
 						title: "Programa de mentoria de engenharia",

@@ -6,6 +6,9 @@
       super();
       this.frame = null;
       this.pendingPrint = false;
+      this.pendingScrollX = 0;
+      this.pendingScrollY = 0;
+      this.scrollFrame = 0;
       this.handleMessage = this.handleMessage.bind(this);
     }
 
@@ -28,6 +31,7 @@
 
     disconnectedCallback() {
       window.removeEventListener('message', this.handleMessage);
+      if (this.scrollFrame) window.cancelAnimationFrame(this.scrollFrame);
     }
 
     attributeChangedCallback() {
@@ -48,10 +52,19 @@
         const deltaY = Number(event.data.deltaY);
         if (!Number.isFinite(deltaX) || !Number.isFinite(deltaY)) return;
         const limit = window.innerHeight;
-        const scroller = document.scrollingElement;
-        if (!scroller) return;
-        scroller.scrollLeft += Math.max(-limit, Math.min(limit, deltaX));
-        scroller.scrollTop += Math.max(-limit, Math.min(limit, deltaY));
+        this.pendingScrollX += Math.max(-limit, Math.min(limit, deltaX));
+        this.pendingScrollY += Math.max(-limit, Math.min(limit, deltaY));
+        if (this.scrollFrame) return;
+        this.scrollFrame = window.requestAnimationFrame(() => {
+          const scroller = document.scrollingElement;
+          this.scrollFrame = 0;
+          if (!scroller) return;
+          const left = scroller.scrollLeft + this.pendingScrollX;
+          const top = scroller.scrollTop + this.pendingScrollY;
+          this.pendingScrollX = 0;
+          this.pendingScrollY = 0;
+          window.scrollTo({ left, top, behavior: 'instant' });
+        });
       }
     }
 

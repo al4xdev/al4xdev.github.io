@@ -217,6 +217,23 @@ test('CV language and print request cross only the sandbox message bridge', asyn
     window.dispatchEvent(new WheelEvent('wheel', { deltaY: 180 }));
   });
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(scrollBefore);
+  await expect(frame.locator('html')).toHaveClass(/cv-embedded/);
+  const touchScrollBefore = await page.evaluate(() => window.scrollY);
+  const touchMovePrevented = await child.evaluate(() => {
+    const dispatchTouch = (type, y, cancelable = true) => {
+      const event = new Event(type, { bubbles: true, cancelable });
+      Object.defineProperty(event, 'touches', {
+        value: type === 'touchend' ? [] : [{ clientX: 120, clientY: y }],
+      });
+      return window.dispatchEvent(event);
+    };
+    dispatchTouch('touchstart', 520, false);
+    const moveResult = dispatchTouch('touchmove', 320);
+    dispatchTouch('touchend', 320, false);
+    return !moveResult;
+  });
+  expect(touchMovePrevented).toBe(true);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(touchScrollBefore);
   await child.evaluate(() => {
     window.__printCalled = false;
     window.print = () => { window.__printCalled = true; };

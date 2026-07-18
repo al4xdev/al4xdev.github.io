@@ -45,6 +45,12 @@ body {
   font-family: var(--body);
 }
 
+html.cv-embedded,
+html.cv-embedded body {
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
 a {
   color: inherit;
 }

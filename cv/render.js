@@ -1,6 +1,9 @@
 (() => {
   const content = window.CV_CONTENT;
+  const isEmbedded = window.parent !== window;
   let language = new URLSearchParams(window.location.search).get('lang') === 'pt-BR' ? 'pt-BR' : 'en';
+
+  if (isEmbedded) document.documentElement.classList.add('cv-embedded');
 
   const escapeHtml = (value) => String(value)
     .replaceAll('&', '&amp;')
@@ -84,7 +87,7 @@
   }
 
   function delegateScroll(deltaX, deltaY) {
-    if (window.parent === window) return;
+    if (!isEmbedded) return;
     window.parent.postMessage({
       type: 'portfolio-cv:scroll',
       deltaX,
@@ -107,12 +110,15 @@
   window.addEventListener('touchmove', (event) => {
     const touch = event.touches[0];
     if (!touch || !previousTouch) return;
+    if (event.cancelable) event.preventDefault();
     delegateScroll(previousTouch.x - touch.clientX, previousTouch.y - touch.clientY);
     previousTouch = { x: touch.clientX, y: touch.clientY };
-  }, { passive: true });
-  window.addEventListener('touchend', () => {
+  }, { passive: false });
+  const endTouch = () => {
     previousTouch = null;
-  }, { passive: true });
+  };
+  window.addEventListener('touchend', endTouch, { passive: true });
+  window.addEventListener('touchcancel', endTouch, { passive: true });
 
   function updateDocument(nextLanguage = language) {
     language = nextLanguage === 'pt-BR' ? 'pt-BR' : 'en';
