@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "unitTests": 10,
+  "unitTests": 11,
   "browserTests": 17,
-  "totalTests": 27
+  "totalTests": 28
 }

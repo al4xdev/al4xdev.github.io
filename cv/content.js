@@ -32,12 +32,12 @@ window.CV_CONTENT = Object.freeze({
 			{
 				role: "Senior AI Platform Engineer",
 				tag: "",
-				period: "2025 — Present",
+				period: "Oct 2025 — Present",
 				projects: [
 					{
 						title: "Enterprise data & AI platform",
 						body:
-							"Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform. Modernize legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Build deterministic, auditable foundations for GenAI-assisted workflows, with explicit contracts, traceable validation, and isolated extension points that let developers implement new rules safely and independently. The selected research below publicly demonstrates the same engineering practice I apply in confidential professional contexts: investigating failure modes without established solutions, making them measurable, and turning them into explicit state, deterministic boundaries, and traceable validation for probabilistic multi-agent systems. Client, domain, stack, and metrics are withheld under confidentiality.",
+							"I work with terabyte-scale, business-critical Billing data for two of Brazil’s largest telecommunications operators. I conduct technical investigations and structure analyses and recommendations used by managers in the project’s decision-making process, connecting observed failures to architectural and implementation direction. I lead architecture, developer enablement, and technical direction for a confidential enterprise data/AI platform built on Azure and Databricks. I modernize legacy flows with deterministic pipelines and build auditable GenAI foundations through explicit contracts, traceable validation, and isolated extensions that let developers add rules safely and autonomously. The selected research below makes public the same practice I apply in confidential work: measuring unsolved failure modes and translating them into explicit state, deterministic boundaries, and traceable validation for probabilistic multi-agent systems. Client identities and internal metrics are withheld.",
 					},
 					{
 						title: "Engineering mentorship program",
@@ -115,13 +115,20 @@ window.CV_CONTENT = Object.freeze({
 		focusLabel: "Technical focus",
 		focus: [
 			"Python",
+			"LLM Engineering",
+			"Agentic AI",
+			"RAG",
+			"LLMOps",
+			"vLLM Inference",
+			"Data Engineering",
+			"GCP",
+			"Azure",
+			"Databricks",
 			"Typed async LLM workflows",
-			"Agentic systems",
 			"Deterministic control planes",
-			"vLLM runtimes",
 			"Observability",
 			"Developer tooling",
-			"Data platforms",
+			"Advanced Python Systems",
 		],
 		languagesLabel: "Languages",
 		languages: [
@@ -174,12 +181,12 @@ window.CV_CONTENT = Object.freeze({
 			{
 				role: "Senior AI Platform Engineer",
 				tag: "",
-				period: "2025 — atual",
+				period: "out 2025 — atual",
 				projects: [
 					{
 						title: "Plataforma corporativa de dados & IA",
 						body:
-							"Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados e IA. Moderniza fluxos legados com pipelines determinísticos, permitindo que desenvolvedores criem e validem regras com segurança e autonomia. Cria bases determinísticas e auditáveis para fluxos com GenAI, usando contratos explícitos, validação rastreável e extensões isoladas. As pesquisas abaixo tornam público o mesmo método que aplica em contextos profissionais confidenciais: investigar falhas sem solução, medi-las e convertê-las em estado explícito, limites determinísticos e validação rastreável para sistemas multiagente probabilísticos. Cliente, domínio, stack e métricas são omitidos por confidencialidade.",
+							"Atuo em Billing sobre dados críticos em escala de terabytes para duas das maiores operadoras de telecomunicações do Brasil. Conduzo investigações técnicas e estruturo análises e recomendações utilizadas por gerentes na camada de decisão do projeto, conectando falhas observadas a direcionamentos de arquitetura e implementação. Lidero arquitetura, direção técnica e capacitação de desenvolvedores na plataforma, construída sobre Azure e Databricks. Modernizo fluxos legados com pipelines determinísticos e crio bases auditáveis para GenAI, usando contratos, validação rastreável e extensões isoladas para criar regras com autonomia. As pesquisas abaixo expõem o mesmo método aplicado no trabalho confidencial: medir falhas inéditas e convertê-las em estado explícito, limites determinísticos e validação de sistemas multiagente probabilísticos. Identidades de clientes e métricas internas são omitidas.",
 					},
 					{
 						title: "Programa de mentoria de engenharia",
@@ -258,13 +265,20 @@ window.CV_CONTENT = Object.freeze({
 		focusLabel: "Foco técnico",
 		focus: [
 			"Python",
-			"Fluxos assíncronos tipados com LLMs",
-			"Sistemas agênticos",
-			"Planos de controle determinísticos",
-			"Runtimes vLLM",
-			"Observabilidade",
-			"Ferramentas para desenvolvedores",
-			"Plataformas de dados",
+			"LLM Engineering",
+			"Agentic AI",
+			"RAG",
+			"LLMOps",
+			"vLLM Inference",
+			"Data Engineering",
+			"GCP",
+			"Azure",
+			"Databricks",
+			"Typed async LLM workflows",
+			"Deterministic control planes",
+			"Observability",
+			"Developer tooling",
+			"Advanced Python Systems",
 		],
 		languagesLabel: "Idiomas",
 		languages: [

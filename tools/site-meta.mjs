@@ -23,7 +23,6 @@ const unitFiles = (await readdir(unitDirectory))
   .map((file) => resolve(unitDirectory, file));
 const unitOutput = run(process.execPath, [
   '--test',
-  '--test-isolation=none',
   '--test-reporter=tap',
   ...unitFiles,
 ]);

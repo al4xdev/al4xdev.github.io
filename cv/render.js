@@ -172,11 +172,11 @@
               <div class="cv-mentor-list">${renderMentors()}</div>
               <p class="cv-mentor-note">${escapeHtml(cv.mentorsNote)}</p>
             </section>
-            <section class="cv-block placeholder-block">
+            <section class="cv-block cv-education-block">
               <h2>${escapeHtml(cv.educationLabel)}</h2>
               <ul class="edu-list">${renderEducation(cv.education)}</ul>
             </section>
-            <p class="mock-footnote">${escapeHtml(cv.footnote)}</p>
+            <p class="cv-footnote">${escapeHtml(cv.footnote)}</p>
           </aside>
         </div>
       </main>

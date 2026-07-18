@@ -82,3 +82,41 @@ jobs:
             test-results/
           if-no-files-found: ignore
           retention-days: 7
+
+  deploy:
+    name: Publish verified static site
+    if: github.event_name != 'pull_request'
+    needs: browser
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+
+      - name: Stage public allowlist
+        run: |
+          mkdir -p _site/articles _site/cv _site/mentors
+          cp index.html styles.css app.js site-meta.json .nojekyll _site/
+          cp articles/index.html articles/styles.css articles/reader.js articles/content.js _site/articles/
+          cp cv/index.html cv/styles.css cv/render.js cv/embed.js cv/content.js _site/cv/
+          cp mentors/content.js _site/mentors/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: ./_site
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

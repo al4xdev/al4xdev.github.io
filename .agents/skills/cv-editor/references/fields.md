@@ -5,15 +5,14 @@ Both objects must have the same keys and value types.
 
 | Field | Type | Rule |
 |---|---|---|
-| `documentTitle` | string | Browser/PDF title; identify mock status while applicable. |
-| `mockBadge` | string | Legacy content status field; retained for shape parity but not rendered. |
+| `documentTitle` | string | Browser/PDF title. |
 | `name` | string | Verified public name. |
 | `role` | string | Verified positioning, translated without inflating seniority. |
 | `links` | array of `{label,url}` | Public HTTPS links only. |
 | `portfolioLink` | `{label,url}` | Canonical portfolio URL shown as the primary header link in print. |
 | `profile` | `{label,body}` | Short factual summary. |
 | `experienceLabel` | string | Localized section label. |
-| `experience` | array of `{role,tag,period,projects[]}` | Role-periods, newest first. `tag` is the lone `project role` qualifier (empty string when the role carries none); never add a defensive disclaimer beside it. `projects` is an array of `{title,body}`. Same shape and order across locales. |
+| `experience` | array of `{role,tag,period,projects[]}` | Role-periods, newest first. `tag` is an optional short qualifier and remains empty when none applies. `projects` is an array of `{title,body}`. Same shape and order across locales. |
 | `selectedWorkLabel` | string | Localized section label. |
 | `selectedWork` | array of `{name,body}` | Same projects and order across locales. |
 | `selectedResearchLabel` | string | Localized engineering-research section label. |

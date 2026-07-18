@@ -388,9 +388,10 @@ a {
 .cv-mentors .cv-mentor-note {
   margin: 2.5mm 0 0;
   color: var(--muted);
-  font-size: 4.5pt;
-  font-style: italic;
-  line-height: 1.45;
+  font-size: 6pt;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.35;
   text-align: right;
 }
 
@@ -451,12 +452,12 @@ a {
   line-height: 1.25;
 }
 
-.placeholder-block {
+.cv-education-block {
   padding: 1rem;
   background: var(--mist);
 }
 
-.mock-footnote {
+.cv-footnote {
   margin: 1.5rem 0 0;
   padding-top: 1rem;
   border-top: 1px solid var(--carbon);
@@ -604,7 +605,7 @@ a {
   .system-list li,
   .research-record,
   .edu-list li,
-  .placeholder-block,
+  .cv-education-block,
   .cv-mentor {
     break-inside: avoid;
   }

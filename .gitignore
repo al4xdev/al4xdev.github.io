@@ -3,3 +3,13 @@ playwright-report/
 test-results/
 blob-report/
 *.log
+.env
+.env.*
+!.env.example
+*.bak
+*.key
+*.pem
+*.p12
+*.pfx
+*.swp
+.DS_Store

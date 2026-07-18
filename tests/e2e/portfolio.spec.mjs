@@ -33,7 +33,7 @@ test('constellation selection and language switching preserve state', async ({ p
   await expect(page.locator('#project-problem')).toContainText('Agentes');
 });
 
-test('identity, mentor mocks, and live quality proof close the portfolio', async ({ page }) => {
+test('identity, mentor records, and live quality proof close the portfolio', async ({ page }) => {
   await page.route('https://api.github.com/repos/al4xdev/al4xdev.github.io/actions/runs?*', async (route) => {
     await route.fulfill({
       contentType: 'application/json',
@@ -246,7 +246,6 @@ test('CV language and print request cross only the sandbox message bridge', asyn
 for (const language of ['en', 'pt-BR']) {
   test(`standalone ${language} CV exports as up to two A4 pages`, async ({ page }) => {
     await page.goto(`/cv/index.html?lang=${language}`);
-    await expect(page.locator('.mock-badge')).toHaveCount(0);
     await expect(page.locator('.screen-public-links')).toBeVisible();
     await expect(page.locator('.print-public-link')).toBeHidden();
     await expect(page.locator('.language-record')).toHaveCount(2);

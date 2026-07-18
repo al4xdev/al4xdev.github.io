@@ -1,6 +1,6 @@
 ---
 name: cv-editor
-description: Safely edit, translate, validate, and export the isolated portfolio CV. Use when an agent must add or update résumé facts, public links, experience, selected work, skills, languages, education, mock markers, or produce an A4 CV PDF without changing the portfolio page structure.
+description: Safely edit, translate, validate, and export the isolated portfolio CV. Use when an agent must add or update résumé facts, public links, experience, selected work, skills, languages, education, mentor records, or produce an A4 CV PDF without changing the portfolio page structure.
 ---
 
 # Edit the portfolio CV
@@ -31,7 +31,7 @@ Work from the repository root and obey `cv/AGENTS.md`.
 
 - Keep exports below `/tmp`; the command rejects repository destinations.
 - Keep unresolved verification status in `footnote`; the renderer intentionally omits a prominent
-  draft/mock banner.
+  status banner.
 - Keep links HTTPS and public.
 - Do not edit parent `index.html`, `app.js`, `styles.css`, or the iframe protocol for content work.
 - Report unresolved fields rather than filling them by inference.

@@ -7,7 +7,7 @@ design change.
 
 Mentor identity is intentionally shared with the portfolio and lives in `../mentors/content.js`.
 It is hidden in mobile/screen CV rendering and appears only in the A4 print composition. Follow
-`../mentors/AGENTS.md` when the user explicitly asks to replace those two mocks.
+`../mentors/AGENTS.md` when the user explicitly asks to replace those two mentor records.
 
 ## Content rules
 
@@ -16,8 +16,8 @@ It is hidden in mobile/screen CV rendering and appears only in the A4 print comp
 - Keep `en` and `pt-BR` structurally aligned. Translate meaning; do not invent different claims.
 - Preserve every key and value type documented in
   `../.agents/skills/cv-editor/references/fields.md`.
-- Keep verification status in the footnote until all placeholder fields have been verified. The
-  portfolio intentionally does not render a prominent draft/mock banner.
+- Keep verification and confidentiality status in the footnote. The portfolio intentionally does
+  not render a prominent status banner.
 - Public URLs must use HTTPS.
 
 ## Required workflow

@@ -68,6 +68,7 @@ test('CV locales preserve identical field shapes and safe public links', async (
   for (const locale of ['en', 'pt-BR']) {
     const roles = content[locale].experience;
     assert.ok(roles.length >= 1);
+    assert.equal(roles[0].period, locale === 'en' ? 'Oct 2025 — Present' : 'out 2025 — atual');
     let projectCount = 0;
     for (const role of roles) {
       assert.equal(typeof role.role, 'string');
@@ -78,9 +79,29 @@ test('CV locales preserve identical field shapes and safe public links', async (
     }
     assert.ok(projectCount >= 3);
     assert.match(roles[0].projects[0].body, locale === 'en'
-      ? /publicly demonstrates the same engineering practice/
-      : /tornam público o mesmo método/);
+      ? /makes public the same practice/
+      : /expõem o mesmo método/);
+    assert.match(roles[0].projects[0].body, locale === 'en'
+      ? /terabyte-scale, business-critical Billing data/
+      : /dados críticos em escala de terabytes/);
     assert.ok(content[locale].selectedWork.length >= 4);
+    assert.deepEqual(Array.from(content[locale].focus), [
+      'Python',
+      'LLM Engineering',
+      'Agentic AI',
+      'RAG',
+      'LLMOps',
+      'vLLM Inference',
+      'Data Engineering',
+      'GCP',
+      'Azure',
+      'Databricks',
+      'Typed async LLM workflows',
+      'Deterministic control planes',
+      'Observability',
+      'Developer tooling',
+      'Advanced Python Systems',
+    ]);
     assert.equal(content[locale].selectedResearch.length, 2);
     for (const study of content[locale].selectedResearch) {
       assert.deepEqual(Object.keys(study).sort(), ['body', 'title']);
@@ -171,7 +192,8 @@ test('responsive, reduced-motion, and fixed A4 contracts remain explicit', async
   assert.match(cvCss, /\.print-public-link\s*{[^}]*display:\s*flex\s*!important/s);
   assert.match(cvCss, /\.edu-list li,[\s\S]*break-inside:\s*avoid/);
   assert.match(cvCss, /\.research-record,[\s\S]*break-inside:\s*avoid/);
-  assert.match(cvCss, /\.placeholder-block,[\s\S]*break-inside:\s*avoid/);
+  assert.match(cvCss, /\.cv-education-block,[\s\S]*break-inside:\s*avoid/);
+  assert.match(cvCss, /\.cv-mentors \.cv-mentor-note\s*{[^}]*font-size:\s*6pt[^}]*font-style:\s*normal/s);
   assert.match(exporter, /preferCSSPageSize:\s*true/);
   assert.match(exporter, /Unexpected page size/);
 });
@@ -216,4 +238,23 @@ test('mentors and footer integrity proof preserve their public contracts', async
   assert.match(html, /data-latest-deploy/);
   assert.ok(metadata.totalTests > 0);
   assert.equal(metadata.totalTests, metadata.unitTests + metadata.browserTests);
+});
+
+test('Pages deployment is quality-gated and exposes only the public allowlist', async () => {
+  const [workflow, metadataTool, readme, agentInstructions, html, cvHtml] = await Promise.all([
+    read('.github/workflows/quality.yml'),
+    read('tools/site-meta.mjs'),
+    read('README.md'),
+    read('AGENTS.md'),
+    read('index.html'),
+    read('cv/index.html'),
+  ]);
+
+  assert.match(workflow, /deploy:[\s\S]*needs: browser/);
+  assert.match(workflow, /Stage public allowlist/);
+  assert.match(workflow, /path: \.\/_site/);
+  assert.doesNotMatch(workflow, /cp\s+(?:-[^\s]+\s+)?\.\s/);
+  assert.doesNotMatch(metadataTool, /test-isolation/);
+  assert.doesNotMatch(`${readme}\n${agentInstructions}`, /\.plan\/|\/home\/alex\//);
+  assert.doesNotMatch(`${html}\n${cvHtml}`, /\bmock\b/i);
 });

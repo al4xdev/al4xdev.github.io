@@ -6,7 +6,6 @@ interactive system constellation rather than a conventional project-card grid.
 ## Local preview
 
 ```fish
-cd /home/alex/git/my/porf_page
 python3 -m http.server 8080
 ```
 
@@ -23,14 +22,13 @@ Open <http://127.0.0.1:8080>.
   provenance.
 - `tests/`: strict contract and Chromium suite used locally and by GitHub Actions.
 - `.agents/skills/cv-editor/`: repository skill for verified content-only CV updates and exports.
-- `.plan/`: product brief, verified content inventory, design direction, roadmap, and continuation
-  handoff. Future agents must read this first.
-- `.nojekyll`: serve the static tree unchanged through GitHub Pages.
+- `.nojekyll`: keep the staged public artifact dependency-free and unchanged by Jekyll.
 
 ## Publication
 
-GitHub Pages publishes `main` directly at <https://al4xdev.github.io/> without a build step. The
-strict quality workflow runs independently on every pull request and push to `main`.
+GitHub Pages publishes an explicit allowlist of static site files at <https://al4xdev.github.io/>.
+The strict quality workflow gates that deployment on dependency, lint, contract, browser,
+accessibility, and A4 checks for every push to `main`.
 
 The footer's integrity counter is generated from the tests discovered by Node and Playwright.
 After adding or removing tests, refresh the committed static metadata with:

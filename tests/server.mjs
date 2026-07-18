@@ -1,6 +1,7 @@
 import { startStaticServer } from '../tools/static-server.mjs';
 
-const server = await startStaticServer({ port: 4173 });
+const port = Number.parseInt(process.env.PORTFOLIO_TEST_PORT || '4173', 10);
+const server = await startStaticServer({ port });
 console.log(`Portfolio test server listening at ${server.origin}`);
 
 const close = async () => {

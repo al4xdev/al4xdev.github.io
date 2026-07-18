@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const testPort = Number.parseInt(process.env.PORTFOLIO_TEST_PORT || '4173', 10);
+const testOrigin = `http://127.0.0.1:${testPort}`;
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -12,7 +15,7 @@ export default defineConfig({
     ? [['line'], ['html', { open: 'never' }]]
     : [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: testOrigin,
     browserName: 'chromium',
     locale: 'en-US',
     screenshot: 'only-on-failure',
@@ -27,7 +30,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'node tests/server.mjs',
-    url: 'http://127.0.0.1:4173',
+    url: testOrigin,
     reuseExistingServer: false,
     timeout: 10_000,
   },
