@@ -36,11 +36,23 @@
 
     handleMessage(event) {
       if (event.source !== this.frame?.contentWindow) return;
-      if (event.data?.type !== 'portfolio-cv:height') return;
-      const height = Number(event.data.height);
-      if (!Number.isFinite(height) || height < 1) return;
-      this.style.setProperty('--cv-frame-height', `${Math.ceil(height)}px`);
-      this.classList.add('cv-ready');
+      if (event.data?.type === 'portfolio-cv:height') {
+        const height = Number(event.data.height);
+        if (!Number.isFinite(height) || height < 1) return;
+        this.style.setProperty('--cv-frame-height', `${Math.ceil(height)}px`);
+        this.classList.add('cv-ready');
+        return;
+      }
+      if (event.data?.type === 'portfolio-cv:scroll') {
+        const deltaX = Number(event.data.deltaX);
+        const deltaY = Number(event.data.deltaY);
+        if (!Number.isFinite(deltaX) || !Number.isFinite(deltaY)) return;
+        const limit = window.innerHeight;
+        const scroller = document.scrollingElement;
+        if (!scroller) return;
+        scroller.scrollLeft += Math.max(-limit, Math.min(limit, deltaX));
+        scroller.scrollTop += Math.max(-limit, Math.min(limit, deltaY));
+      }
     }
 
     sendLanguage() {

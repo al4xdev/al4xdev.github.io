@@ -48,7 +48,7 @@ const STRINGS = {
     cvTitle: 'The résumé comes after the evidence.',
     cvIntro: 'The résumé comes last because the work is its context. Every role, project, and figure below traces back to verified work — where a client is confidential, the details are withheld, never the engineering.',
     cvRendererLabel: 'CV RENDERER / A4 OUTPUT',
-    cvRendererNote: "Uses your browser's print dialog to save a PDF.",
+    cvRendererNote: 'Save as PDF with “Headers and footers” disabled in the print dialog.',
     cvToggle: 'CV / PDF',
     cvDownload: 'Print / Save as PDF',
     cvDocumentLabel: 'Curriculum vitae',
@@ -112,7 +112,7 @@ const STRINGS = {
     cvTitle: 'O currículo vem depois das evidências.',
     cvIntro: 'O currículo vem por último porque o trabalho é o seu contexto. Cada função, projeto e número abaixo remete a trabalho verificado — onde o cliente é confidencial, os detalhes são omitidos, nunca a engenharia.',
     cvRendererLabel: 'RENDERIZADOR DE CV / SAÍDA A4',
-    cvRendererNote: 'Usa a impressão do navegador para salvar um PDF.',
+    cvRendererNote: 'Ao salvar como PDF, desative “Cabeçalhos e rodapés” na janela de impressão.',
     cvToggle: 'CV / PDF',
     cvDownload: 'Imprimir / Salvar como PDF',
     cvDocumentLabel: 'Currículo',
@@ -370,12 +370,20 @@ function renderProject(projectId, animate = true) {
   });
 }
 
-function setLanguage(nextLanguage, persist = true) {
-  language = nextLanguage === 'pt-BR' ? 'pt-BR' : 'en';
-  if (persist) safeStorageSet('ap-portfolio-language', language);
-  translateInterface();
-  renderMentors();
-  renderProject(activeProject, false);
+function setLanguage(nextLanguage, persist = true, animate = false) {
+  const update = () => {
+    language = nextLanguage === 'pt-BR' ? 'pt-BR' : 'en';
+    if (persist) safeStorageSet('ap-portfolio-language', language);
+    translateInterface();
+    renderMentors();
+    renderProject(activeProject, false);
+  };
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (animate && !reduceMotion && document.startViewTransition) {
+    document.startViewTransition(update);
+    return;
+  }
+  update();
 }
 
 function enterExperience(nextLanguage) {
@@ -401,31 +409,43 @@ document.querySelectorAll('[data-choose-language]').forEach((button) => {
 });
 
 document.querySelectorAll('[data-set-language]').forEach((button) => {
-  button.addEventListener('click', () => setLanguage(button.dataset.setLanguage));
+  button.addEventListener('click', () => setLanguage(button.dataset.setLanguage, true, true));
 });
 
 document.querySelectorAll('[data-open-language]').forEach((button) => {
   button.addEventListener('click', reopenLanguageGate);
 });
 
-document.querySelector('[data-print-cv]')?.addEventListener('click', () => {
-  document.querySelector('portfolio-cv')?.print();
-});
-
 const cvControls = document.querySelector('[data-cv-controls]');
 const cvToggle = document.querySelector('[data-cv-toggle]');
 const cvSection = document.querySelector('#cv');
-const cvEndSentinel = document.querySelector('[data-cv-end]');
-const cvDocument = document.querySelector('#cv-document');
 
 function setCvControlsExpanded(expanded) {
   if (!cvControls || !cvToggle) return;
-  cvControls.dataset.expanded = String(expanded);
-  cvToggle.setAttribute('aria-expanded', String(expanded));
+  const value = String(expanded);
+  if (cvControls.dataset.expanded === value) return;
+  cvControls.dataset.expanded = value;
+  cvToggle.setAttribute('aria-expanded', value);
 }
 
 cvToggle?.addEventListener('click', () => {
   setCvControlsExpanded(cvControls.dataset.expanded !== 'true');
+});
+
+document.querySelector('[data-print-cv]')?.addEventListener('click', () => {
+  document.querySelector('portfolio-cv')?.print();
+  setCvControlsExpanded(false);
+});
+
+cvControls?.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || cvControls.dataset.expanded !== 'true') return;
+  setCvControlsExpanded(false);
+  cvToggle?.focus();
+});
+
+document.addEventListener('pointerdown', (event) => {
+  if (cvControls?.dataset.expanded !== 'true' || cvControls.contains(event.target)) return;
+  setCvControlsExpanded(false);
 });
 
 function updateCvControlsDock() {
@@ -434,26 +454,15 @@ function updateCvControlsDock() {
   const sectionBounds = cvSection.getBoundingClientRect();
   const sectionIsVisible = sectionBounds.top < window.innerHeight && sectionBounds.bottom > 0;
   cvControls.classList.toggle('is-active', isMobile && sectionIsVisible);
-  if (!isMobile) setCvControlsExpanded(false);
+  if (!isMobile || !sectionIsVisible) setCvControlsExpanded(false);
 }
 
-window.addEventListener('scroll', updateCvControlsDock, { passive: true });
+window.addEventListener('scroll', () => {
+  setCvControlsExpanded(false);
+  updateCvControlsDock();
+}, { passive: true });
 window.addEventListener('resize', updateCvControlsDock);
 updateCvControlsDock();
-
-if ('IntersectionObserver' in window && cvEndSentinel) {
-  const cvEndObserver = new IntersectionObserver((entries) => {
-    const endIsVisible = entries.some((entry) => entry.isIntersecting);
-    if (
-      endIsVisible
-      && cvDocument?.classList.contains('cv-ready')
-      && window.matchMedia('(max-width: 800px)').matches
-    ) {
-      setCvControlsExpanded(true);
-    }
-  }, { threshold: 1 });
-  cvEndObserver.observe(cvEndSentinel);
-}
 
 document.querySelectorAll('[data-project]').forEach((node) => {
   node.addEventListener('click', () => renderProject(node.dataset.project));
@@ -548,7 +557,7 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('Intersec
       entry.target.classList.add('paper-open');
       observer.unobserve(entry.target);
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  }, { rootMargin: '0px 0px 24% 0px', threshold: 0.01 });
 
   paperDocuments.forEach((documentElement) => paperObserver.observe(documentElement));
 }

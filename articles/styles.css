@@ -8,6 +8,29 @@
   --display: "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", sans-serif;
   --body: "Segoe UI Variable", "Aptos", "Helvetica Neue", Arial, sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --motion-fast: 160ms;
+  --motion-medium: 320ms;
+  --ease-field: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: reader-exit var(--motion-medium) var(--ease-field) both;
+}
+
+::view-transition-new(root) {
+  animation: reader-enter var(--motion-medium) var(--ease-field) both;
+}
+
+@keyframes reader-exit {
+  to { opacity: 0; transform: translateY(-0.45rem); }
+}
+
+@keyframes reader-enter {
+  from { opacity: 0; transform: translateY(0.45rem); }
 }
 
 * { box-sizing: border-box; }
@@ -35,6 +58,7 @@ a { color: inherit; }
   border-bottom: 1px solid var(--carbon);
   background: rgb(243 245 242 / 94%);
   backdrop-filter: blur(12px);
+  view-transition-name: portfolio-header;
 }
 
 .identity,
@@ -47,16 +71,25 @@ a { color: inherit; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-decoration: none;
+  cursor: pointer;
+  transition: color var(--motion-fast) ease, text-underline-offset var(--motion-fast) ease;
 }
 
 .reader-header nav { display: flex; gap: 0.7rem; align-items: center; }
-.reader-header button { cursor: pointer; }
 .reader-header button.active { color: var(--cobalt); text-decoration: underline; text-underline-offset: 0.5rem; }
 
 .field-note {
   width: min(100%, 72rem);
   margin: 0 auto;
   padding: clamp(4rem, 9vw, 9rem) clamp(1.2rem, 6vw, 6rem);
+}
+
+.field-note.note-arriving {
+  animation: note-arrival 480ms var(--ease-field) both;
+}
+
+@keyframes note-arrival {
+  from { opacity: 0; transform: translateY(0.65rem); }
 }
 
 .article-hero { max-width: 62rem; }
@@ -142,6 +175,13 @@ a { color: inherit; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  transition: color var(--motion-fast) ease, transform var(--motion-fast) var(--ease-field);
+}
+
+.article-footer a:hover,
+.article-footer a:focus-visible {
+  color: var(--cobalt);
+  transform: translateY(-0.12rem);
 }
 
 .reader-error { max-width: 40rem; margin: 5rem auto; padding: 2rem; }
@@ -153,4 +193,17 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }

@@ -16,6 +16,7 @@
   function render() {
     const article = articles[articleId];
     const copy = article[language];
+    const isFirstRender = !container.hasChildNodes();
     const backLabel = language === 'pt-BR' ? 'Voltar às notas de campo' : 'Back to field notes';
     const sourceLabel = language === 'pt-BR' ? 'Inspecionar fonte original' : 'Inspect original source';
     const editionLabel = language === 'pt-BR' ? 'EDIÇÃO CURADA DO PORTFÓLIO' : 'CURATED PORTFOLIO EDITION';
@@ -30,7 +31,7 @@
     });
 
     container.innerHTML = `
-      <article class="field-note">
+      <article class="field-note${isFirstRender ? ' note-arriving' : ''}">
         <header class="article-hero">
           <p class="article-type">${escapeHtml(article.type)} / ${escapeHtml(article.date)}</p>
           <h1>${escapeHtml(copy.title)}</h1>
@@ -57,8 +58,16 @@
 
   document.querySelectorAll('[data-language]').forEach((button) => {
     button.addEventListener('click', () => {
-      language = button.dataset.language === 'pt-BR' ? 'pt-BR' : 'en';
-      render();
+      const update = () => {
+        language = button.dataset.language === 'pt-BR' ? 'pt-BR' : 'en';
+        render();
+      };
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduceMotion && document.startViewTransition) {
+        document.startViewTransition(update);
+      } else {
+        update();
+      }
     });
   });
 

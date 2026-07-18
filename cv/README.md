@@ -24,4 +24,4 @@ single-column reading layout. Printing always switches to the two-column A4
 layout, independently of the screen viewport.
 
 The iframe uses `sandbox="allow-scripts allow-modals"`. Keep the message
-contract limited to language, measured height, and print requests.
+contract limited to language, measured height, validated scroll deltas, and print requests.

@@ -17,6 +17,10 @@ window.CV_CONTENT = Object.freeze({
 				url: "https://www.linkedin.com/in/al4xdev",
 			},
 		],
+		portfolioLink: {
+			label: "al4xdev.github.io",
+			url: "https://al4xdev.github.io/",
+		},
 		profile: {
 			label: "Profile",
 			body:
@@ -33,7 +37,7 @@ window.CV_CONTENT = Object.freeze({
 					{
 						title: "Enterprise data & AI platform",
 						body:
-							"Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform. Modernizing legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Client, domain, stack, and metrics are withheld under confidentiality.",
+							"Lead architecture, developer enablement, and technical direction on a confidential enterprise data/AI platform. Modernizing legacy data flows with deterministic pipelines so developers can implement and validate new rules safely and autonomously. Build deterministic, auditable foundations for GenAI-assisted workflows, with explicit contracts, traceable validation, and isolated extension points that let developers implement new rules safely and independently. The selected research below publicly demonstrates the same engineering practice I apply in confidential professional contexts: investigating failure modes without established solutions, making them measurable, and turning them into explicit state, deterministic boundaries, and traceable validation for probabilistic multi-agent systems. Client, domain, stack, and metrics are withheld under confidentiality.",
 					},
 					{
 						title: "Engineering mentorship program",
@@ -93,6 +97,21 @@ window.CV_CONTENT = Object.freeze({
 					"Local-first image-lineage product on ComfyUI with atomic persistence, resilient job tracking, and mobile/PWA UX.",
 			},
 		],
+		selectedResearchLabel: "Selected engineering research",
+		selectedResearch: [
+			{
+				title:
+					"Alex Tavern I — Structural Epistemic Consistency in Long-Running Multi-Agent Roleplay",
+				body:
+					"Investigated observer-relative knowledge as a system invariant. In controlled replay of a real-session payload, perspective-safe context projection reduced identity leakage from 7/13 to 0/13 runs.",
+			},
+			{
+				title:
+					"Alex Tavern II — Structural Narrative Time in Long-Running Multi-Agent Roleplay",
+				body:
+					"Diagnosed semantic stagnation through controlled payload replay: abstract anti-loop instructions failed to break the cycle in 3/3 runs, concrete world events broke it in 2/3, and a concrete Director beat in 3/3. Proposed an authoritative tick-based world clock; validation remains in progress.",
+			},
+		],
 		focusLabel: "Technical focus",
 		focus: [
 			"Python",
@@ -106,14 +125,24 @@ window.CV_CONTENT = Object.freeze({
 		],
 		languagesLabel: "Languages",
 		languages: [
-			"Portuguese · Native",
-			"English · C2 · goFLUENT ECEFR SET, Apr 2025",
+			{
+				name: "Portuguese",
+				level: "Native",
+				certification: "",
+				date: "",
+			},
+			{
+				name: "English",
+				level: "C2",
+				certification: "goFLUENT ECEFR SET",
+				date: "Apr 2025",
+			},
 		],
 		educationLabel: "Education & certifications",
 		education:
 			"B.Eng. Materials Engineering, UFCA (2023) · Materials Engineering studies, UFSC (2016–2019) · Machine Learning Specialization, Stanford Online & DeepLearning.AI (2024) · People Leadership Credential L1, Accenture (2025) · Consumer Electronics Industry Foundations, Primerli (2025)",
 		mentorsNote:
-			"People whose experience, technical judgment, and intellectual generosity are a permanent part of my formation.",
+			"People whose experience, technical judgment, and intellectual generosity shaped my professional development.",
 		footnote:
 			"Public CV. Confidential client and project details are withheld. Impact figures reflect each project’s original scope and baseline.",
 	},
@@ -122,7 +151,7 @@ window.CV_CONTENT = Object.freeze({
 			"Alexsandro Pessoa — Currículo de engenharia de plataformas de IA",
 		name: "Alexsandro Pessoa",
 		role:
-			"Engenheiro Sênior de Plataformas de IA · Sistemas Agênticos · Plataformas de Dados · Aceleração de Desenvolvedores",
+			"Engenheiro Sênior de Plataformas de IA · Sistemas Agênticos · Plataformas de Dados · Capacitação de Desenvolvedores",
 		links: [
 			{ label: "github.com/al4xdev", url: "https://github.com/al4xdev" },
 			{
@@ -130,6 +159,10 @@ window.CV_CONTENT = Object.freeze({
 				url: "https://www.linkedin.com/in/al4xdev",
 			},
 		],
+		portfolioLink: {
+			label: "al4xdev.github.io",
+			url: "https://al4xdev.github.io/",
+		},
 		profile: {
 			label: "Perfil",
 			body:
@@ -139,14 +172,14 @@ window.CV_CONTENT = Object.freeze({
 		experienceCompany: "accenture",
 		experience: [
 			{
-				role: "Principal AI Platform Engineer",
-				tag: "função no projeto",
+				role: "Project role: Principal AI Platform Engineer",
+				tag: "",
 				period: "2025 — atual",
 				projects: [
 					{
 						title: "Plataforma corporativa de dados & IA",
 						body:
-							"Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados/IA. Moderniza fluxos legados de dados com pipelines determinísticos para que desenvolvedores implementem e validem novas regras com segurança e autonomia. Cliente, domínio, stack e métricas são omitidos por confidencialidade.",
+							"Lidera arquitetura, capacitação de desenvolvedores e direção técnica em uma plataforma corporativa confidencial de dados e IA. Moderniza fluxos legados com pipelines determinísticos, permitindo que desenvolvedores criem e validem regras com segurança e autonomia. Cria bases determinísticas e auditáveis para fluxos com GenAI, usando contratos explícitos, validação rastreável e extensões isoladas. As pesquisas abaixo tornam público o mesmo método que aplico em contextos profissionais confidenciais: investigar falhas sem solução, medi-las e convertê-las em estado explícito, limites determinísticos e validação rastreável para sistemas multiagente probabilísticos. Cliente, domínio, stack e métricas são omitidos por confidencialidade.",
 					},
 					{
 						title: "Programa de mentoria de engenharia",
@@ -169,7 +202,7 @@ window.CV_CONTENT = Object.freeze({
 					{
 						title: "Pipelines e plataforma de dados com GenAI",
 						body:
-							"Construiu pipelines de ETL de alta vazão (Polars/Python) que melhoraram a vazão em ~50% e reduziu o custo de BigQuery em ~90% com um ORM orientado a metadados. Entregou ferramentas de validação com GenAI e serviços de RAG em infraestrutura GCP conteinerizada (Cloud Functions, Pub/Sub).",
+							"Construiu pipelines de ETL de alta vazão (Polars/Python) que melhoraram a vazão em ~50% e reduziram o custo do BigQuery em ~90% com um ORM orientado a metadados. Entregou ferramentas de validação com GenAI e serviços de RAG em infraestrutura GCP conteinerizada (Cloud Functions, Pub/Sub).",
 					},
 					{
 						title: "Plataforma de inferência baseada em vLLM",
@@ -207,6 +240,21 @@ window.CV_CONTENT = Object.freeze({
 					"Produto local-first de linhagem de imagens sobre ComfyUI, com persistência atômica, rastreamento resiliente de jobs e UX PWA/mobile.",
 			},
 		],
+		selectedResearchLabel: "Pesquisas selecionadas de engenharia",
+		selectedResearch: [
+			{
+				title:
+					"Alex Tavern I — Consistência epistêmica estrutural em roleplay multiagente de longa duração",
+				body:
+					"Investigou conhecimento relativo ao observador como um invariante do sistema. Em replay controlado de um payload de sessão real, a projeção de contexto relativa ao observador reduziu o vazamento de identidade de 7/13 para 0/13 execuções.",
+			},
+			{
+				title:
+					"Alex Tavern II — Tempo narrativo estrutural em roleplay multiagente de longa duração",
+				body:
+					"Diagnosticou estagnação semântica por replay controlado de payload: instruções abstratas anti-loop falharam em interromper o ciclo nas 3/3 execuções, eventos concretos do mundo o interromperam em 2/3 e um beat concreto fornecido ao Diretor em 3/3. Propôs um relógio autoritativo do mundo baseado em ticks; a validação permanece em andamento.",
+			},
+		],
 		focusLabel: "Foco técnico",
 		focus: [
 			"Python",
@@ -219,12 +267,25 @@ window.CV_CONTENT = Object.freeze({
 			"Plataformas de dados",
 		],
 		languagesLabel: "Idiomas",
-		languages: ["Português", "Inglês · C2 · goFLUENT ECEFR SET, abr. 2025"],
+		languages: [
+			{
+				name: "Português",
+				level: "Nativo",
+				certification: "",
+				date: "",
+			},
+			{
+				name: "Inglês",
+				level: "C2",
+				certification: "goFLUENT ECEFR SET",
+				date: "abr. 2025",
+			},
+		],
 		educationLabel: "Formação e certificações",
 		education:
 			"Bacharelado em Engenharia de Materiais, UFCA (2023) · Estudos em Engenharia de Materiais, UFSC (2016–2019) · Machine Learning Specialization, Stanford Online & DeepLearning.AI (2024) · Credencial People Leadership Nível 1, Accenture (2025) · Consumer Electronics Industry Foundations, Primerli (2025)",
 		mentorsNote:
-			"Pessoas cuja experiência, julgamento técnico e generosidade intelectual fazem parte permanente da minha formação.",
+			"Pessoas cuja experiência, julgamento técnico e generosidade intelectual moldaram meu desenvolvimento profissional.",
 		footnote:
 			"Currículo público. Detalhes confidenciais de clientes e projetos são omitidos. Os números de impacto refletem o escopo e a baseline originais de cada projeto.",
 	},

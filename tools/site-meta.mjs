@@ -21,7 +21,12 @@ const unitDirectory = resolve(root, 'tests/unit');
 const unitFiles = (await readdir(unitDirectory))
   .filter((file) => file.endsWith('.test.mjs'))
   .map((file) => resolve(unitDirectory, file));
-const unitOutput = run(process.execPath, ['--test', '--test-reporter=tap', ...unitFiles]);
+const unitOutput = run(process.execPath, [
+  '--test',
+  '--test-isolation=none',
+  '--test-reporter=tap',
+  ...unitFiles,
+]);
 const unitPlans = [...unitOutput.matchAll(/^1\.\.(\d+)$/gm)];
 const unitTests = Number.parseInt(unitPlans.at(-1)?.[1] || '0', 10);
 

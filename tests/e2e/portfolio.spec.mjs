@@ -50,6 +50,19 @@ test('identity, mentor mocks, and live quality proof close the portfolio', async
   await expect(page.locator('.identity-name')).toHaveText('Alexsandro Pessoa');
   await expect(page.locator('.mentor-record')).toHaveCount(2);
   await expect(page.locator('.mentor-record').first()).toHaveAttribute('href', /^https:\/\/www\.linkedin\.com\//);
+  const mentorNotes = await page.locator('.mentor-copy small').evaluateAll((notes) => notes.map((note) => {
+    const style = getComputedStyle(note);
+    return {
+      clamp: style.webkitLineClamp,
+      height: note.getBoundingClientRect().height,
+      lineHeight: Number.parseFloat(style.lineHeight),
+    };
+  }));
+  mentorNotes.forEach(({ clamp, height, lineHeight }) => {
+    expect(clamp).toBe('2');
+    expect(height).toBeGreaterThan(lineHeight * 1.5);
+    expect(height).toBeLessThanOrEqual(lineHeight * 2 + 1);
+  });
   await page.locator('[data-quality-proof]').scrollIntoViewIfNeeded();
   await expect(page.locator('[data-test-count]')).toHaveText(String(siteMetadata.totalTests));
   await expect(page.locator('[data-latest-deploy]')).toHaveAttribute(
@@ -120,12 +133,14 @@ for (const viewport of [
       await expect(page.locator('[data-print-cv]')).toBeHidden();
       await page.locator('[data-cv-toggle]').click();
       await expect(page.locator('[data-print-cv]')).toBeVisible();
+      await expect(page.locator('.cv-control-note')).toBeVisible();
+      await expect(page.locator('.cv-control-note')).toContainText('Headers and footers');
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width);
   });
 }
 
-test('mobile CV dock expands at the section end and disappears outside the CV', async ({ page }) => {
+test('mobile CV dock collapses while reading and disappears outside the CV', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/?lang=en');
   await expect(page.locator('.cv-controls')).not.toHaveClass(/is-active/);
@@ -133,13 +148,54 @@ test('mobile CV dock expands at the section end and disappears outside the CV', 
   await expect(page.locator('#cv-document')).toHaveClass(/cv-ready/);
   await expect(page.locator('.cv-controls')).toHaveClass(/is-active/);
   await expect(page.locator('[data-cv-controls]')).toHaveAttribute('data-expanded', 'false');
-  await page.locator('.site-footer').scrollIntoViewIfNeeded();
+  await page.locator('[data-cv-toggle]').click();
   await expect(page.locator('[data-cv-controls]')).toHaveAttribute('data-expanded', 'true');
+  await page.mouse.wheel(0, 240);
+  await expect(page.locator('[data-cv-controls]')).toHaveAttribute('data-expanded', 'false');
+  await expect(page.locator('.cv-controls')).toHaveClass(/is-active/);
+  await page.locator('[data-cv-end]').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(250);
+  await expect(page.locator('[data-cv-controls]')).toHaveAttribute('data-expanded', 'false');
   await page.evaluate(() => {
     document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
   });
   await expect(page.locator('.cv-controls')).not.toHaveClass(/is-active/);
+});
+
+test('mobile CV paper starts opening before its dark renderer fills the viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/?lang=en');
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = 'auto';
+    const paper = document.querySelector('#cv-document');
+    const paperTop = paper.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo(0, paperTop - window.innerHeight - 80);
+  });
+  await expect(page.locator('#cv-document')).toHaveClass(/paper-open/);
+});
+
+test('CV timeline markers share one vertical axis', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/cv/index.html?lang=en');
+  const offsets = await page.locator('.cv-timeline').evaluate((timeline) => {
+    const markerCenter = (element, pseudo) => {
+      const elementBounds = element.getBoundingClientRect();
+      const style = getComputedStyle(element, pseudo);
+      const transform = new DOMMatrixReadOnly(style.transform);
+      return elementBounds.left
+        + Number.parseFloat(style.left)
+        + Number.parseFloat(style.width) / 2
+        + Number.parseFloat(style.borderLeftWidth)
+        + transform.e;
+    };
+    return [...timeline.children].map((item) => {
+      const bounds = item.getBoundingClientRect();
+      const lineCenter = bounds.left + Number.parseFloat(getComputedStyle(item).borderLeftWidth) / 2;
+      return Math.abs(markerCenter(item, '::before') - lineCenter);
+    });
+  });
+  expect(Math.max(...offsets)).toBeLessThan(0.1);
 });
 
 test('CV language and print request cross only the sandbox message bridge', async ({ page }) => {
@@ -152,6 +208,15 @@ test('CV language and print request cross only the sandbox message bridge', asyn
 
   const child = page.frames().find((candidate) => candidate.url().includes('/cv/index.html'));
   expect(child).toBeTruthy();
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, Math.max(0, window.scrollY - 400));
+  });
+  const scrollBefore = await page.evaluate(() => window.scrollY);
+  await child.evaluate(() => {
+    window.dispatchEvent(new WheelEvent('wheel', { deltaY: 180 }));
+  });
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(scrollBefore);
   await child.evaluate(() => {
     window.__printCalled = false;
     window.print = () => { window.__printCalled = true; };
@@ -165,6 +230,19 @@ for (const language of ['en', 'pt-BR']) {
   test(`standalone ${language} CV exports as up to two A4 pages`, async ({ page }) => {
     await page.goto(`/cv/index.html?lang=${language}`);
     await expect(page.locator('.mock-badge')).toHaveCount(0);
+    await expect(page.locator('.screen-public-links')).toBeVisible();
+    await expect(page.locator('.print-public-link')).toBeHidden();
+    await expect(page.locator('.language-record')).toHaveCount(2);
+    await expect(page.locator('.language-primary > span')).toHaveText([
+      language === 'en' ? 'Native' : 'Nativo',
+      'C2',
+    ]);
+    await expect(page.locator('.language-credential')).toContainText('goFLUENT ECEFR SET');
+    await expect(page.locator('.cv-timeline-company-break')).toHaveText('accenture');
+    await expect(page.locator('.cv-timeline-company-break span')).toHaveCSS('color', 'rgb(161, 0, 255)');
+    await expect(page.locator('.research-record')).toHaveCount(2);
+    await expect(page.locator('.research-record').first()).toContainText('7/13');
+    await expect(page.locator('.research-record').last()).toContainText('3/3');
     await expect(page.locator('.cv-mentors')).toBeVisible();
     await page.setViewportSize({ width: 390, height: 844 });
     await expect(page.locator('.cv-mentors')).toBeHidden();
@@ -175,6 +253,15 @@ for (const language of ['en', 'pt-BR']) {
     expect(accessibility.violations).toEqual([]);
     await page.emulateMedia({ media: 'print' });
     await expect(page.locator('.cv-mentors')).toBeVisible();
+    await expect(page.locator('.cv-mentor-screen').first()).toBeHidden();
+    await expect(page.locator('.cv-mentor-print').first()).toBeVisible();
+    await expect(page.locator('.cv-mentor-print').first()).toHaveAttribute(
+      'href',
+      /^https:\/\/www\.linkedin\.com\//,
+    );
+    await expect(page.locator('.screen-public-links')).toBeHidden();
+    await expect(page.locator('.print-public-link')).toBeVisible();
+    await expect(page.locator('.print-public-link')).toHaveAttribute('href', 'https://al4xdev.github.io/');
     const bytes = await page.pdf({ format: 'A4', printBackground: true });
     const document = await PDFDocument.load(bytes);
     const pageCount = document.getPageCount();

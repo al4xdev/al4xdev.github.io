@@ -20,7 +20,7 @@
     </article>
   `).join('');
 
-  const renderExperience = (roles) => roles.map((role) => `
+  const renderExperience = (roles, company) => roles.map((role, index) => `
     <li class="cv-role">
       <div class="cv-role-head">
         <span class="cv-role-period">${escapeHtml(role.period)}</span>
@@ -28,14 +28,35 @@
       </div>
       <div class="cv-role-projects">${renderProjects(role.projects)}</div>
     </li>
+    ${index === 0 && company ? `<li class="cv-timeline-end cv-timeline-company-break"><span>${escapeHtml(company)}</span></li>` : ''}
   `).join('');
 
   const renderSystems = (systems) => systems.map((system) => `
     <li><strong>${escapeHtml(system.name)}</strong><span>${escapeHtml(system.body)}</span></li>
   `).join('');
 
+  const renderResearch = (studies) => studies.map((study) => `
+    <li class="research-record">
+      <h3>${escapeHtml(study.title)}</h3>
+      <p>${escapeHtml(study.body)}</p>
+    </li>
+  `).join('');
+
   const renderTags = (tags) => tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join('');
-  const renderLines = (lines) => lines.map((line) => `<span>${escapeHtml(line)}</span>`).join('');
+  const renderLanguages = (languages) => languages.map((item) => `
+    <li class="language-record">
+      <div class="language-primary">
+        <strong>${escapeHtml(item.name)}</strong>
+        <span>${escapeHtml(item.level)}</span>
+      </div>
+      ${item.certification ? `
+        <small class="language-credential">
+          <span>${escapeHtml(item.certification)}</span>
+          <time>${escapeHtml(item.date)}</time>
+        </small>
+      ` : ''}
+    </li>
+  `).join('');
   const renderEducation = (education) => education
     .split(' · ')
     .map((item) => `<li>${escapeHtml(item)}</li>`)
@@ -45,11 +66,13 @@
     const portrait = mentor.photo
       ? `<img src="${escapeHtml(mentor.photo)}" alt="">`
       : escapeHtml(mentor.initials);
+    const record = `
+      <span class="cv-mentor-portrait" aria-hidden="true">${portrait}</span>
+      <span><strong>${escapeHtml(copy.name)}</strong><small>${escapeHtml(copy.note)}</small></span>
+    `;
     return `
-      <a class="cv-mentor" href="${escapeHtml(mentor.linkedin)}" target="_blank" rel="noopener noreferrer">
-        <span class="cv-mentor-portrait" aria-hidden="true">${portrait}</span>
-        <span><strong>${escapeHtml(copy.name)}</strong><small>${escapeHtml(copy.note)}</small></span>
-      </a>
+      <a class="cv-mentor cv-mentor-screen" href="${escapeHtml(mentor.linkedin)}" target="_blank" rel="noopener noreferrer">${record}</a>
+      <a class="cv-mentor cv-mentor-print" href="${escapeHtml(mentor.linkedin)}" target="_blank" rel="noopener noreferrer">${record}</a>
     `;
   }).join('');
 
@@ -60,7 +83,38 @@
     }, '*');
   }
 
-  function render(nextLanguage = language) {
+  function delegateScroll(deltaX, deltaY) {
+    if (window.parent === window) return;
+    window.parent.postMessage({
+      type: 'portfolio-cv:scroll',
+      deltaX,
+      deltaY,
+    }, '*');
+  }
+
+  window.addEventListener('wheel', (event) => {
+    const unit = event.deltaMode === WheelEvent.DOM_DELTA_LINE
+      ? 16
+      : event.deltaMode === WheelEvent.DOM_DELTA_PAGE ? window.innerHeight : 1;
+    delegateScroll(event.deltaX * unit, event.deltaY * unit);
+  }, { passive: true });
+
+  let previousTouch = null;
+  window.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    previousTouch = touch ? { x: touch.clientX, y: touch.clientY } : null;
+  }, { passive: true });
+  window.addEventListener('touchmove', (event) => {
+    const touch = event.touches[0];
+    if (!touch || !previousTouch) return;
+    delegateScroll(previousTouch.x - touch.clientX, previousTouch.y - touch.clientY);
+    previousTouch = { x: touch.clientX, y: touch.clientY };
+  }, { passive: true });
+  window.addEventListener('touchend', () => {
+    previousTouch = null;
+  }, { passive: true });
+
+  function updateDocument(nextLanguage = language) {
     language = nextLanguage === 'pt-BR' ? 'pt-BR' : 'en';
     const cv = content[language];
     document.documentElement.lang = language;
@@ -72,7 +126,10 @@
             <h1>${escapeHtml(cv.name)}</h1>
             <p>${escapeHtml(cv.role)}</p>
           </div>
-          <nav class="public-links" aria-label="Public links">${renderLinks(cv.links)}</nav>
+          <nav class="public-links" aria-label="Public links">
+            <span class="screen-public-links">${renderLinks(cv.links)}</span>
+            <a class="print-public-link" href="${escapeHtml(cv.portfolioLink.url)}">${escapeHtml(cv.portfolioLink.label)}</a>
+          </nav>
         </header>
 
         <div class="cv-body">
@@ -83,11 +140,15 @@
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.experienceLabel)}</h2>
-              <ol class="cv-timeline">${renderExperience(cv.experience)}${cv.experienceCompany ? `<li class="cv-timeline-end"><span>${escapeHtml(cv.experienceCompany)}</span></li>` : ''}</ol>
+              <ol class="cv-timeline">${renderExperience(cv.experience, cv.experienceCompany)}${cv.experienceCompany ? `<li class="cv-timeline-end"><span>${escapeHtml(cv.experienceCompany)}</span></li>` : ''}</ol>
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.selectedWorkLabel)}</h2>
               <ul class="system-list">${renderSystems(cv.selectedWork)}</ul>
+            </section>
+            <section class="cv-block cv-research">
+              <h2>${escapeHtml(cv.selectedResearchLabel)}</h2>
+              <ol class="research-list">${renderResearch(cv.selectedResearch)}</ol>
             </section>
           </div>
 
@@ -98,7 +159,7 @@
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.languagesLabel)}</h2>
-              <p class="language-list">${renderLines(cv.languages)}</p>
+              <ul class="language-list">${renderLanguages(cv.languages)}</ul>
             </section>
             <section class="cv-block cv-mentors">
               <h2>${language === 'pt-BR' ? 'Mentorado por' : 'Mentored by'}</h2>
@@ -117,6 +178,15 @@
     requestAnimationFrame(notifyHeight);
   }
 
+  function render(nextLanguage = language, animate = true) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (animate && !reduceMotion && document.startViewTransition) {
+      document.startViewTransition(() => updateDocument(nextLanguage));
+      return;
+    }
+    updateDocument(nextLanguage);
+  }
+
   window.addEventListener('message', (event) => {
     if (event.data?.type === 'portfolio-cv:language') render(event.data.language);
     if (event.data?.type === 'portfolio-cv:print') window.print();
@@ -124,5 +194,5 @@
 
   window.addEventListener('resize', notifyHeight);
   new ResizeObserver(notifyHeight).observe(document.documentElement);
-  render();
+  render(language, false);
 })();

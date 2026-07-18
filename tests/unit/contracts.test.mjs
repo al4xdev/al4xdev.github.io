@@ -30,6 +30,8 @@ test('interface translations are complete and used keys exist in both locales', 
   const [app, html] = await Promise.all([read('app.js'), read('index.html')]);
   const strings = readObjectConstant(app, 'STRINGS', 'PROJECTS');
   assert.deepEqual(Object.keys(strings.en).sort(), Object.keys(strings['pt-BR']).sort());
+  assert.match(strings.en.cvRendererNote, /Headers and footers/);
+  assert.match(strings['pt-BR'].cvRendererNote, /Cabeçalhos e rodapés/);
 
   const usedKeys = [...html.matchAll(/data-i18n(?:-html|-aria)?="([^"]+)"/g)].map((match) => match[1]);
   assert.ok(usedKeys.length > 0);
@@ -75,7 +77,31 @@ test('CV locales preserve identical field shapes and safe public links', async (
       projectCount += role.projects.length;
     }
     assert.ok(projectCount >= 3);
+    assert.match(roles[0].projects[0].body, locale === 'en'
+      ? /publicly demonstrates the same engineering practice/
+      : /tornam público o mesmo método/);
     assert.ok(content[locale].selectedWork.length >= 4);
+    assert.equal(content[locale].selectedResearch.length, 2);
+    for (const study of content[locale].selectedResearch) {
+      assert.deepEqual(Object.keys(study).sort(), ['body', 'title']);
+      assert.match(study.title, /^Alex Tavern I{1,2} —/);
+      assert.match(study.body, /7\/13|3\/3/);
+    }
+    assert.match(content[locale].selectedResearch[1].body, locale === 'en'
+      ? /failed to break the cycle in 3\/3 runs/
+      : /falharam em interromper o ciclo nas 3\/3 execuções/);
+    assert.match(content[locale].mentorsNote, locale === 'en'
+      ? /professional development/
+      : /desenvolvimento profissional/);
+    assert.match(content[locale].portfolioLink.url, /^https:\/\//);
+    assert.equal(content[locale].languages.length, 2);
+    for (const language of content[locale].languages) {
+      assert.deepEqual(Object.keys(language).sort(), ['certification', 'date', 'level', 'name']);
+      assert.equal(typeof language.name, 'string');
+      assert.equal(typeof language.level, 'string');
+      assert.equal(typeof language.certification, 'string');
+      assert.equal(typeof language.date, 'string');
+    }
     assert.equal(typeof content[locale].mentorsNote, 'string');
     for (const link of content[locale].links) assert.match(link.url, /^https:\/\//);
   }
@@ -126,18 +152,28 @@ test('CV remains the final main section and iframe authority stays narrow', asyn
   assert.doesNotMatch(embed, /allow-same-origin/);
   assert.match(embed, /portfolio-cv:language/);
   assert.match(embed, /portfolio-cv:height/);
+  assert.match(embed, /portfolio-cv:scroll/);
   assert.match(embed, /portfolio-cv:print/);
 });
 
 test('responsive, reduced-motion, and fixed A4 contracts remain explicit', async () => {
-  const [portfolioCss, cvCss] = await Promise.all([read('styles.css'), read('cv/styles.css')]);
+  const [portfolioCss, cvCss, exporter] = await Promise.all([
+    read('styles.css'),
+    read('cv/styles.css'),
+    read('tools/export-cv.mjs'),
+  ]);
   assert.match(portfolioCss, /@media \(max-width: 800px\)/);
   assert.match(portfolioCss, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(portfolioCss, /\.paper-document\.paper-open/);
   assert.match(cvCss, /@page\s*{[^}]*size:\s*A4/s);
   assert.match(cvCss, /@media print/);
-  assert.match(cvCss, /width:\s*210mm/);
-  assert.match(cvCss, /min-height:\s*297mm/);
+  assert.match(cvCss, /\.screen-public-links\s*{[^}]*display:\s*none/s);
+  assert.match(cvCss, /\.print-public-link\s*{[^}]*display:\s*flex\s*!important/s);
+  assert.match(cvCss, /\.edu-list li,[\s\S]*break-inside:\s*avoid/);
+  assert.match(cvCss, /\.research-record,[\s\S]*break-inside:\s*avoid/);
+  assert.match(cvCss, /\.placeholder-block,[\s\S]*break-inside:\s*avoid/);
+  assert.match(exporter, /preferCSSPageSize:\s*true/);
+  assert.match(exporter, /Unexpected page size/);
 });
 
 test('CV export route rejects repository destinations before launching a browser', () => {
