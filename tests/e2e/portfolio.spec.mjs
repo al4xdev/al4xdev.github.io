@@ -22,7 +22,7 @@ test('language entrance is exactly one viewport and enters the site', async ({ p
 test('constellation selection and language switching preserve state', async ({ page }) => {
   await page.goto('/?lang=en');
   await expect(page.locator('.inspection-command')).toContainText('CHOOSE A SYSTEM');
-  await expect(page.locator('#inspection-command-detail')).toHaveText('Each node opens its engineering case.');
+  await expect(page.locator('#systems-instruction')).toHaveText('Tap or click any system below to open its case: the problem, the design decision, and the evidence.');
   await expect(page.locator('[data-project]')).toHaveCount(6);
   for (const node of await page.locator('[data-project]').all()) {
     await expect(node).toHaveAttribute('aria-controls', 'inspection-panel');
@@ -114,7 +114,7 @@ for (const viewport of [
     await page.goto('/?lang=en');
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width);
     if (viewport.width <= 800) {
-      await expect(page.locator('.mobile-map-hint')).toHaveText('Swipe to navigate · tap to inspect');
+      await expect(page.locator('.mobile-map-hint')).toHaveText('Swipe to navigate');
     }
 
     const smallTargets = await page.locator('a, button').evaluateAll((elements) => elements

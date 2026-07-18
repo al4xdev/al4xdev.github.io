@@ -824,6 +824,22 @@ body[data-state="site"] .site-shell {
   font-size: 1.03rem;
 }
 
+.systems-heading {
+  grid-template-columns: 1fr;
+}
+
+.systems-heading > div {
+  max-width: 64rem;
+}
+
+.systems-heading .systems-instruction {
+  max-width: 49rem;
+  margin: 1.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 .systems-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(20rem, 0.55fr);
@@ -836,7 +852,7 @@ body[data-state="site"] .site-shell {
   position: relative;
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: auto auto minmax(14rem, 1fr) minmax(5rem, 0.35fr);
+  grid-template-columns: auto auto minmax(5rem, 1fr);
   gap: 0.8rem 1.2rem;
   align-items: center;
   min-height: 4.2rem;
@@ -857,12 +873,6 @@ body[data-state="site"] .site-shell {
 .inspection-command strong {
   font-size: 0.76rem;
   letter-spacing: 0.09em;
-}
-
-.inspection-command-detail {
-  color: var(--muted);
-  font-size: 0.62rem;
-  letter-spacing: 0.04em;
 }
 
 .inspection-probe {
@@ -1939,10 +1949,6 @@ body[data-state="site"] .site-shell {
   .inspection-command strong {
     justify-self: end;
     text-align: right;
-  }
-
-  .inspection-command-detail {
-    grid-column: 1 / -1;
   }
 
   .inspection-probe {

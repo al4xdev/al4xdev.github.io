@@ -156,23 +156,22 @@
       </section>
 
       <section class="systems-section" id="systems" aria-labelledby="systems-title">
-        <div class="section-heading">
+        <div class="section-heading systems-heading">
           <div>
             <p class="eyebrow" data-i18n="systemsEyebrow">SELECTED SYSTEMS / ONE CONNECTED PRACTICE</p>
             <h2 id="systems-title" data-i18n="systemsTitle">Follow the architecture, not a list of logos.</h2>
+            <p class="systems-instruction" id="systems-instruction" data-i18n="systemsIntro">Tap or click any system below to open its case: the problem, the design decision, and the evidence.</p>
           </div>
-          <p data-i18n="systemsIntro">Select a node to inspect the problem it owns, the decision that shapes it, and the evidence behind the claim.</p>
         </div>
 
         <div class="systems-workspace">
           <div class="inspection-command">
             <span class="inspection-command-code">INPUT / SELECT</span>
             <strong data-i18n="inspectionCommand">CHOOSE A SYSTEM</strong>
-            <span class="inspection-command-detail" id="inspection-command-detail" data-i18n="inspectionCommandDetail">Each node opens its engineering case.</span>
             <span class="inspection-probe" aria-hidden="true"></span>
           </div>
 
-          <div class="constellation" role="group" aria-label="Interactive project map" aria-describedby="inspection-command-detail" data-i18n-aria="mapLabel">
+          <div class="constellation" role="group" aria-label="Interactive project map" aria-describedby="systems-instruction" data-i18n-aria="mapLabel">
             <svg class="connection-map" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               <line data-edge="promptnest:alex-tavern" x1="17" y1="24" x2="44" y2="32"></line>
               <line data-edge="crime-alley:alex-tavern" x1="18" y1="70" x2="44" y2="32"></line>
@@ -218,7 +217,7 @@
             <div class="map-legend">
               <span><i class="legend-dot active-dot"></i><span data-i18n="legendSelected">Selected system</span></span>
               <span class="desktop-map-relation"><i class="legend-line"></i><span data-i18n="legendRelation">Shared design concern</span></span>
-              <span class="mobile-map-hint" data-i18n="mobileMapHint">Swipe to navigate · tap to inspect</span>
+              <span class="mobile-map-hint" data-i18n="mobileMapHint">Swipe to navigate</span>
             </div>
           </div>
 
