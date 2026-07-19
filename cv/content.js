@@ -84,7 +84,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "PromptNest",
 				body:
-					"Typed async Python orchestration with bounded backpressure, per-provider request/token limits, retries, partial-failure recovery, durable checkpoints, and TTFT benchmarking; self-certified on 10,000 synthetic jobs at 0.022 ms/job p95 orchestration overhead and 2.25 ms batch p99.",
+					"Typed async Python orchestration with bounded backpressure, provider rate/token limits, retries, partial recovery, and durable checkpoints; simulated-provider benchmark: 10,000 jobs, 0.022 ms/job p95 orchestration overhead, 2.46 ms batch p99, and 1.46 ms TTFT p99 (adapter stream start to first non-empty text delta) across 100 streams.",
 			},
 			{
 				name: "SceneQueue",
@@ -234,7 +234,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "PromptNest",
 				body:
-					"Orquestração assíncrona tipada em Python com backpressure limitado, limites de requisições/tokens por provedor, retries, recuperação parcial, checkpoints duráveis e benchmark de TTFT; autocertificada em 10.000 jobs sintéticos, com overhead p95 de 0,022 ms/job e p99 de batch de 2,25 ms.",
+					"Orquestração async tipada em Python: backpressure, limites de taxa/tokens por provider, retries, recuperação parcial e checkpoints. Benchmark com provider simulado: 10.000 jobs; overhead p95 0,022 ms/job; batch p99 2,46 ms; TTFT p99 1,46 ms (início do stream ao 1º delta textual não vazio) em 100 streams.",
 			},
 			{
 				name: "SceneQueue",
