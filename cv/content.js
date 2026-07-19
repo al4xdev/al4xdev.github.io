@@ -79,12 +79,12 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "Alex Tavern ecosystem",
 				body:
-					"Source-visible proprietary multi-agent system with state and information boundaries, compaction, replay/debug tooling, and a curated plugin hub.",
+					"Source-visible proprietary multi-agent system with explicit state and information boundaries, compaction, replay/debug tooling, and a curated plugin hub, including a RAG plugin.",
 			},
 			{
 				name: "PromptNest",
 				body:
-					"Typed async orchestration for parallel nested map/consolidate/reduce across OpenAI, Azure OpenAI, LangChain, LangGraph, CrewAI, and custom LLM runtimes, with Pydantic contracts, bounded concurrency, retries, timeouts, and partial-failure handling.",
+					"Typed async Python orchestration with bounded backpressure, per-provider request/token limits, retries, partial-failure recovery, durable checkpoints, and TTFT benchmarking; self-certified on 10,000 synthetic jobs at 0.022 ms/job p95 orchestration overhead and 2.25 ms batch p99.",
 			},
 			{
 				name: "SceneQueue",
@@ -229,12 +229,12 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "Ecossistema Alex Tavern",
 				body:
-					"Sistema multiagente proprietário com código visível, fronteiras de estado e informação, compactação, replay/debug e um hub curado de plugins.",
+					"Sistema multiagente proprietário com código visível, fronteiras explícitas de estado e informação, compactação, replay/debug e um hub curado de plugins, incluindo um plugin de RAG.",
 			},
 			{
 				name: "PromptNest",
 				body:
-					"Orquestração assíncrona tipada de nested map/consolidate/reduce paralelo para OpenAI, Azure OpenAI, LangChain, LangGraph, CrewAI e runtimes LLM customizados, com contratos Pydantic, concorrência limitada, retries, timeouts e tratamento de falhas parciais.",
+					"Orquestração assíncrona tipada em Python com backpressure limitado, limites de requisições/tokens por provedor, retries, recuperação parcial, checkpoints duráveis e benchmark de TTFT; autocertificada em 10.000 jobs sintéticos, com overhead p95 de 0,022 ms/job e p99 de batch de 2,25 ms.",
 			},
 			{
 				name: "SceneQueue",
