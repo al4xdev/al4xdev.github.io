@@ -74,7 +74,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "Crime Alley CV",
 				body:
-					"Deterministic coding-agent control plane with typed state, recoverable transactions, integrity guards, and provider boundaries.",
+					"Deterministic coding-agent control plane with typed transactional state, locks, recoverable commits, append-only event journals, offline replay, MCP debugging, and Docker/Podman isolation.",
 			},
 			{
 				name: "Alex Tavern ecosystem",
@@ -224,7 +224,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "Crime Alley CV",
 				body:
-					"Plano de controle determinístico para agentes de código, com estado tipado, transações recuperáveis, guardas de integridade e fronteiras de providers.",
+					"Plano de controle determinístico para agentes de código, com estado transacional tipado, locks, commits recuperáveis, event journals append-only, replay offline, debugging via MCP e isolamento Docker/Podman.",
 			},
 			{
 				name: "Ecossistema Alex Tavern",

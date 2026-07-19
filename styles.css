@@ -1441,6 +1441,33 @@ body[data-state="site"] .site-shell {
   animation-delay: calc(var(--paper-index, 0) * 85ms);
 }
 
+/* The CV iframe can become several thousand pixels tall. Keep its entrance lightweight so
+   browsers do not have to animate a clipped, filtered 3D layer of the full document. */
+.paper-motion-ready .cv-paper-shell.paper-document:not(.paper-open) {
+  clip-path: none;
+  filter: none;
+  opacity: 0;
+  transform: none;
+}
+
+.paper-motion-ready .cv-paper-shell.paper-document:not(.paper-open)::before {
+  opacity: 0.06;
+}
+
+.paper-motion-ready .cv-paper-shell.paper-document.paper-open {
+  animation: cv-paper-reveal 280ms ease-out both;
+  animation-delay: 0ms;
+}
+
+.paper-motion-ready .cv-paper-shell.paper-document.paper-open::before {
+  animation: none;
+}
+
+@keyframes cv-paper-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes paper-unfold {
   0% {
     clip-path: polygon(42% 3%, 61% 0, 70% 18%, 94% 25%, 82% 47%, 98% 67%, 73% 72%, 64% 100%, 43% 84%, 20% 94%, 22% 69%, 0 57%, 17% 38%, 8% 18%, 35% 21%);
