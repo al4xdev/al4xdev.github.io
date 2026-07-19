@@ -84,7 +84,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "PromptNest",
 				body:
-					"Typed asynchronous map/consolidate/reduce library with provider-neutral adapters and failure controls.",
+					"Typed async orchestration for parallel nested map/consolidate/reduce across OpenAI, Azure OpenAI, LangChain, LangGraph, CrewAI, and custom LLM runtimes, with Pydantic contracts, bounded concurrency, retries, timeouts, and partial-failure handling.",
 			},
 			{
 				name: "SceneQueue",
@@ -234,7 +234,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "PromptNest",
 				body:
-					"Biblioteca assíncrona tipada de map/consolidate/reduce, com adaptadores neutros a providers e controles de falha.",
+					"Orquestração assíncrona tipada de nested map/consolidate/reduce paralelo para OpenAI, Azure OpenAI, LangChain, LangGraph, CrewAI e runtimes LLM customizados, com contratos Pydantic, concorrência limitada, retries, timeouts e tratamento de falhas parciais.",
 			},
 			{
 				name: "SceneQueue",
