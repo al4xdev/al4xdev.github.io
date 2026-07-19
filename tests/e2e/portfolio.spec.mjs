@@ -200,7 +200,10 @@ test('CV timeline markers share one vertical axis', async ({ page }) => {
         + Number.parseFloat(style.borderLeftWidth)
         + transform.e;
     };
-    return [...timeline.children].map((item) => {
+    const markers = timeline.querySelectorAll(
+      '.cv-role, .cv-timeline-end:not(.cv-timeline-company-break)',
+    );
+    return [...markers].map((item) => {
       const bounds = item.getBoundingClientRect();
       const lineCenter = bounds.left + Number.parseFloat(getComputedStyle(item).borderLeftWidth) / 2;
       return Math.abs(markerCenter(item, '::before') - lineCenter);

@@ -226,6 +226,18 @@ a {
   padding-bottom: 1rem;
 }
 
+.cv-timeline-company-break::before {
+  content: none;
+}
+
+.cv-timeline-end:not(.cv-timeline-company-break) {
+  border-left: 0;
+}
+
+.cv-timeline-end:not(.cv-timeline-company-break)::before {
+  left: 0;
+}
+
 .cv-role-projects {
   display: grid;
   gap: 0.2rem;
