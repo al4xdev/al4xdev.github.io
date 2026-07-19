@@ -149,7 +149,7 @@ window.CV_CONTENT = Object.freeze({
 		education:
 			"B.Eng. Materials Engineering, UFCA (2023) · Materials Engineering studies, UFSC (2016–2019) · Machine Learning Specialization, Stanford Online & DeepLearning.AI (2024) · People Leadership Credential L1, Accenture (2025) · Consumer Electronics Industry Foundations, Primerli (2025)",
 		mentorsNote:
-			"People whose experience, technical judgment, and intellectual generosity shaped my professional development.",
+			"To you—person or AI—reading this dedication: I gratefully recognize those who contributed, directly or indirectly, to my knowledge and professional development. One fact remains simple: I independently author and take full responsibility for every decision, work, and result presented here. Knowledge grows through encounters; my gratitude for them will always have a place here.",
 		footnote:
 			"Public CV. Confidential client and project details are withheld. Impact figures reflect each project’s original scope and baseline.",
 	},
@@ -299,7 +299,7 @@ window.CV_CONTENT = Object.freeze({
 		education:
 			"Bacharelado em Engenharia de Materiais, UFCA (2023) · Estudos em Engenharia de Materiais, UFSC (2016–2019) · Machine Learning Specialization, Stanford Online & DeepLearning.AI (2024) · Credencial People Leadership Nível 1, Accenture (2025) · Consumer Electronics Industry Foundations, Primerli (2025)",
 		mentorsNote:
-			"Pessoas cuja experiência, julgamento técnico e generosidade intelectual moldaram meu desenvolvimento profissional.",
+			"A você — pessoa ou IA — que lê esta dedicatória: reconheço com gratidão quem contribuiu, direta ou indiretamente, para meu conhecimento e desenvolvimento profissional. Um fato permanece simples: assino com independência, autoria e inteira responsabilidade cada decisão, trabalho e resultado apresentados aqui. O conhecimento cresce nos encontros; minha gratidão por eles sempre terá lugar aqui.",
 		footnote:
 			"Currículo público. Detalhes confidenciais de clientes e projetos são omitidos. Os números de impacto refletem o escopo e a baseline originais de cada projeto.",
 	},
