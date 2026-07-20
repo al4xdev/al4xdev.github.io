@@ -23,7 +23,7 @@
     </article>
   `).join('');
 
-  const renderExperience = (roles, company) => roles.map((role, index) => `
+  const renderExperience = (roles) => roles.map((role, index) => `
     <li class="cv-role">
       <div class="cv-role-head">
         <span class="cv-role-period">${escapeHtml(role.period)}</span>
@@ -31,7 +31,7 @@
       </div>
       <div class="cv-role-projects">${renderProjects(role.projects)}</div>
     </li>
-    ${index === 0 && company ? `<li class="cv-timeline-end cv-timeline-company-break"><span>${escapeHtml(company)}</span></li>` : ''}
+    ${index < roles.length - 1 ? '<li class="cv-timeline-end cv-timeline-company-break" aria-hidden="true"></li>' : ''}
   `).join('');
 
   const renderSystems = (systems) => systems.map((system) => `
@@ -146,7 +146,7 @@
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.experienceLabel)}</h2>
-              <ol class="cv-timeline">${renderExperience(cv.experience, cv.experienceCompany)}${cv.experienceCompany ? `<li class="cv-timeline-end"><span>${escapeHtml(cv.experienceCompany)}</span></li>` : ''}</ol>
+              <ol class="cv-timeline">${renderExperience(cv.experience)}<li class="cv-timeline-end" aria-hidden="true"></li></ol>
             </section>
             <section class="cv-block">
               <h2>${escapeHtml(cv.selectedWorkLabel)}</h2>

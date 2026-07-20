@@ -169,17 +169,6 @@ a {
   transform: translateX(-50%);
 }
 
-.cv-timeline-end span {
-  display: block;
-  position: relative;
-  top: -0.2rem;
-  color: var(--accenture-purple);
-  font-family: var(--mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.07em;
-  text-align: right;
-}
-
 .cv-role::before {
   content: "";
   position: absolute;
@@ -535,7 +524,7 @@ a {
 
 @page {
   size: A4;
-  margin: 13mm 0;
+  margin: 11mm 0 8mm;
 }
 
 @media print {

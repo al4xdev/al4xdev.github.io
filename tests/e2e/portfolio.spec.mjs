@@ -268,8 +268,9 @@ for (const language of ['en', 'pt-BR']) {
       'C2',
     ]);
     await expect(page.locator('.language-credential')).toContainText('goFLUENT ECEFR SET');
-    await expect(page.locator('.cv-timeline-company-break')).toHaveText('accenture');
-    await expect(page.locator('.cv-timeline-company-break span')).toHaveCSS('color', 'rgb(161, 0, 255)');
+    await expect(page.locator('.cv-timeline-company-break')).toBeEmpty();
+    await expect(page.locator('.cv-timeline-company-break')).toHaveAttribute('aria-hidden', 'true');
+    await expect(page.locator('.cv-role-tag')).toHaveText(['Accenture', 'Accenture']);
     await expect(page.locator('.research-record')).toHaveCount(2);
     await expect(page.locator('.research-record').first()).toContainText('7/13');
     await expect(page.locator('.research-record').last()).toContainText('3/3');

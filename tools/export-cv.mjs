@@ -56,7 +56,13 @@ try {
   });
   // preferCSSPageSize honours the @page size AND margins, matching the browser's
   // Print-to-PDF so exported previews reflect the real per-page margins.
-  const bytes = await page.pdf({ path: output, preferCSSPageSize: true, printBackground: true });
+  const bytes = await page.pdf({
+    path: output,
+    preferCSSPageSize: true,
+    printBackground: true,
+    tagged: true,
+    outline: true,
+  });
   const document = await PDFDocument.load(bytes);
   const pages = document.getPageCount();
   const { width, height } = document.getPage(0).getSize();

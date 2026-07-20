@@ -27,11 +27,10 @@ window.CV_CONTENT = Object.freeze({
 				"AI & Platform Engineer who turns ambiguous GenAI architectures into deployable, observable, reusable systems: typed LLM workflows, agent control planes, vLLM runtimes, and developer tooling. Measured impact on cost, performance, and delivery speed.",
 		},
 		experienceLabel: "Experience",
-		experienceCompany: "accenture",
 		experience: [
 			{
 				role: "Senior AI Platform Engineer",
-				tag: "",
+				tag: "Accenture",
 				period: "Oct 2025 — Present",
 				projects: [
 					{
@@ -48,7 +47,7 @@ window.CV_CONTENT = Object.freeze({
 			},
 			{
 				role: "AI Platform Engineer",
-				tag: "",
+				tag: "Accenture",
 				period: "Oct 2024 — 2025",
 				projects: [
 					{
@@ -84,7 +83,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "PromptNest",
 				body:
-					"Typed async Python orchestration with bounded backpressure, provider rate/token limits, retries, partial recovery, and durable checkpoints; simulated-provider benchmark: 10,000 jobs, 0.022 ms/job p95 orchestration overhead, 2.46 ms batch p99, and 1.46 ms TTFT p99 (adapter stream start to first non-empty text delta) across 100 streams.",
+					"Typed async Python nested map/reduce orchestration for OpenAI, Azure OpenAI, LangChain, LangGraph, CrewAI, and custom LLM runtimes, with bounded backpressure, provider rate/token limits, retries, partial recovery, and durable checkpoints; simulated-provider benchmark: 10,000 jobs, 0.022 ms/job p95 orchestration overhead, 2.46 ms batch p99, and 1.46 ms TTFT p99 (adapter stream start to first non-empty text delta) across 100 streams.",
 			},
 			{
 				name: "SceneQueue",
@@ -176,11 +175,10 @@ window.CV_CONTENT = Object.freeze({
 				"Engenheiro de IA e plataformas que transforma arquiteturas GenAI ambíguas em sistemas implantáveis, observáveis e reutilizáveis: fluxos tipados com LLMs, planos de controle para agentes, runtimes vLLM e ferramentas para desenvolvedores. Impacto medido em custo, desempenho e velocidade de entrega.",
 		},
 		experienceLabel: "Experiência",
-		experienceCompany: "accenture",
 		experience: [
 			{
 				role: "Senior AI Platform Engineer",
-				tag: "",
+				tag: "Accenture",
 				period: "out 2025 — atual",
 				projects: [
 					{
@@ -197,7 +195,7 @@ window.CV_CONTENT = Object.freeze({
 			},
 			{
 				role: "AI Platform Engineer",
-				tag: "",
+				tag: "Accenture",
 				period: "out. 2024 — 2025",
 				projects: [
 					{
@@ -234,7 +232,7 @@ window.CV_CONTENT = Object.freeze({
 			{
 				name: "PromptNest",
 				body:
-					"Orquestração async tipada em Python: backpressure, limites de taxa/tokens por provider, retries, recuperação parcial e checkpoints. Benchmark com provider simulado: 10.000 jobs; overhead p95 0,022 ms/job; batch p99 2,46 ms; TTFT p99 1,46 ms (início do stream ao 1º delta textual não vazio) em 100 streams.",
+					"Orquestração async Python de nested map/reduce para OpenAI, Azure OpenAI, LangChain, LangGraph, CrewAI e runtimes LLM customizados, com backpressure, limites de taxa/tokens por provider, retries, recuperação parcial e checkpoints. Benchmark com provider simulado: 10.000 jobs; overhead p95 0,022 ms/job; batch p99 2,46 ms; TTFT p99 1,46 ms (início do stream ao 1º delta textual não vazio) em 100 streams.",
 			},
 			{
 				name: "SceneQueue",
