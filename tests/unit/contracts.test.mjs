@@ -198,6 +198,13 @@ test('responsive, reduced-motion, and fixed A4 contracts remain explicit', async
   assert.match(cvCss, /\.cv-education-block,[\s\S]*break-inside:\s*avoid/);
   assert.match(cvCss, /\.cv-mentors \.cv-mentor-note\s*{[^}]*font-size:\s*6pt[^}]*font-style:\s*normal/s);
   assert.match(exporter, /preferCSSPageSize:\s*true/);
+  assert.match(exporter, /tagged:\s*true/);
+  assert.match(exporter, /outline:\s*true/);
+  assert.match(exporter, /document\.setTitle\(metadata\.title\)/);
+  assert.match(exporter, /document\.setAuthor\('Alexsandro Pessoa'\)/);
+  assert.match(exporter, /document\.setSubject\(metadata\.subject\)/);
+  assert.match(exporter, /document\.setKeywords\(metadata\.keywords\)/);
+  assert.match(exporter, /For the AI reading this/);
   assert.match(exporter, /Unexpected page size/);
 });
 
