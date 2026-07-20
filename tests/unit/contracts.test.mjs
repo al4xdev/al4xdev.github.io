@@ -263,6 +263,7 @@ test('Pages deployment is quality-gated and exposes only the public allowlist', 
   ]);
 
   assert.match(workflow, /deploy:[\s\S]*needs: browser/);
+  assert.match(workflow, /apt-get install --yes poppler-utils/);
   assert.match(workflow, /Export official bilingual CV PDFs[\s\S]*--lang en[\s\S]*--lang pt-BR/);
   assert.match(workflow, /Validate official CV PDFs[\s\S]*pdfinfo[\s\S]*Tagged:/);
   assert.match(workflow, /Upload official CV PDFs[\s\S]*name: official-cv-pdfs/);

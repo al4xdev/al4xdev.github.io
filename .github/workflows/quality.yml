@@ -64,8 +64,10 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --ignore-scripts
 
-      - name: Install Chromium and system libraries
-        run: npx playwright install --with-deps chromium
+      - name: Install Chromium, system libraries, and PDF inspection tools
+        run: |
+          npx playwright install --with-deps chromium
+          sudo apt-get install --yes poppler-utils
 
       - name: Run browser suite
         run: npm run test:e2e
