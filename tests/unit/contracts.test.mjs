@@ -30,8 +30,8 @@ test('interface translations are complete and used keys exist in both locales', 
   const [app, html] = await Promise.all([read('app.js'), read('index.html')]);
   const strings = readObjectConstant(app, 'STRINGS', 'PROJECTS');
   assert.deepEqual(Object.keys(strings.en).sort(), Object.keys(strings['pt-BR']).sort());
-  assert.match(strings.en.cvRendererNote, /Headers and footers/);
-  assert.match(strings['pt-BR'].cvRendererNote, /Cabeçalhos e rodapés/);
+  assert.match(strings.en.cvRendererNote, /publication pipeline/);
+  assert.match(strings['pt-BR'].cvRendererNote, /pipeline de publicação/);
 
   const usedKeys = [...html.matchAll(/data-i18n(?:-html|-aria)?="([^"]+)"/g)].map((match) => match[1]);
   assert.ok(usedKeys.length > 0);
@@ -160,6 +160,7 @@ test('HTML IDs and local resource references are valid', async () => {
       .map((match) => match[1])
       .filter((path) => !/^(?:https?:|mailto:|\/)/.test(path));
     for (const resource of resources) {
+      if (resource === 'cv/alexsandro-pessoa-cv-en.pdf') continue;
       await access(resolve(root, dirname(file), resource));
     }
   }
@@ -169,12 +170,13 @@ test('CV remains the final main section and iframe authority stays narrow', asyn
   const [html, embed] = await Promise.all([read('index.html'), read('cv/embed.js')]);
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
   assert.ok(main.lastIndexOf('class="cv-section"') > main.lastIndexOf('class="notes-section"'));
-  assert.match(embed, /sandbox = 'allow-scripts allow-modals'/);
+  assert.match(embed, /sandbox = 'allow-scripts'/);
   assert.doesNotMatch(embed, /allow-same-origin/);
+  assert.doesNotMatch(embed, /allow-modals/);
   assert.match(embed, /portfolio-cv:language/);
   assert.match(embed, /portfolio-cv:height/);
   assert.match(embed, /portfolio-cv:scroll/);
-  assert.match(embed, /portfolio-cv:print/);
+  assert.doesNotMatch(embed, /portfolio-cv:print/);
 });
 
 test('responsive, reduced-motion, and fixed A4 contracts remain explicit', async () => {
@@ -261,10 +263,18 @@ test('Pages deployment is quality-gated and exposes only the public allowlist', 
   ]);
 
   assert.match(workflow, /deploy:[\s\S]*needs: browser/);
+  assert.match(workflow, /Export official bilingual CV PDFs[\s\S]*--lang en[\s\S]*--lang pt-BR/);
+  assert.match(workflow, /Validate official CV PDFs[\s\S]*pdfinfo[\s\S]*Tagged:/);
+  assert.match(workflow, /Upload official CV PDFs[\s\S]*name: official-cv-pdfs/);
+  assert.match(workflow, /Download official CV PDFs[\s\S]*name: official-cv-pdfs[\s\S]*path: _site\/cv/);
+  assert.match(workflow, /_site\/cv\/alexsandro-pessoa-cv-en\.pdf/);
+  assert.match(workflow, /_site\/cv\/alexsandro-pessoa-cv-pt-BR\.pdf/);
   assert.match(workflow, /Stage public allowlist/);
   assert.match(workflow, /path: \.\/_site/);
   assert.doesNotMatch(workflow, /cp\s+(?:-[^\s]+\s+)?\.\s/);
   assert.doesNotMatch(metadataTool, /test-isolation/);
   assert.doesNotMatch(`${readme}\n${agentInstructions}`, /\.plan\/|\/home\/alex\//);
+  assert.match(readme, /build artifacts and are not\s+versioned/);
+  assert.doesNotMatch(workflow, /cp\s+[^\\n]*preview[^\\n]*\.png/);
   assert.doesNotMatch(`${html}\n${cvHtml}`, /\bmock\b/i);
 });

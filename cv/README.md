@@ -12,8 +12,7 @@ kept as plain structured data so a future AI session can revise the CV without
 touching the portfolio application.
 
 - `content.js`: identity, experience, projects, skills, links, and translations.
-- `render.js`: deterministic HTML rendering, language messages, height messages,
-  and print dispatch.
+- `render.js`: deterministic HTML rendering, language messages, and height messages.
 - `styles.css`: responsive screen presentation and the fixed A4 print layout.
 - `index.html`: standalone renderer entry point.
 - `embed.js`: narrow parent-page custom element and iframe bridge.
@@ -23,5 +22,10 @@ Preview the renderer directly at `cv/index.html?lang=en` or
 single-column reading layout. Printing always switches to the two-column A4
 layout, independently of the screen viewport.
 
-The iframe uses `sandbox="allow-scripts allow-modals"`. Keep the message
-contract limited to language, measured height, validated scroll deltas, and print requests.
+The iframe uses `sandbox="allow-scripts"`. Keep the message contract limited to
+language, measured height, and validated scroll deltas.
+
+The public PDFs are generated for both languages by GitHub Actions, validated as
+tagged one- or two-page A4 documents with required metadata, and added to the
+Pages artifact at stable paths. PDFs and preview PNGs are not versioned in this
+repository.

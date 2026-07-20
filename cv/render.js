@@ -195,7 +195,6 @@
 
   window.addEventListener('message', (event) => {
     if (event.data?.type === 'portfolio-cv:language') render(event.data.language);
-    if (event.data?.type === 'portfolio-cv:print') window.print();
   });
 
   window.addEventListener('resize', notifyHeight);

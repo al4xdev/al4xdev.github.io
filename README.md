@@ -17,7 +17,7 @@ Open <http://127.0.0.1:8080>.
 - `styles.css`: Systems Fieldboard visual system and responsive behavior.
 - `app.js`: bilingual content, project data, language persistence, and constellation interaction.
 - `cv/`: isolated bilingual CV mini-application with responsive screen rendering and fixed A4
-  printing. Ordinary career-content edits belong in `cv/content.js`.
+  export layout. Ordinary career-content edits belong in `cv/content.js`.
 - `articles/`: bilingual curated field-note reader; original GitHub documents remain linked as
   provenance.
 - `tests/`: strict contract and Chromium suite used locally and by GitHub Actions.
@@ -29,6 +29,10 @@ Open <http://127.0.0.1:8080>.
 GitHub Pages publishes an explicit allowlist of static site files at <https://al4xdev.github.io/>.
 The strict quality workflow gates that deployment on dependency, lint, contract, browser,
 accessibility, and A4 checks for every push to `main`.
+
+The official English and Brazilian Portuguese CV PDFs are generated and validated by that
+workflow, then published at stable paths under `/cv/`. They are build artifacts and are not
+versioned in the repository; per-page PNG previews remain internal to local inspection.
 
 The footer's integrity counter is generated from the tests discovered by Node and Playwright.
 After adding or removing tests, refresh the committed static metadata with:

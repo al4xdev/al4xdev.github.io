@@ -5,7 +5,6 @@
     constructor() {
       super();
       this.frame = null;
-      this.pendingPrint = false;
       this.pendingScrollX = 0;
       this.pendingScrollY = 0;
       this.scrollFrame = 0;
@@ -19,10 +18,9 @@
       frame.title = language === 'pt-BR' ? 'Renderizador isolado do currículo' : 'Isolated CV renderer';
       frame.src = `cv/index.html?lang=${encodeURIComponent(language)}`;
       frame.loading = 'lazy';
-      frame.sandbox = 'allow-scripts allow-modals';
+      frame.sandbox = 'allow-scripts';
       frame.addEventListener('load', () => {
         this.sendLanguage();
-        if (this.pendingPrint) this.print();
       });
       this.frame = frame;
       this.replaceChildren(frame);
@@ -74,15 +72,6 @@
         type: 'portfolio-cv:language',
         language: this.getAttribute('language') === 'pt-BR' ? 'pt-BR' : 'en',
       }, '*');
-    }
-
-    print() {
-      if (!this.frame?.contentWindow) {
-        this.pendingPrint = true;
-        return;
-      }
-      this.pendingPrint = false;
-      this.frame.contentWindow.postMessage({ type: 'portfolio-cv:print' }, '*');
     }
   }
 

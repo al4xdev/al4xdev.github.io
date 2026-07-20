@@ -141,11 +141,11 @@ for (const viewport of [
       await expect(page.locator('.cv-controls')).toHaveClass(/is-active/);
       await expect(page.locator('[data-cv-toggle]')).toBeInViewport();
       await expect(page.locator('[data-cv-controls]')).toHaveAttribute('data-expanded', 'false');
-      await expect(page.locator('[data-print-cv]')).toBeHidden();
+      await expect(page.locator('[data-download-cv]')).toBeHidden();
       await page.locator('[data-cv-toggle]').click();
-      await expect(page.locator('[data-print-cv]')).toBeVisible();
+      await expect(page.locator('[data-download-cv]')).toBeVisible();
       await expect(page.locator('.cv-control-note')).toBeVisible();
-      await expect(page.locator('.cv-control-note')).toContainText('Headers and footers');
+      await expect(page.locator('.cv-control-note')).toContainText('publication pipeline');
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width);
   });
@@ -212,13 +212,20 @@ test('CV timeline markers share one vertical axis', async ({ page }) => {
   expect(Math.max(...offsets)).toBeLessThan(0.1);
 });
 
-test('CV language and print request cross only the sandbox message bridge', async ({ page }) => {
+test('CV language bridge and official download follow the active locale', async ({ page }) => {
   await page.goto('/?lang=en');
   await page.locator('#cv').scrollIntoViewIfNeeded();
   const frame = page.frameLocator('portfolio-cv iframe');
   await expect(frame.locator('.cv-page')).toBeVisible();
+  const download = page.locator('[data-download-cv]');
+  await expect(download).toHaveAttribute('href', 'cv/alexsandro-pessoa-cv-en.pdf');
+  await expect(download).toHaveAttribute('download', 'alexsandro-pessoa-cv-en.pdf');
+  await expect(download).toHaveText(/Download official CV/);
   await page.locator('[data-set-language="pt-BR"]').click();
   await expect(frame.locator('.cv-block').first()).toContainText('Perfil');
+  await expect(download).toHaveAttribute('href', 'cv/alexsandro-pessoa-cv-pt-BR.pdf');
+  await expect(download).toHaveAttribute('download', 'alexsandro-pessoa-cv-pt-BR.pdf');
+  await expect(download).toHaveText(/Baixar currículo oficial/);
 
   const child = page.frames().find((candidate) => candidate.url().includes('/cv/index.html'));
   expect(child).toBeTruthy();
@@ -248,13 +255,8 @@ test('CV language and print request cross only the sandbox message bridge', asyn
   });
   expect(touchMovePrevented).toBe(true);
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(touchScrollBefore);
-  await child.evaluate(() => {
-    window.__printCalled = false;
-    window.print = () => { window.__printCalled = true; };
-  });
-  await page.locator('[data-print-cv]').click();
-  await expect.poll(() => child.evaluate(() => window.__printCalled)).toBe(true);
-  await expect(page.locator('portfolio-cv iframe')).toHaveAttribute('sandbox', 'allow-scripts allow-modals');
+  expect(await child.evaluate(() => document.body.innerHTML.includes('portfolio-cv:print'))).toBe(false);
+  await expect(page.locator('portfolio-cv iframe')).toHaveAttribute('sandbox', 'allow-scripts');
 });
 
 for (const language of ['en', 'pt-BR']) {
